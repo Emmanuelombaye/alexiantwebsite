@@ -104,34 +104,27 @@ export function HeroMasterpieceSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 10000); // Extended time so the slide is visible between long DJ crossfades
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="relative w-full h-[75vh] md:h-[85vh] px-4 md:px-8 pt-4 pb-12">
-      <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.4)] border border-white/10">
-        <AnimatePresence mode="wait">
+      <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.4)] border border-white/10 bg-slate-950">
+        <AnimatePresence>
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1,
-              transition: { duration: 1.5, ease: "easeOut" }
-            }}
-            exit={{ 
-              opacity: 0, 
-              scale: 0.95,
-              transition: { duration: 1, ease: "easeInOut" }
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 3.5, ease: "easeInOut" } }}
+            exit={{ opacity: 0, transition: { duration: 4.5, ease: "easeInOut" } }}
             className="absolute inset-0"
           >
-            {/* Background Image with Ken Burns Effect */}
+            {/* Cinematic Alternating Zoom In & Out */}
             <motion.div 
+              initial={{ scale: currentIndex % 2 === 0 ? 1.25 : 1.0 }}
               animate={{ 
-                scale: [1, 1.08, 1],
-                transition: { duration: 10, repeat: Infinity, ease: "linear" }
+                scale: currentIndex % 2 === 0 ? 1.0 : 1.25,
+                transition: { duration: 15, ease: "easeOut" }
               }}
               className="absolute inset-0"
             >
@@ -141,7 +134,7 @@ export function HeroMasterpieceSlider() {
                 title={`${slides[currentIndex].title} - Premium Coastal Property`}
                 priority={currentIndex === 0}
                 fill
-                className="object-cover"
+                className="object-cover transition-all"
               />
             </motion.div>
             
@@ -266,7 +259,7 @@ export function HeroMasterpieceSlider() {
             key={currentIndex}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 6, ease: "linear" }}
+            transition={{ duration: 10, ease: "linear" }}
             className="h-full bg-[#D4AF37]"
           />
         </div>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createLeadInquiry, listLeadInquiries } from "@/lib/leads/service";
+import { sendLeadNotification } from "@/lib/notifications/service";
 import type { LeadIntent, LeadPayload } from "@/types/lead";
 
 const allowedIntents: LeadIntent[] = ["buy", "rent", "sell", "invest"];
@@ -45,6 +46,9 @@ export async function POST(request: Request) {
     propertySlug,
     message,
   });
+
+  // Trigger the email workflow without blocking the response
+  await sendLeadNotification(lead).catch(console.error);
 
   return NextResponse.json({
     message: `Thanks ${name}, your ${intent} inquiry${propertySlug ? ` for ${propertySlug}` : ""} has been received by Alexiant.`,

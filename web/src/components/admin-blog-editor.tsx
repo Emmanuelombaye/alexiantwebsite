@@ -97,7 +97,9 @@ export function AdminBlogEditor({ initialHtml = "", onChange }: AdminBlogEditorP
   };
 
   const removeBlock = (id: string) => {
-    setBlocks(blocks.filter((b) => b.id !== id));
+    if (window.confirm("Are you sure you want to completely delete this block?")) {
+      setBlocks(blocks.filter((b) => b.id !== id));
+    }
   };
 
   const moveBlock = (index: number, direction: "up" | "down") => {
@@ -166,7 +168,11 @@ export function AdminBlogEditor({ initialHtml = "", onChange }: AdminBlogEditorP
                     <img src={block.metadata.url} className="w-full h-full object-cover" alt="" />
                     <button 
                       type="button" 
-                      onClick={() => updateBlock(block.id, block.value, { url: "" })}
+                      onClick={() => {
+                        if (window.confirm("Are you sure you want to remove or replace this image?")) {
+                          updateBlock(block.id, block.value, { url: "" });
+                        }
+                      }}
                       className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs backdrop-blur-md"
                     >
                       Change Image

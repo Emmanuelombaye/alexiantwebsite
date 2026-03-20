@@ -44,6 +44,19 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  
+  const [title, setTitle] = useState(initialProperty?.title || "");
+  const [slug, setSlug] = useState(initialProperty?.slug || "");
+  const [slugEdited, setSlugEdited] = useState(false);
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    if (!slugEdited && mode === "create") {
+      setSlug(newTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, ""));
+    }
+  };
+
   const [images, setImages] = useState<PropertyImage[]>(
     initialProperty?.images.map(img => typeof img === 'string' ? { url: img, slug: '' } : img) || []
   );
@@ -51,7 +64,9 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
   const hasImageOverflow = imageCount > MAX_PROPERTY_IMAGES;
 
   function removeImage(indexToRemove: number) {
-    setImages(images.filter((_, index) => index !== indexToRemove));
+    if (window.confirm("Are you sure you want to permanently delete this property image?")) {
+      setImages(images.filter((_, index) => index !== indexToRemove));
+    }
   }
 
   function updateImageSlug(index: number, slug: string) {
@@ -140,11 +155,11 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
       <section className="card-surface grid gap-6 p-8 lg:grid-cols-2">
         <div>
           <label className="text-sm font-medium text-slate-700">Title</label>
-          <input name="title" required defaultValue={initialProperty?.title} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
+          <input name="title" required value={title} onChange={handleTitleChange} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Slug</label>
-          <input name="slug" defaultValue={initialProperty?.slug} placeholder="leave blank to generate from title" className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
+          <input name="slug" value={slug} onChange={(e) => { setSlug(e.target.value); setSlugEdited(true); }} placeholder="leave blank to auto-generate" className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Category</label>

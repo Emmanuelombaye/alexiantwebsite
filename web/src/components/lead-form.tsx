@@ -55,8 +55,8 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
 
   const textColor = dark ? "text-white" : "text-slate-900";
   const mutedTextColor = dark ? "text-white/40" : "text-slate-500";
-  const inputBg = dark ? "bg-white/5" : "bg-slate-50";
-  const inputBorder = dark ? "border-white/10" : "border-slate-200";
+  const inputBg = dark ? "bg-white/5" : "bg-white/60 backdrop-blur-xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)]";
+  const inputBorder = dark ? "border-white/10" : "border-white/80";
   const placeholderColor = dark ? "placeholder:text-white/25" : "placeholder:text-slate-400";
 
   return (

@@ -97,7 +97,9 @@ export const metadata: Metadata = {
     canonical: getSiteUrl(),
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" }
+    ],
     apple: "/logo.png",
   },
   category: "real estate",

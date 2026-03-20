@@ -79,7 +79,7 @@ export const siteContent = {
       "href": "/mortgage"
     },
     {
-      "label": "Concierge",
+      "label": "Contact",
       "href": "/contact"
     }
   ],

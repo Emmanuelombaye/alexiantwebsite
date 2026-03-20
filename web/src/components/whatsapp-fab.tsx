@@ -28,16 +28,7 @@ export function WhatsappFab() {
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           className="fixed bottom-8 right-8 z-[100] flex items-center gap-4"
         >
-          {/* Tooltip Label */}
-          <motion.div 
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="hidden md:block rounded-2xl bg-white/90 backdrop-blur-md border border-[#D4AF37]/20 px-4 py-2 shadow-xl"
-          >
-            <p className="text-[0.65rem] font-bold uppercase tracking-widest text-[#1F2937]">
-              Chat with an Advisor
-            </p>
-          </motion.div>
+
 
           {/* Floating Button */}
           <a

@@ -1,16 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import "server-only";
 import Link from "next/link";
-import Image from "next/image";
 import { siteContent } from "@/data/site-content";
+import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
 
 export function SiteFooter() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] via-[#053a2f] to-[#011611] pt-12 md:pt-32 pb-8 text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] via-[#053a2f] to-[#011611] pt-16 md:pt-32 pb-8 text-white">
       <style>{`
         @keyframes footer-slide {
           from { transform: translateX(0); }
@@ -31,9 +26,6 @@ export function SiteFooter() {
              '/demo-media/neighborhoodImages/tiwi-1.png',
              '/demo-media/neighborhoodImages/watamu-1.png',
              '/demo-media/neighborhoodImages/diani-1.png',
-             '/demo-media/neighborhoodImages/galu-1.png',
-             '/demo-media/neighborhoodImages/tiwi-1.png',
-             '/demo-media/neighborhoodImages/watamu-1.png',
            ].map((src, i) => (
              <div key={i} className="relative h-full w-[1200px] flex-shrink-0">
                <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
@@ -44,97 +36,130 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Decorative background element for executive feel */}
       <div className="absolute -top-48 -left-48 z-10 h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[160px] pointer-events-none" />
       <div className="absolute top-1/2 -right-48 z-10 h-[400px] w-[400px] rounded-full bg-[#058C42]/20 blur-[130px] pointer-events-none" />
 
       <div className="section-shell relative z-10">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-3 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr] lg:gap-x-12 lg:gap-y-20">
-          <div className="col-span-2 space-y-6 md:col-span-3 lg:col-span-1 lg:space-y-10">
-            <Link href="/" className="group relative inline-flex items-center">
-              <div className="absolute inset-0 -m-6 rounded-3xl bg-[#D4AF37]/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
-              {mounted ? (
-                <div className="relative rounded-2xl bg-white/5 p-3 md:p-5 backdrop-blur-md ring-1 ring-[#D4AF37]/30 transition-transform group-hover:scale-[1.02]">
-                  <img 
-                    src="/logo.svg" 
-                    alt="Alexiant Real Estate Logo - Diani Beach Property and Plots for Sale"
-                    title="Coastal Real Estate Agency"
-                    className="h-8 md:h-12 w-auto brightness-200 contrast-125 grayscale invert transition-all" 
-                    style={{ minWidth: '100px' }}
-                  />
-                </div>
-              ) : (
-                <div className="h-12 w-32" />
-              )}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4 lg:grid-cols-[1.8fr_1fr_1fr_1.2fr] lg:gap-x-12 lg:gap-y-20">
+          
+          {/* LOGO & HQ COLUMN */}
+          <div className="col-span-2 space-y-6 md:col-span-4 lg:col-span-1 lg:space-y-10">
+            <Link href="/" className="group inline-flex items-center">
+              <div className="relative rounded-2xl bg-white/5 p-4 backdrop-blur-md ring-1 ring-[#D4AF37]/30 transition-transform group-hover:scale-[1.02]">
+                <img 
+                  src="/logo.svg" 
+                  alt="Alexiant Real Estate Logo"
+                  className="h-10 md:h-12 w-auto brightness-200 contrast-125 grayscale invert transition-all" 
+                />
+              </div>
             </Link>
             
-            <p className="max-w-[340px] font-display text-[0.8rem] md:text-[1rem] italic leading-relaxed tracking-wide text-white opacity-60">
-              Listing the coast with <span className="font-bold not-italic text-[#D4AF37]">The gold standard</span>
+            <p className="max-w-[340px] font-display text-[0.8rem] md:text-[0.95rem] italic leading-relaxed tracking-wide text-white opacity-60">
+              Listing the coast with <span className="font-bold not-italic text-[#D4AF37]">The gold standard.</span>
             </p>
             
-            <div className="flex gap-4">
-              <a href={siteContent.whatsappHref} className="group relative overflow-hidden rounded-full border border-[#046A38] px-6 md:px-10 py-2 md:py-4 text-[0.6rem] md:text-[0.75rem] font-bold uppercase tracking-[0.3em] text-[#046A38] transition-all hover:bg-[#046A38] hover:text-white hover:shadow-[0_0_20px_rgba(4,106,56,0.3)]">
-                <span className="relative z-10">Consult Advisor</span>
-              </a>
+            <div className="flex flex-col gap-4">
+              <Link href="/contact" className="group relative overflow-hidden rounded-full border border-[#D4AF37] px-6 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37] transition-all hover:bg-[#D4AF37] hover:text-[#011611] flex items-center justify-center gap-3 w-fit shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+                <PhoneCall className="w-4 h-4" />
+                <span className="relative z-10">Request Call Back</span>
+              </Link>
             </div>
           </div>
 
+          {/* PORTFOLIO */}
           <div className="md:col-span-1">
-            <h4 className="mb-3 md:mb-8 font-display text-[0.9rem] md:text-[1.1rem] font-bold tracking-wider text-[#D4AF37]">Portfolio</h4>
-            <nav className="flex flex-col gap-2 md:gap-5 text-[0.7rem] md:text-[0.85rem] font-medium tracking-wide">
-              <Link href="/properties?category=sale" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Signature Listings</Link>
-              <Link href="/properties?category=rent" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Executive Rentals</Link>
-              <Link href="/neighborhoods" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Urban Heritage</Link>
-              <Link href="/valuation" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Asset Valuation</Link>
+            <h4 className="mb-4 md:mb-8 font-display text-[0.95rem] md:text-[1.1rem] font-bold tracking-widest text-[#D4AF37] uppercase">Properties</h4>
+            <nav className="flex flex-col gap-3 md:gap-5 text-[0.75rem] md:text-[0.85rem] font-medium tracking-wide">
+              <Link href="/properties?category=sale" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">For Sale</Link>
+              <Link href="/properties?category=rent" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">For Rent</Link>
+              <Link href="/neighborhoods" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Neighborhoods</Link>
+              <Link href="/valuation" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Valuation</Link>
             </nav>
           </div>
 
+          {/* AGENCY */}
           <div className="md:col-span-1">
-            <h4 className="mb-3 md:mb-8 font-display text-[0.9rem] md:text-[1.1rem] font-bold tracking-wider text-[#D4AF37]">Curated</h4>
-            <nav className="flex flex-col gap-2 md:gap-5 text-[0.7rem] md:text-[0.85rem] font-medium tracking-wide">
-              <Link href="/plots-for-sale-diani" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Investment Land</Link>
-              <Link href="/houses-for-sale-ukunda" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Developments</Link>
-              <Link href="/beachfront-property-diani" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Oceanfront</Link>
-              <Link href="/blog" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Intelligence</Link>
+            <h4 className="mb-4 md:mb-8 font-display text-[0.95rem] md:text-[1.1rem] font-bold tracking-widest text-[#D4AF37] uppercase">Company</h4>
+            <nav className="flex flex-col gap-3 md:gap-5 text-[0.75rem] md:text-[0.85rem] font-medium tracking-wide">
+              <Link href="/about" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">About</Link>
+              <Link href="/services" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Services</Link>
+              <Link href="/blog" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Blog</Link>
+              <Link href="/contact" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Contact</Link>
             </nav>
           </div>
 
-          <div className="md:col-span-1">
-            <h4 className="mb-3 md:mb-8 font-display text-[0.9rem] md:text-[1.1rem] font-bold tracking-wider text-[#D4AF37]">Agency</h4>
-            <nav className="flex flex-col gap-2 md:gap-5 text-[0.7rem] md:text-[0.85rem] font-medium tracking-wide">
-              <Link href="/about" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Our Heritage</Link>
-              <Link href="/services" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Bespoke</Link>
-              <Link href="/contact" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Offices</Link>
-              <Link href="/admin" className="transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37]">Internal</Link>
-            </nav>
-          </div>
-
+          {/* DOWNLOAD & SOCIALS */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
-            <h4 className="mb-3 md:mb-8 font-display text-[0.9rem] md:text-[1.1rem] font-bold tracking-wider text-[#D4AF37]">Inquiries</h4>
-            <div className="space-y-3 md:space-y-6 text-[0.7rem] md:text-[0.85rem] font-medium tracking-wide">
-              <div className="space-y-1 md:space-y-4">
-                <a href={siteContent.phoneHref} className="block font-display text-[1rem] md:text-[1.2rem] font-semibold italic text-white transition-all hover:text-[#046A38]">{siteContent.phone}</a>
-                <a href={`mailto:${siteContent.email}`} className="block truncate border-b border-white/10 pb-1 text-white transition-all hover:border-[#046A38] hover:text-[#046A38]">{siteContent.email}</a>
-              </div>
-              <div className="pt-1">
-                <p className="text-[0.65rem] md:text-[0.8rem] italic leading-relaxed text-white opacity-40">
-                  New Beach Road, Diani,<br />South Coast, Kenya
-                </p>
-              </div>
+            <div className="mb-10">
+               <h4 className="mb-4 font-display text-[0.95rem] md:text-[1.1rem] font-bold tracking-widest text-[#D4AF37] uppercase">Mobile Access</h4>
+               <p className="text-[0.65rem] md:text-[0.75rem] italic text-white/50 mb-4 tracking-wide">Take your executive portfolio anywhere.</p>
+               <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+                  <a href="#" className="flex items-center gap-3 px-5 py-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all group overflow-hidden relative">
+                     <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                     <svg className="w-6 h-6 text-white/90 group-hover:text-[#D4AF37] transition-colors relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16.365 7.043c-.85 0-2.148-1-3.535-.968-1.84.025-3.52 1.054-4.464 2.68-2.028 3.498-.515 8.7 1.408 11.455.938 1.345 2.052 2.898 3.528 2.84 1.408-.052 1.933-.907 3.633-.907 1.685 0 2.162.907 3.648.88 1.543-.025 2.502-1.41 3.407-2.73 1.04-1.517 1.48-3.016 1.505-3.097-.037-.01-2.905-1.12-2.935-4.484-.025-2.82 2.275-4.184 2.384-4.244-1.328-1.942-3.385-2.203-4.11-2.268-1.625-.152-3.375.98-4.156.98zM16.96 2.973c.828-1.02 1.385-2.427 1.233-3.824-1.182.046-2.636.79-3.483 1.804-.76.892-1.417 2.336-1.24 3.712 1.326.104 2.66-.685 3.49-1.692z"/>
+                     </svg>
+                     <div className="flex flex-col items-start -space-y-0.5 relative z-10">
+                        <span className="text-[0.45rem] font-medium uppercase tracking-[0.2em] text-white/50 group-hover:text-white/80 transition-colors">Download on the</span>
+                        <span className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors tracking-wide">App Store</span>
+                     </div>
+                  </a>
+                  <a href="#" className="flex items-center gap-3 px-5 py-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all group overflow-hidden relative">
+                     <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                     <svg className="w-5 h-5 ml-0.5 text-white/90 group-hover:text-[#D4AF37] transition-colors relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3.609 1.814L13.792 12 3.61 22.186a1.986 1.986 0 0 1-.587-1.415V3.229c0-.528.21-.1.586-.14zM14.636 12.84l3.141 3.14-11.69 6.643 8.549-8.55v-.002zM18.886 8.586l-4.25 4.254-4.25-4.253L18.887 8.586zm1.182 2.01l-1.393-1.392-3.195 3.196 3.195 3.195 1.393-1.393a1.996 1.996 0 0 0 0-3.605z"/>
+                     </svg>
+                     <div className="flex flex-col items-start -space-y-0.5 relative z-10 ml-0.5">
+                        <span className="text-[0.45rem] font-medium uppercase tracking-[0.2em] text-white/50 group-hover:text-white/80 transition-colors">Get it on</span>
+                        <span className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors tracking-wide">Google Play</span>
+                     </div>
+                  </a>
+               </div>
+            </div>
+
+            <div>
+               <h4 className="mb-4 font-display text-[0.8rem] font-bold tracking-[0.2em] text-[#D4AF37] uppercase">Follow Us</h4>
+               <div className="flex items-center gap-4">
+                  {[
+                    { icon: Facebook, href: "#facebook" },
+                    { icon: Twitter, href: "#twitter" },
+                    { icon: Instagram, href: "#instagram" },
+                    { icon: Linkedin, href: "#linkedin" },
+                  ].map((Social, i) => (
+                    <a key={i} href={Social.href} className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]">
+                       <Social.icon className="w-4 h-4 md:w-5 md:h-5 text-white/60 group-hover:text-[#D4AF37] transition-colors" />
+                    </a>
+                  ))}
+               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 md:mt-32 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 md:pt-16 text-[0.6rem] md:text-[0.75rem] font-medium tracking-[0.2em] text-white/20 md:flex-row">
-          <p className="text-center md:text-left">
-            © {new Date().getFullYear()} Alexiant Group. <span className="mx-4 md:mx-6 hidden opacity-20 md:inline">|</span> <span className="italic uppercase text-[0.5rem] tracking-[0.4em]">Crafted For Excellence</span>
-          </p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+        <div className="mt-16 md:mt-24 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 text-[0.6rem] md:text-[0.7rem] font-medium tracking-[0.2em] text-white/30 md:flex-row">
+          <div className="text-center md:text-left flex flex-col md:flex-row items-center gap-2 md:gap-0">
+            <span>© {new Date().getFullYear()} Alexiant Group.</span>
+            <span className="mx-4 md:mx-6 hidden opacity-20 md:inline">|</span> 
+            <span className="italic uppercase text-[0.5rem] tracking-[0.4em] mb-2 md:mb-0">Crafted For Excellence</span>
+            <span className="mx-4 hidden opacity-20 md:inline">|</span>
+            <a 
+              href="https://wa.me/254777770755?text=Hello%20DonFilm%20Creations!%20I%20saw%20the%20Alexiant%20Real%20Estate%20website%20and%20I%20am%20interested%20in%20your%20executive%20website%20development%20and%20premium%20tech%20services%20(Digital%20Marketing,%20Social%20Management,%20Cinema%20&%20Videography)." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[0.6rem] md:text-[0.7rem] font-medium uppercase tracking-[0.25em] transition-all hover:text-[#D4AF37] opacity-80 hover:opacity-100 flex items-center gap-1.5"
+            >
+              Powered By <span className="text-white font-bold hover:text-[#D4AF37] transition-colors">DonFilm Creations</span>
+            </a>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
             <Link href="/privacy" className="transition-colors hover:text-[#D4AF37]">Privacy Policy</Link>
             <Link href="/terms" className="transition-colors hover:text-[#D4AF37]">Agreement</Link>
             <div className="flex items-center gap-2">
-               <span className="block h-1 w-1 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,1)]" />
-               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/40">Diani HQ</span>
+               <span className="block h-1.5 w-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,1)]" />
+               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/50">{siteContent.phone}</span>
+            </div>
+            <div className="flex items-center gap-2">
+               <span className="block h-1.5 w-1.5 rounded-full bg-[#058C42] shadow-[0_0_8px_rgba(5,140,66,1)]" />
+               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#058C42]/50">Diani HQ</span>
             </div>
           </div>
         </div>

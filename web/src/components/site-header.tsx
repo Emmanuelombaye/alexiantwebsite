@@ -96,7 +96,7 @@ export function SiteHeader() {
                     className={`group relative py-1 text-[9px] font-black uppercase tracking-[0.3em] transition-all duration-500 ${
                       isActive
                         ? scrolled || menuOpen || pathname === '/contact' || pathname === '/neighborhoods' || pathname === '/mortgage' || pathname?.includes('/blog/') || pathname?.includes('/properties/')
-                          ? "text-slate-900"
+                          ? "text-[#046A38]"
                           : "text-white"
                         : scrolled || menuOpen || pathname === '/contact' || pathname === '/neighborhoods' || pathname === '/mortgage' || pathname?.includes('/blog/') || pathname?.includes('/properties/')
                           ? "text-slate-400 hover:text-slate-900"
@@ -104,8 +104,8 @@ export function SiteHeader() {
                     }`}
                   >
                     {item.label}
-                    {/* Luxury line indicator */}
-                    <span className={`absolute -bottom-1.5 left-1/2 h-[1px] -translate-x-1/2 bg-[#D4AF37] transition-all duration-700 ${isActive ? "w-full" : "w-0 group-hover:w-1/3 group-hover:opacity-50"}`} />
+                    {/* Emerald active indicator line */}
+                    <span className={`absolute -bottom-1.5 left-1/2 h-[2px] -translate-x-1/2 bg-[#046A38] transition-all duration-700 ${isActive ? "w-full" : "w-0 group-hover:w-1/3 group-hover:bg-[#D4AF37] group-hover:opacity-50"}`} />
                   </Link>
                 );
               })}
@@ -218,7 +218,7 @@ export function SiteHeader() {
                 <Link 
                   href="/valuation" 
                   onClick={() => setMenuOpen(false)} 
-                  className="flex items-center justify-center rounded-full bg-[#022c22] p-4 text-[0.7rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] shadow-xl hover:bg-[#046A38] transition-all"
+                  className="flex items-center justify-center rounded-full bg-[#046A38] p-4 text-[0.7rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] shadow-xl hover:bg-[#035930] transition-all border border-[#D4AF37]/30"
                 >
                   Free Valuation
                 </Link>

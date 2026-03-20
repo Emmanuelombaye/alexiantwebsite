@@ -21,6 +21,19 @@ export function AdminBlogForm({ mode, initialPost }: AdminBlogFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   
+  const [title, setTitle] = useState(initialPost?.title || "");
+  const [slug, setSlug] = useState(initialPost?.slug || "");
+  const [slugEdited, setSlugEdited] = useState(false);
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    if (!slugEdited && mode === "create") {
+      setSlug(newTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, ""));
+    }
+  };
+
+  
   // Images State (Max 3)
   const [images, setImages] = useState<string[]>(initialPost?.images || []);
   
@@ -120,7 +133,9 @@ export function AdminBlogForm({ mode, initialPost }: AdminBlogFormProps) {
 
   const removeSection = (id: string) => {
     if (sections.length > 1) {
-      setSections(sections.filter(s => s.id !== id));
+      if (window.confirm("Are you sure you want to completely delete this content section?")) {
+        setSections(sections.filter(s => s.id !== id));
+      }
     }
   };
 
@@ -141,7 +156,8 @@ export function AdminBlogForm({ mode, initialPost }: AdminBlogFormProps) {
                  <input 
                    name="title" 
                    required 
-                   defaultValue={initialPost?.title} 
+                   value={title}
+                   onChange={handleTitleChange}
                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-lg font-bold text-slate-900 focus:ring-2 focus:ring-[#D4AF37] outline-none" 
                    placeholder="e.g. Diani Market Insights 2026"
                  />
@@ -151,7 +167,8 @@ export function AdminBlogForm({ mode, initialPost }: AdminBlogFormProps) {
                  <input 
                    name="slug" 
                    required 
-                   defaultValue={initialPost?.slug} 
+                   value={slug}
+                   onChange={(e) => { setSlug(e.target.value); setSlugEdited(true); }}
                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 font-mono text-xs text-slate-500 focus:ring-2 focus:ring-[#D4AF37] outline-none" 
                    placeholder="diani-market-insights-2026"
                  />
@@ -250,7 +267,11 @@ export function AdminBlogForm({ mode, initialPost }: AdminBlogFormProps) {
                        <img src={img} alt="" className="w-full h-full object-cover" />
                        <button 
                          type="button" 
-                         onClick={() => setImages(images.filter((_, idx) => idx !== i))}
+                         onClick={() => {
+                           if (window.confirm("Are you sure you want to delete this gallery image?")) {
+                             setImages(images.filter((_, idx) => idx !== i));
+                           }
+                         }}
                          className="absolute top-2 right-2 h-6 w-6 rounded-full bg-black/50 text-white text-[10px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                        >✕</button>
                     </div>

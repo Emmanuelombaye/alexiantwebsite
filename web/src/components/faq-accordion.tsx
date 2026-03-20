@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FaqItem {
   q: string;
@@ -14,8 +15,25 @@ export function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
     setOpenIndex(openIndex === index ? null : index);
   }
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="max-w-3xl mx-auto grid gap-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
       {faqs.map((faq, index) => {
         const isOpen = openIndex === index;
 
@@ -85,18 +103,22 @@ export function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
             </button>
 
             {/* Answer — collapsible */}
-            <div
-              className="overflow-hidden transition-all duration-500 ease-in-out"
-              style={{
-                maxHeight: isOpen ? "500px" : "0px",
-                opacity: isOpen ? 1 : 0,
-              }}
-            >
-              <div className="px-7 md:px-9 pb-8 pl-[5.25rem] md:pl-[6.25rem]">
-                <div className="h-[1px] w-12 rounded-full bg-gradient-to-r from-[#D4AF37]/40 to-transparent mb-4" />
-                <p className="text-white/60 leading-relaxed">{faq.a}</p>
-              </div>
-            </div>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-7 md:px-9 pb-8 pl-[5.25rem] md:pl-[6.25rem]">
+                    <div className="h-[1px] w-12 rounded-full bg-gradient-to-r from-[#D4AF37]/40 to-transparent mb-4" />
+                    <p className="text-white/60 leading-relaxed">{faq.a}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Corner glow */}
             <div

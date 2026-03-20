@@ -40,12 +40,12 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(homeSchema)} />
       {/* --- MASTERPIECE HERO SLIDER --- */}
-      <section className="relative bg-white pt-24 overflow-hidden">
+      <section className="relative bg-white pt-16 overflow-hidden">
         <HeroMasterpieceSlider />
       </section>
 
       {/* --- SEARCH COMPONENT IMMEDIATELY BELOW SLIDER --- */}
-      <section className="relative z-20 py-12 section-shell">
+      <section className="relative z-20 py-8 section-shell">
         <AnimatedSection direction="up" delay={0.1}>
           <div className="relative mx-auto max-w-5xl">
             <PropertyFilters 
@@ -64,7 +64,7 @@ export default async function Home() {
       </section>
 
       {/* --- HERO SHOWCASE --- */}
-      <section className="relative z-20 pb-20 pt-8 section-shell">
+      <section className="relative z-20 pb-12 pt-4 section-shell">
         <AnimatedSection direction="up" delay={0.3}>
           <div className="relative mx-auto max-w-5xl flex justify-center">
             <HeroPropertyShowcase properties={showcaseProperties} totalCount={totalCount} availableCount={availableCount} />
@@ -73,9 +73,9 @@ export default async function Home() {
       </section>
 
       {/* --- FEATURED COLLECTION --- */}
-      <section className="bg-slate-50 py-10 sm:py-16">
+      <section className="bg-slate-50 py-10 sm:py-12">
         <div className="section-shell">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row mb-16">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row mb-10">
             <div className="text-center md:text-left">
               <p className="section-kicker">Collection</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
@@ -98,14 +98,14 @@ export default async function Home() {
       </section>
 
       {/* --- SERVICES / EXPERTISE --- */}
-      <section className="relative py-10 sm:py-16 overflow-hidden bg-white">
+      <section className="relative py-10 sm:py-12 overflow-hidden bg-white">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[#D4AF37]/[0.03] blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#046A38]/[0.03] blur-[100px]" />
         <div className="absolute inset-0 soft-grid opacity-[0.05]" />
 
         <div className="section-shell relative z-10">
-          <div className="grid gap-16 lg:grid-cols-[0.38fr_1fr] items-start">
-            <AnimatedSection direction="right" className="sticky top-32">
+          <div className="grid gap-10 lg:grid-cols-[0.38fr_1fr] items-start">
+            <AnimatedSection direction="right" className="sticky top-24">
               <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.4em] text-[#D4AF37] backdrop-blur-md">
                 ✦ The Executive Standard
               </span>
@@ -181,7 +181,7 @@ export default async function Home() {
       </section>
 
       {/* --- NEIGHBORHOODS TEASER --- */}
-      <section className="section-shell py-10 sm:py-16">
+      <section className="section-shell py-8 sm:py-12">
          <div className="relative mx-auto max-w-5xl rounded-[2.5rem] overflow-hidden border border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] to-[#011611] shadow-2xl backdrop-blur-sm">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center opacity-5 mix-blend-luminosity" />
             <div className="relative z-10 flex flex-col items-center justify-center p-10 sm:p-14 text-center">
@@ -203,8 +203,8 @@ export default async function Home() {
       </section>
 
       {/* --- MASTERPIECE TESTIMONIALS --- */}
-      <section className="bg-slate-50 py-24 overflow-hidden">
-        <div className="text-center mb-16 px-4">
+      <section className="bg-slate-50 py-16 overflow-hidden">
+        <div className="text-center mb-10 px-4">
           <p className="section-kicker">Endorsements</p>
           <h2 className="mt-4 text-3xl md:text-6xl font-black text-[#1F2937] tracking-tighter">
             Trusted by the <span className="text-[#D4AF37]">discerning.</span>
@@ -214,47 +214,57 @@ export default async function Home() {
       </section>
 
       {/* --- LEAD SECTION --- */}
-      <section className="section-shell py-12 sm:py-16">
+      <section className="section-shell py-10 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
            <AnimatedSection direction="up">
-              <div className="rounded-[3rem] bg-white p-1 md:p-1 shadow-[0_40px_80px_rgba(4,106,56,0.08)] border border-slate-100 relative overflow-hidden group">
-                 <div className="bg-white rounded-[2.9rem] h-full w-full p-8 md:p-16 flex flex-col items-center text-center">
-                    <div className="max-w-2xl mx-auto mb-12">
-                       <div className="flex items-center justify-center gap-4 mb-6">
-                          <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#D4AF37]" />
-                          <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-[#D4AF37]">Concierge Advisory</span>
-                          <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              <div className="rounded-[3rem] bg-white shadow-[0_40px_100px_rgba(0,0,0,0.04)] border border-slate-100 relative overflow-hidden group">
+                 {/* Subtle ambient light from gold */}
+                 <div className="absolute top-0 right-0 h-[500px] w-[500px] -translate-y-1/2 translate-x-1/3 rounded-full bg-[#D4AF37]/5 blur-[120px] pointer-events-none" />
+
+                 <div className="bg-white rounded-[2.9rem] h-full w-full p-8 md:p-16 flex flex-col items-center text-center relative z-10">
+                    
+                    <div className="max-w-2xl mx-auto mb-14">
+                       <div className="flex items-center justify-center gap-4 mb-8">
+                          <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                          <span className="text-[0.65rem] font-black uppercase tracking-[0.6em] text-[#D4AF37]">Private Client Advisory</span>
+                          <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#D4AF37]" />
                        </div>
-                       <h2 className="font-display text-3xl md:text-5xl font-semibold italic text-slate-900 tracking-tight leading-[1.1] mb-6">
-                         {siteContent.leadSection.title}
+                       <h2 className="font-display text-4xl md:text-6xl font-normal text-slate-900 tracking-tighter leading-[1.05] mb-8">
+                         <span className="italic">{siteContent.leadSection.title}</span>
                        </h2>
-                       <p className="text-slate-500 text-base md:text-lg leading-relaxed font-light">
+                       <p className="text-slate-500 text-lg leading-relaxed font-light px-4">
                          {siteContent.leadSection.body}
                        </p>
                     </div>
-                    <div className="w-full max-w-xl">
-                       <div className="bg-slate-50/50 rounded-[2.5rem] p-1 border border-slate-100 shadow-inner relative">
-                          <LeadForm dark={false} className="!p-6 md:!p-10" />
+                    
+                    <div className="w-full max-w-xl relative">
+                       {/* Subtle gold ambient glow behind the glass to make the blur effect pop */}
+                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-[#046A38]/5 blur-[60px] pointer-events-none rounded-full" />
+                       
+                       <div className="bg-white/40 backdrop-blur-3xl rounded-[2.5rem] p-[2px] border border-white/80 shadow-[0_20px_60px_rgba(0,0,0,0.05)] relative z-10 overflow-hidden ring-1 ring-black/[0.02] hover:shadow-[0_30px_80px_rgba(212,175,55,0.08)] transition-all duration-700">
+                          {/* Inner glass reflection */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/10 to-white/30 pointer-events-none" />
+                          <LeadForm dark={false} className="!p-6 md:!p-10 relative z-20" />
                        </div>
                     </div>
-                    <div className="mt-12 flex items-center gap-4 py-4 px-8 rounded-full bg-slate-50 border border-slate-100">
+                    
+                    <div className="mt-14 flex items-center justify-center gap-5">
                        <div className="flex -space-x-3">
                         {[
                           "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120&h=120",
                           "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120",
                           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=120&h=120"
                         ].map((src, i) => (
-                           <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden shadow-sm animate-pulse">
+                           <div key={i} className="h-10 w-10 rounded-full border-[3px] border-white overflow-hidden shadow-md">
                               <img src={src} alt="Advisor" className="h-full w-full object-cover" />
                            </div>
                         ))}
                        </div>
-                       <div className="h-4 w-[1px] bg-slate-200" />
                        <div className="text-left">
-                          <p className="text-[0.6rem] font-black text-slate-900 uppercase tracking-widest">Active Advisors</p>
-                          <p className="text-[0.5rem] text-emerald-600 font-bold uppercase tracking-tight flex items-center gap-1.5">
-                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                             Typical response: &lt; 20 min
+                          <p className="text-[0.6rem] font-black text-slate-900 uppercase tracking-widest">Available Advisors</p>
+                          <p className="text-[0.55rem] text-[#D4AF37] font-bold uppercase tracking-widest flex items-center gap-1.5 mt-1">
+                             <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                             Typical response: instantly
                           </p>
                        </div>
                     </div>

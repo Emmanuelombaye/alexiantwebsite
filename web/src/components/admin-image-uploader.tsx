@@ -30,6 +30,16 @@ export function AdminImageUploader({ onUploaded, currentCount, maxImages }: Admi
       return;
     }
 
+    const MAX_FILE_SIZE_MB = 3;
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      setStatus("error");
+      setMessage(`Image too large. Please compress it to under ${MAX_FILE_SIZE_MB}MB before uploading.`);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+      return;
+    }
+
     setStatus("uploading");
     setMessage("");
 

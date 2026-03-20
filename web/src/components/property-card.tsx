@@ -13,9 +13,9 @@ interface PropertyCardProps {
 export function PropertyCard({ property }: PropertyCardProps) {
   return (
     <Link href={`/properties/${property.slug}`} className="group relative block">
-      <article className="relative flex flex-col h-full bg-white rounded-[2.8rem] border border-slate-100 p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 overflow-hidden">
+      <article className="relative flex flex-col h-full bg-white rounded-[2.8rem] border border-slate-100 p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 overflow-hidden hover:shadow-[0_30px_60px_rgba(4,106,56,0.15)]">
         {/* Cinematic Image Container */}
-        <div className="relative aspect-[3/2] rounded-[2.3rem] overflow-hidden mb-6 bg-slate-50">
+        <div className="relative aspect-[3/2] rounded-[2.3rem] overflow-hidden mb-6 bg-slate-50 group-hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)] transition-shadow duration-700">
           {property.images?.[0] ? (
             <>
               <Image
