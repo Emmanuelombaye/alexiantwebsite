@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="0.25" cy="0.25" r="0.8">
+      <stop offset="0" stop-color="#D4AF37" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="greenGlow" cx="0.8" cy="0.35" r="0.9">
+      <stop offset="0" stop-color="#046A38" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#046A38" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#goldGlow)"/>
+  <rect width="1200" height="630" fill="url(#greenGlow)"/>
+
+  <g font-family="Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif" fill="#FFFFFF">
+    <text x="96" y="250" font-size="56" font-weight="800" letter-spacing="0.5">Alexiant Real Estate</text>
+    <text x="96" y="312" font-size="26" font-weight="700" fill="#D4AF37" letter-spacing="4">DIANI · KENYA COAST</text>
+    <text x="96" y="382" font-size="28" font-weight="500" fill="rgba(255,255,255,0.78)">
+      Verified listings · Investment guidance · Luxury coastal living
+    </text>
+  </g>
+
+  <g>
+    <rect x="96" y="438" width="520" height="2" fill="rgba(212,175,55,0.6)"/>
+  </g>
+</svg>
+

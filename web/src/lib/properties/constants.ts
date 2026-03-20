@@ -1,0 +1,1 @@
+export const MAX_PROPERTY_IMAGES = 10;
