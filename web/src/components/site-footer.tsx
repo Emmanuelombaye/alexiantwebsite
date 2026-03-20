@@ -85,6 +85,10 @@ export function SiteFooter() {
               <Link href="/services" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Services</Link>
               <Link href="/blog" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Blog</Link>
               <Link href="/contact" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100">Contact</Link>
+              <Link href="/admin" className="opacity-70 transition-all duration-300 hover:translate-x-2 hover:text-[#D4AF37] hover:opacity-100 flex items-center gap-2">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />
+                Admin
+              </Link>
             </nav>
           </div>
 
