@@ -2,6 +2,7 @@ import "server-only";
 import Link from "next/link";
 import { siteContent } from "@/data/site-content";
 import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
+import { SecureContact } from "@/components/secure-contact";
 
 export function SiteFooter() {
   return (
@@ -159,7 +160,9 @@ export function SiteFooter() {
             <Link href="/terms" className="transition-colors hover:text-[#D4AF37]">Agreement</Link>
             <div className="flex items-center gap-2">
                <span className="block h-1.5 w-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,1)]" />
-               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/50">{siteContent.phone}</span>
+               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/50">
+                  <SecureContact type="phone" value={siteContent.phone} />
+               </span>
             </div>
             <div className="flex items-center gap-2">
                <span className="block h-1.5 w-1.5 rounded-full bg-[#058C42] shadow-[0_0_8px_rgba(5,140,66,1)]" />

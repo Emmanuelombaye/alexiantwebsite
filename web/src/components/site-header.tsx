@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { siteContent } from "@/data/site-content";
 import { getActiveNavLabel, isActiveNavPath } from "@/lib/navigation";
+import { SecureContact } from "@/components/secure-contact";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -112,16 +113,15 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2 flex-shrink-0">
-              <a 
-                href={siteContent.phoneHref} 
-                className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition md:inline-flex ${
+              <div
+                className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold md:inline-flex ${
                   scrolled || menuOpen
-                    ? "border-slate-200 text-slate-900 hover:border-slate-900"
-                    : "border-white/30 text-white hover:border-white bg-white/5"
+                    ? "border-slate-200 text-slate-900"
+                    : "border-white/30 text-white bg-white/5"
                 }`}
               >
-                {siteContent.phone}
-              </a>
+                <SecureContact type="phone" value={siteContent.phone} />
+              </div>
               <Link href="/valuation" className="nav-cta-gold hidden lg:inline-flex !px-4 !py-2 !text-xs">
                 Free Valuation
               </Link>
@@ -191,22 +191,14 @@ export function SiteHeader() {
               </nav>
 
               <div className="mt-8 grid grid-cols-2 gap-3 pb-6">
-                <motion.a 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-                  href={siteContent.phoneHref} 
-                  className="flex flex-col gap-0.5 rounded-xl bg-slate-50 p-4 border border-slate-100 transition hover:bg-slate-100"
-                >
+                <div className="flex flex-col gap-0.5 rounded-xl bg-slate-50 p-4 border border-slate-100 transition hover:bg-slate-100">
                   <span className="text-[0.45rem] font-black uppercase tracking-widest text-[#D4AF37]">Direct Call</span>
-                  <span className="text-[0.7rem] font-bold text-[#046A38] italic">{siteContent.phone}</span>
-                </motion.a>
-                <motion.a 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
-                  href={`mailto:${siteContent.email}`} 
-                  className="flex flex-col gap-0.5 rounded-xl bg-slate-50 p-4 border border-slate-100 transition hover:bg-slate-100"
-                >
+                  <SecureContact type="phone" value={siteContent.phone} className="text-[0.7rem] font-bold text-[#046A38] italic" />
+                </div>
+                <div className="flex flex-col gap-0.5 rounded-xl bg-slate-50 p-4 border border-slate-100 transition hover:bg-slate-100">
                   <span className="text-[0.45rem] font-black uppercase tracking-widest text-[#D4AF37]">Advisory Email</span>
-                  <span className="text-[0.55rem] font-bold text-[#046A38] break-all italic">{siteContent.email}</span>
-                </motion.a>
+                  <SecureContact type="email" value={siteContent.email} className="text-[0.55rem] font-bold text-[#046A38] break-all italic" />
+                </div>
               </div>
 
               <motion.div

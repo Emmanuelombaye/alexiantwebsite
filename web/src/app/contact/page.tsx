@@ -4,6 +4,7 @@ import { siteContent } from "@/data/site-content";
 import { PageTransition, AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
 import { buildBreadcrumbList, toJsonLdScript } from "@/lib/seo/jsonld";
 import { getSiteUrl } from "@/lib/seo/site-url";
+import { SecureContact } from "@/components/secure-contact";
 
 export const metadata: Metadata = {
   title: "Connect with Alexiant Real Estate | Diani Office",
@@ -120,7 +121,7 @@ export default function ContactPage() {
                      </div>
                      <div>
                         <p className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 mb-1">Direct Line</p>
-                        <a href={siteContent.phoneHref} className="text-lg font-bold text-slate-900 leading-tight hover:text-[#046A38] transition-colors">{siteContent.phone}</a>
+                        <SecureContact type="phone" value={siteContent.phone} className="text-lg font-bold text-slate-900 leading-tight" />
                      </div>
                   </div>
 
@@ -130,7 +131,7 @@ export default function ContactPage() {
                      </div>
                      <div>
                         <p className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 mb-1">Email Advisory</p>
-                        <a href={`mailto:${siteContent.email}`} className="text-lg font-bold text-slate-900 leading-tight hover:text-[#046A38] transition-colors">{siteContent.email}</a>
+                        <SecureContact type="email" value={siteContent.email} className="text-lg font-bold text-slate-900 leading-tight" />
                      </div>
                   </div>
                </div>

@@ -30,6 +30,8 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
       intent: String(formData.get("intent") || "buy") as LeadIntent,
       propertySlug,
       message: String(formData.get("message") || ""),
+      // Honeypot — should always be empty for real humans
+      _honey: String(formData.get("_honey") || ""),
     };
 
     try {
@@ -74,6 +76,15 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
         </p>
 
         <form className="grid gap-4" onSubmit={handleSubmit}>
+          {/* Honeypot — invisible to real users, bots fill this automatically */}
+          <input
+            name="_honey"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0, pointerEvents: "none" }}
+          />
           <input 
             name="name" 
             required 
