@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { AdminLoginForm } from "@/components/admin-login-form";
-import { hasSupabaseEnv } from "@/lib/supabase/config";
 import { isAdminRequest } from "@/lib/admin-auth";
 import type { Metadata } from "next";
 
@@ -19,7 +18,8 @@ function getSafeRedirectPath(value?: string) {
 }
 
 export default async function AdminLoginPage({ searchParams }: AdminLoginPageProps) {
-  const authEnabled = hasSupabaseEnv();
+  // Auth uses ADMIN_PORTAL_PASSWORD, NOT Supabase — check the right env var
+  const authEnabled = Boolean(process.env.ADMIN_PORTAL_PASSWORD);
   const params = await searchParams;
   const redirectTo = getSafeRedirectPath(params.redirectTo);
   const isAdmin = await isAdminRequest();
@@ -47,7 +47,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
           </p>
           {!authEnabled ? (
             <div className="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
-              Add <code>NEXT_PUBLIC_SUPABASE_URL</code> and <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> in <code>web/.env.local</code> to activate login protection.
+              Add <code>ADMIN_PORTAL_PASSWORD</code> to your environment variables to activate admin login.
             </div>
           ) : null}
           <AdminLoginForm authEnabled={authEnabled} redirectTo={redirectTo} />
