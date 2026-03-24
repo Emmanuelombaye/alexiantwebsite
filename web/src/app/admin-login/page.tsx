@@ -17,6 +17,8 @@ function getSafeRedirectPath(value?: string) {
   return value;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminLoginPage({ searchParams }: AdminLoginPageProps) {
   // Auth uses ADMIN_PORTAL_PASSWORD, NOT Supabase — check the right env var
   const authEnabled = Boolean(process.env.ADMIN_PORTAL_PASSWORD);
