@@ -31,6 +31,7 @@ function buildCsp(): string {
       "https://fonts.gstatic.com",
       "data:",
     ],
+    "media-src": ["'self'", "data:"],
     "img-src": [
       "'self'",
       "data:",

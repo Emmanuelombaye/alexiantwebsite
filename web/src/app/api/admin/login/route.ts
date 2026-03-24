@@ -6,22 +6,21 @@ import { getClientIp } from "@/lib/security/bot-detection";
 export const dynamic = "force-dynamic";
 
 /**
- * Timing-safe string comparison – prevents timing attacks that could reveal
- * password length/content through response time differences.
+ * Standard timing-safe comparison.
+ * Works across both Node.js and Edge Runtime.
  */
 function timingSafeEqual(a: string, b: string): boolean {
-  // Pad to same length so the comparison always takes the same time
-  const bufA = Buffer.from(a.padEnd(72, "\0"));
-  const bufB = Buffer.from(b.padEnd(72, "\0"));
-  let diff = bufA.length ^ bufB.length;
-  for (let i = 0; i < Math.min(bufA.length, bufB.length); i++) {
-    diff |= bufA[i] ^ bufB[i];
+  if (a.length !== b.length) {
+    return false;
   }
-  return diff === 0;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
 }
 
 export async function POST(request: Request) {
-  // Rate-limit by IP (double-checked here in case middleware is bypassed)
   const ip = getClientIp(request.headers as unknown as Headers);
   const limit = checkLoginRateLimit(ip);
   if (!limit.allowed) {
@@ -59,13 +58,12 @@ export async function POST(request: Request) {
     );
   }
 
-  // Always run the comparison — even if password is empty — to prevent
-  // early-exit timing attacks.
+  // Use the safe comparison
   const isCorrect = timingSafeEqual(password, expected);
 
   if (!password || !isCorrect) {
-    // Add a small artificial delay to slow down brute-force even more
-    await new Promise((r) => setTimeout(r, 300 + Math.random() * 200));
+    // Artificial delay to deter brute-force
+    await new Promise((r) => setTimeout(r, 400 + Math.random() * 300));
     return NextResponse.json({ message: "Incorrect password." }, { status: 401 });
   }
 
@@ -79,5 +77,6 @@ export async function POST(request: Request) {
     path: "/",
     maxAge: 60 * 60 * 12, // 12 hours
   });
+  
   return response;
 }
