@@ -82,9 +82,9 @@ export function isBadBot(userAgent: string): boolean {
 export function looksLikeBrowser(headers: Headers): boolean {
   const accept = headers.get("accept") ?? "";
   const acceptLanguage = headers.get("accept-language");
-  // Browsers always accept HTML. Scrapers often send */* only or nothing.
-  const acceptsHtml = accept.includes("text/html") || accept.includes("*/*");
-  return acceptsHtml && !!acceptLanguage;
+  // Browsers always accept HTML. API calls from next/client fetch often use application/json.
+  const acceptsHtmlOrJson = accept.includes("text/html") || accept.includes("*/*") || accept.includes("application/json");
+  return acceptsHtmlOrJson && (!!acceptLanguage || accept.includes("application/json"));
 }
 
 /**

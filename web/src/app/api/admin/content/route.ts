@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { siteContent } from "@/data/site-content";
-import { hasSupabaseEnv } from "@/lib/supabase/config";
-import { getSupabaseUser } from "@/lib/supabase/server";
+import { isAdminRequest } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -12,11 +11,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (hasSupabaseEnv()) {
-    const user = await getSupabaseUser();
-    if (!user) {
-      return NextResponse.json({ message: "Authentication required." }, { status: 401 });
-    }
+  const ok = await isAdminRequest();
+  if (!ok) {
+    return NextResponse.json({ message: "Authentication required." }, { status: 401 });
   }
 
   let body;

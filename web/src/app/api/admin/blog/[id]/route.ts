@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { deleteBlogPost, getBlogPostById, updateBlogPost } from "@/lib/blog/service";
-import { cookies } from "next/headers";
-import { getAdminCookieName } from "@/lib/admin-auth";
+import { isAdminRequest } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -9,13 +8,8 @@ type RouteContext = {
   params: Promise<{ id: string }>;
 };
 
-async function ensureAdmin() {
-  const store = await cookies();
-  return store.get(getAdminCookieName())?.value === "1";
-}
-
 export async function GET(_: Request, { params }: RouteContext) {
-  const ok = await ensureAdmin();
+  const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
@@ -25,7 +19,7 @@ export async function GET(_: Request, { params }: RouteContext) {
 }
 
 export async function PATCH(request: Request, { params }: RouteContext) {
-  const ok = await ensureAdmin();
+  const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
@@ -42,7 +36,7 @@ export async function PATCH(request: Request, { params }: RouteContext) {
 }
 
 export async function DELETE(_: Request, { params }: RouteContext) {
-  const ok = await ensureAdmin();
+  const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
@@ -52,4 +46,3 @@ export async function DELETE(_: Request, { params }: RouteContext) {
   await deleteBlogPost(id);
   return NextResponse.json({ ok: true });
 }
-

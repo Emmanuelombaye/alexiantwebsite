@@ -1,9 +1,8 @@
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const supabaseStorageBucket = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "property-images";
-
 export function getSupabaseEnv() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
   if (!supabaseUrl || !supabaseAnonKey) {
     return null;
   }
@@ -20,5 +19,5 @@ export function hasSupabaseEnv() {
 }
 
 export function getSupabaseStorageBucket() {
-  return supabaseStorageBucket;
+  return process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "property-images";
 }

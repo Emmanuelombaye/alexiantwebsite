@@ -18,13 +18,13 @@ export function SecureContact({ type, value, className = "" }: SecureContactProp
   const [revealed, setRevealed] = useState(false);
   const [displayValue, setDisplayValue] = useState("");
 
-  // Simple reverse-and-obfuscate for the DOM
+  // Simple obfuscate for the DOM
   const obfuscate = (str: string) => {
-    return str.split("").reverse().join("").replace("@", "[at]");
+    return str.replace("@", "[at]");
   };
 
   const decode = (str: string) => {
-    return str.replace("[at]", "@").split("").reverse().join("");
+    return str.replace("[at]", "@");
   };
 
   useEffect(() => {

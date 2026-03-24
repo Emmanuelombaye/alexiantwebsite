@@ -18,11 +18,11 @@ type SupabaseBlogRow = {
   author: string;
   category: string;
   date: string;
-  images: string[];
+  image: string;
   published: boolean;
 };
 
-const blogSelect = "id, slug, title, excerpt, content, author, category, date, images, published";
+const blogSelect = "id, slug, title, excerpt, content, author, category, date, image, published";
 
 function mapBlogRow(row: SupabaseBlogRow): BlogPost {
   return {
@@ -34,7 +34,7 @@ function mapBlogRow(row: SupabaseBlogRow): BlogPost {
     author: row.author,
     category: row.category,
     date: row.date,
-    images: Array.isArray(row.images) ? row.images : [],
+    images: row.image ? [row.image] : [],
     published: row.published,
   };
 }
@@ -47,13 +47,13 @@ export async function listBlogPosts(publishedOnly = true) {
     return localInventory;
   }
 
-  const query = supabase
+  let query = supabase
     .from("blog_posts")
     .select(blogSelect)
     .order("date", { ascending: false });
 
   if (publishedOnly) {
-    query.eq("published", true);
+    query = query.eq("published", true) as typeof query;
   }
 
   const { data, error } = await query;
@@ -128,9 +128,12 @@ export async function createBlogPost(data: Partial<BlogPost>) {
     return createBlogInventoryItem(data as Omit<BlogPost, "id"> & { id?: string });
   }
 
+  const insertData = { ...data, image: data.images ? data.images[0] || "" : "" };
+  delete (insertData as any).images;
+
   const { data: created, error } = await supabase
     .from("blog_posts")
-    .insert(data)
+    .insert(insertData)
     .select(blogSelect)
     .single();
 
@@ -149,9 +152,15 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
     return updateBlogInventoryItem(id, data);
   }
 
+  const updateData = { ...data };
+  if (data.images) {
+    (updateData as any).image = data.images[0] || "";
+    delete updateData.images;
+  }
+
   const { data: updated, error } = await supabase
     .from("blog_posts")
-    .update(data)
+    .update(updateData)
     .eq("id", id)
     .select(blogSelect)
     .single();

@@ -66,7 +66,7 @@ function toPropertyRow(payload: PropertyPayload) {
     description: payload.description,
     features: payload.features,
     amenities: payload.amenities,
-    images: payload.images,
+    images: payload.images.map((img) => (typeof img === "string" ? img : img.url)),
     coordinates: payload.coordinates,
     agent: payload.agent,
     updated_at: new Date().toISOString(),

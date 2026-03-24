@@ -1,22 +1,17 @@
 import { NextResponse } from "next/server";
 import { createBlogPost, listBlogPosts } from "@/lib/blog/service";
-import { cookies } from "next/headers";
-import { getAdminCookieName } from "@/lib/admin-auth";
+import { isAdminRequest } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
-function ensureAdmin() {
-  return cookies().then((store) => store.get(getAdminCookieName())?.value === "1");
-}
-
 export async function GET() {
-  const ok = await ensureAdmin();
+  const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
   return NextResponse.json({ posts: await listBlogPosts(false) });
 }
 
 export async function POST(request: Request) {
-  const ok = await ensureAdmin();
+  const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   let body: unknown;
@@ -36,4 +31,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

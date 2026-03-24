@@ -1,41 +1,20 @@
 import { NextResponse } from "next/server";
 import { createProperty, listProperties } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
-import { hasSupabaseEnv } from "@/lib/supabase/config";
-import { getSupabaseUser } from "@/lib/supabase/server";
+import { isAdminRequest } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
-async function ensureAdminAccess() {
-  if (!hasSupabaseEnv()) {
-    return null;
-  }
-
-  const user = await getSupabaseUser();
-
-  if (!user) {
-    return NextResponse.json({ message: "Authentication required." }, { status: 401 });
-  }
-
-  return null;
-}
-
 export async function GET() {
-  const unauthorized = await ensureAdminAccess();
-
-  if (unauthorized) {
-    return unauthorized;
-  }
+  const ok = await isAdminRequest();
+  if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   return NextResponse.json({ properties: await listProperties() });
 }
 
 export async function POST(request: Request) {
-  const unauthorized = await ensureAdminAccess();
-
-  if (unauthorized) {
-    return unauthorized;
-  }
+  const ok = await isAdminRequest();
+  if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   let body: unknown;
 

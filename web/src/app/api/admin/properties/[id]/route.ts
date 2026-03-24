@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { deleteProperty, getPropertyById, updateProperty } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
-import { hasSupabaseEnv } from "@/lib/supabase/config";
-import { getSupabaseUser } from "@/lib/supabase/server";
+import { isAdminRequest } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -12,26 +11,9 @@ type PropertyRouteContext = {
   }>;
 };
 
-async function ensureAdminAccess() {
-  if (!hasSupabaseEnv()) {
-    return null;
-  }
-
-  const user = await getSupabaseUser();
-
-  if (!user) {
-    return NextResponse.json({ message: "Authentication required." }, { status: 401 });
-  }
-
-  return null;
-}
-
 export async function GET(_: Request, { params }: PropertyRouteContext) {
-  const unauthorized = await ensureAdminAccess();
-
-  if (unauthorized) {
-    return unauthorized;
-  }
+  const ok = await isAdminRequest();
+  if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
   const property = await getPropertyById(id);
@@ -44,11 +26,8 @@ export async function GET(_: Request, { params }: PropertyRouteContext) {
 }
 
 export async function PATCH(request: Request, { params }: PropertyRouteContext) {
-  const unauthorized = await ensureAdminAccess();
-
-  if (unauthorized) {
-    return unauthorized;
-  }
+  const ok = await isAdminRequest();
+  if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
   const existingProperty = await getPropertyById(id);
@@ -84,11 +63,8 @@ export async function PATCH(request: Request, { params }: PropertyRouteContext) 
 }
 
 export async function DELETE(_: Request, { params }: PropertyRouteContext) {
-  const unauthorized = await ensureAdminAccess();
-
-  if (unauthorized) {
-    return unauthorized;
-  }
+  const ok = await isAdminRequest();
+  if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
   const property = await getPropertyById(id);
