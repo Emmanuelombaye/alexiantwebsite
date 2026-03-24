@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       ? ((body as Record<string, unknown>).password as string)
       : "";
 
-  const expected = process.env.ADMIN_PORTAL_PASSWORD;
+  const expected = process.env.ADMIN_PORTAL_PASSWORD?.trim();
 
   if (!expected) {
     return NextResponse.json(
@@ -58,8 +58,8 @@ export async function POST(request: Request) {
     );
   }
 
-  // Use the safe comparison
-  const isCorrect = timingSafeEqual(password, expected);
+  // Use the safe comparison on trimmed values
+  const isCorrect = timingSafeEqual(password.trim(), expected);
 
   if (!password || !isCorrect) {
     // Artificial delay to deter brute-force
