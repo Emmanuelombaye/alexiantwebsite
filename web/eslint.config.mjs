@@ -12,7 +12,16 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore our diagnostic scripts
+    "scripts/**",
   ]),
+  {
+    rules: {
+      // Allow standard <img> tags — we use them in many places intentionally.
+      // Next.js Image is preferred but not required to build.
+      "@next/next/no-img-element": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
