@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 import { formatKes, titleCase } from "@/lib/format";
 import { type Property } from "@/types/property";
 import { getImageUrl, getImageAlt } from "@/lib/properties/utils";
@@ -11,11 +13,14 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.5 });
+
   return (
-    <Link href={`/properties/${property.slug}`} className="group relative block">
-      <article className="relative flex flex-col h-full bg-white rounded-[2.8rem] border border-slate-100 p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 overflow-hidden hover:shadow-[0_30px_60px_rgba(4,106,56,0.15)]">
+    <Link ref={ref} data-inview={isInView} href={`/properties/${property.slug}`} className="group relative block w-full">
+      <article className="relative flex flex-col h-full bg-white rounded-[2.8rem] border border-slate-100 p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 group-data-[inview=true]:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 group-data-[inview=true]:shadow-[0_30px_60px_rgba(4,106,56,0.15)] overflow-hidden hover:shadow-[0_30px_60px_rgba(4,106,56,0.15)]">
         {/* Cinematic Image Container */}
-        <div className="relative aspect-[3/2] rounded-[2.3rem] overflow-hidden mb-6 bg-slate-50 group-hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)] transition-shadow duration-700">
+        <div className="relative aspect-[3/2] rounded-[2.3rem] overflow-hidden mb-6 bg-slate-50 group-hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)] group-data-[inview=true]:shadow-[0_10px_40px_rgba(212,175,55,0.25)] transition-shadow duration-700">
           {property.images?.[0] ? (
             <>
               <Image
@@ -23,7 +28,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
                 alt={getImageAlt(property.images[0], property.title)}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-all duration-1000 group-hover:scale-105"
+                className="object-cover transition-all duration-1000 group-hover:scale-105 group-data-[inview=true]:scale-105"
               />
               {property.images?.[1] && (
                 <Image
@@ -31,7 +36,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
                   alt={getImageAlt(property.images[1], `${property.title} - Extra view`)}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-all duration-1000 opacity-0 group-hover:opacity-100 group-hover:scale-105"
+                  className="object-cover transition-all duration-1000 opacity-0 group-hover:opacity-100 group-data-[inview=true]:opacity-100 group-hover:scale-105 group-data-[inview=true]:scale-105"
                 />
               )}
             </>
@@ -43,7 +48,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
             </div>
           )}
           
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-data-[inview=true]:opacity-100 transition-opacity duration-700" />
           
           {/* Subtle Featured Badge only */}
           {property.featured && (
@@ -72,7 +77,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
             </p>
           </div>
 
-          <div className="mt-auto pt-4 border-t border-slate-50 flex items-end justify-between gap-4">
+          <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
                <p className="text-[0.85rem] font-bold tracking-wide text-slate-950 leading-none">
                  {formatKes(property.price)}
@@ -80,8 +85,8 @@ export function PropertyCard({ property }: PropertyCardProps) {
                </p>
             </div>
             
-            <div className="h-11 w-11 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-[#046A38] group-hover:border-[#046A38] transition-all duration-500 shadow-sm">
-               <svg className="h-4 w-4 text-slate-300 group-hover:text-white transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="h-11 w-11 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-[#046A38] group-data-[inview=true]:bg-[#046A38] group-hover:border-[#046A38] group-data-[inview=true]:border-[#046A38] transition-all duration-500 shadow-sm shrink-0">
+               <svg className="h-4 w-4 text-slate-300 group-hover:text-white group-data-[inview=true]:text-white transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                </svg>
             </div>
@@ -89,7 +94,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         {/* Shimmer Effect */}
-        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#D4AF37]/[0.02] to-transparent transition-transform duration-1000 group-hover:translate-x-full pointer-events-none" />
+        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#D4AF37]/[0.02] to-transparent transition-transform duration-1000 group-hover:translate-x-full group-data-[inview=true]:translate-x-full pointer-events-none" />
       </article>
     </Link>
   );

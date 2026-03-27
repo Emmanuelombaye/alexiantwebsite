@@ -87,9 +87,9 @@ export default async function Home() {
             </Link>
           </div>
 
-          <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 w-full hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
             {showcaseProperties.map((property) => (
-              <StaggerItem key={property.id}>
+              <StaggerItem key={property.id} className="min-w-[85vw] snap-center sm:min-w-[400px] md:min-w-0 md:w-auto flex-none">
                 <PropertyCard property={property} />
               </StaggerItem>
             ))}

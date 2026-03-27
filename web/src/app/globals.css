@@ -429,6 +429,14 @@ img { display: block; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--brand-light); }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 /* ============================================================
    BLOG ARTICLE MASTERPIECE STYLING
    ============================================================ */
