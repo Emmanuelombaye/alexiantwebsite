@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { HeroPropertyShowcase } from "@/components/hero-property-showcase";
 import { LeadForm } from "@/components/lead-form";
 import { PropertyCard } from "@/components/property-card";
@@ -255,8 +256,14 @@ export default async function Home() {
                           "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120",
                           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=120&h=120"
                         ].map((src, i) => (
-                           <div key={i} className="h-10 w-10 rounded-full border-[3px] border-white overflow-hidden shadow-md">
-                              <img src={src} alt="Advisor" className="h-full w-full object-cover" />
+                           <div key={i} className="h-10 w-10 rounded-full border-[3px] border-white overflow-hidden shadow-md relative">
+                              <Image 
+                                src={src} 
+                                alt="Advisor" 
+                                fill
+                                sizes="40px"
+                                className="object-cover" 
+                              />
                            </div>
                         ))}
                        </div>

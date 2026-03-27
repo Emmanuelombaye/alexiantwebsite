@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { siteContent } from "@/data/site-content";
 
 export function MasterpieceTestimonials() {
@@ -76,12 +77,12 @@ export function MasterpieceTestimonials() {
                         
                         <div className="relative h-full w-full rounded-full border border-[#D4AF37]/40 overflow-hidden bg-[#011611] shadow-[0_0_15px_rgba(212,175,55,0.2)]">
                           {t.img ? (
-                            <img 
+                            <Image 
                               src={t.img} 
                               alt={`${t.name} - ${t.role} Review for Alexiant Real Estate in Diani Kenya`} 
-                              title={`${t.name} Testimonial`}
-                              loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                              fill
+                              sizes="48px"
+                              className="object-cover transition-transform duration-700 group-hover:scale-110" 
                             />
                           ) : (
                             <div className="h-full w-full flex items-center justify-center text-[#D4AF37] font-black text-lg">
