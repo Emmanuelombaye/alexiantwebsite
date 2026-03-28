@@ -41,14 +41,13 @@ export default function AdminContentPage() {
     }
   }
 
-  function handleNestedChange(section: keyof typeof siteContent, field: string, value: string) {
+  function handleHeroChange(field: keyof typeof siteContent.hero, value: string) {
     setContent((prev) => {
       if (!prev) return null;
-      const sectionData = prev[section] as Record<string, any>;
       return {
         ...prev,
-        [section]: {
-          ...sectionData,
+        hero: {
+          ...prev.hero,
           [field]: value,
         },
       };
@@ -104,7 +103,7 @@ export default function AdminContentPage() {
               <input
                 type="text"
                 value={content.hero.kicker}
-                onChange={(e) => handleNestedChange("hero", "kicker", e.target.value)}
+                onChange={(e) => handleHeroChange("kicker", e.target.value)}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900"
               />
             </div>
@@ -113,7 +112,7 @@ export default function AdminContentPage() {
               <textarea
                 rows={2}
                 value={content.hero.title}
-                onChange={(e) => handleNestedChange("hero", "title", e.target.value)}
+                onChange={(e) => handleHeroChange("title", e.target.value)}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900"
               />
             </div>
@@ -122,7 +121,7 @@ export default function AdminContentPage() {
               <textarea
                 rows={4}
                 value={content.hero.body}
-                onChange={(e) => handleNestedChange("hero", "body", e.target.value)}
+                onChange={(e) => handleHeroChange("body", e.target.value)}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900"
               />
             </div>
