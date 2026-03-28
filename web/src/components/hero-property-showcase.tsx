@@ -133,13 +133,12 @@ type ShowcaseCardProps = {
 };
 
 function ShowcaseCard({ property, activeIndex, compact, onActivate, onHoverChange }: ShowcaseCardProps) {
-  const heightClass = compact ? "h-[16rem]" : "h-[25rem]";
   const hasImages = property.images.length > 0;
 
   return (
     <Link
       href={`/properties/${property.slug}`}
-      className={`group flex flex-col overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md ${compact ? "h-[15rem]" : "h-[25rem]"}`}
+      className="group flex flex-col overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md h-full"
       onMouseEnter={() => {
         onHoverChange(true);
         onActivate();
