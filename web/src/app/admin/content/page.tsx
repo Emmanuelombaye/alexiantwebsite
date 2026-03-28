@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { siteContent } from "@/data/site-content";
 
 export default function AdminContentPage() {
-  const [content, setContent] = useState<any>(null);
+  const [content, setContent] = useState<typeof siteContent | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -33,28 +34,35 @@ export default function AdminContentPage() {
       }
 
       setFeedback({ type: "success", text: "Site content updated successfully. In dev mode, your browser will hot reload automatically!" });
-    } catch (error: any) {
-      setFeedback({ type: "error", text: error.message });
+    } catch (error) {
+      setFeedback({ type: "error", text: error instanceof Error ? error.message : "An unknown error occurred" });
     } finally {
       setIsSaving(false);
     }
   }
 
-  function handleNestedChange(section: string, field: string, value: string) {
-    setContent((prev: any) => ({
-      ...prev,
-      [section]: {
-        ...prev[section],
-        [field]: value,
-      },
-    }));
+  function handleNestedChange(section: keyof typeof siteContent, field: string, value: string) {
+    setContent((prev) => {
+      if (!prev) return null;
+      const sectionData = prev[section] as Record<string, any>;
+      return {
+        ...prev,
+        [section]: {
+          ...sectionData,
+          [field]: value,
+        },
+      };
+    });
   }
 
-  function handleRootChange(field: string, value: string) {
-    setContent((prev: any) => ({
-      ...prev,
-      [field]: value,
-    }));
+  function handleRootChange(field: keyof typeof siteContent, value: string) {
+    setContent((prev) => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        [field]: value,
+      };
+    });
   }
 
   if (!content) {

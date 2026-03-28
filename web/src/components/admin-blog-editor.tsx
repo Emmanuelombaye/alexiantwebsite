@@ -52,16 +52,20 @@ export function AdminBlogEditor({ initialHtml = "", onChange }: AdminBlogEditorP
       });
       
       if (newBlocks.length > 0) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setBlocks(newBlocks);
       } else if (initialHtml.trim()) {
         // If not structured, just put it in a paragraph
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setBlocks([{ id: `block-${Date.now()}-0`, type: "p", value: initialHtml }]);
       }
     }
     
     if (!initialHtml && blocks.length === 0) {
+       // eslint-disable-next-line react-hooks/set-state-in-effect
        setBlocks([{ id: `block-${Date.now()}-0`, type: "h2", value: "New Article Section" }]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialHtml]);
 
   useEffect(() => {
@@ -92,7 +96,7 @@ export function AdminBlogEditor({ initialHtml = "", onChange }: AdminBlogEditorP
     setBlocks([...blocks, newBlock]);
   };
 
-  const updateBlock = (id: string, value: string, metadata?: any) => {
+  const updateBlock = (id: string, value: string, metadata?: Block["metadata"]) => {
     setBlocks(blocks.map((b) => (b.id === id ? { ...b, value, metadata: { ...b.metadata, ...metadata } } : b)));
   };
 

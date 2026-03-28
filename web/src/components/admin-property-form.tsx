@@ -263,7 +263,7 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
             </p>
           </div>
           <p className="mt-2 text-sm text-slate-500">
-            Ensure every image has a descriptive slug (e.g. "modern-villa-pool-view") for maximum SEO impact. Each listing can have up to {MAX_PROPERTY_IMAGES} images.
+            Ensure every image has a descriptive slug (e.g. &quot;modern-villa-pool-view&quot;) for maximum SEO impact. Each listing can have up to {MAX_PROPERTY_IMAGES} images.
           </p>
           {hasImageOverflow ? (
             <p className="mt-2 text-sm text-rose-600">Reduce the image list to {MAX_PROPERTY_IMAGES} or fewer before saving.</p>

@@ -287,7 +287,7 @@ export function NeighborhoodsClient() {
   );
 }
 
-const ScrollCard = ({ area, index, total }: { area: any, index: number, total: number }) => {
+const ScrollCard = ({ area, index, total }: { area: typeof coastalAreas[number], index: number, total: number }) => {
   return (
     <div className="group relative h-[70vh] w-[85vw] md:w-[60vw] lg:w-[45vw] overflow-hidden rounded-[3.5rem] bg-slate-900 flex-shrink-0 border border-white/5 shadow-2xl">
       {/* Fallback background */}

@@ -128,8 +128,8 @@ export async function createBlogPost(data: Partial<BlogPost>) {
     return createBlogInventoryItem(data as Omit<BlogPost, "id"> & { id?: string });
   }
 
-  const insertData = { ...data, image: data.images ? data.images[0] || "" : "" };
-  delete (insertData as any).images;
+  const insertData: Partial<SupabaseBlogRow> & { images?: string[] } = { ...data, image: data.images ? data.images[0] || "" : "" };
+  delete insertData.images;
 
   const { data: created, error } = await supabase
     .from("blog_posts")
@@ -152,9 +152,9 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
     return updateBlogInventoryItem(id, data);
   }
 
-  const updateData = { ...data };
+  const updateData: Partial<SupabaseBlogRow> & { images?: string[] } = { ...data };
   if (data.images) {
-    (updateData as any).image = data.images[0] || "";
+    updateData.image = data.images[0] || "";
     delete updateData.images;
   }
 

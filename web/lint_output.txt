@@ -1,0 +1,189 @@
+
+> web@0.1.0 lint
+> eslint
+
+
+E:\Ombaye1\alexiant\web\src\app\admin\content\page.tsx
+   6:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  36:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  44:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\app\api\admin\blog\[id]\route.ts
+  33:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\app\api\admin\blog\route.ts
+  25:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\app\api\admin\content\route.ts
+  38:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\app\blog\[slug]\page.tsx
+  4:43  warning  'StaggerContainer' is defined but never used  @typescript-eslint/no-unused-vars
+  4:61  warning  'StaggerItem' is defined but never used       @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\app\contact\page.tsx
+  255:86  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+E:\Ombaye1\alexiant\web\src\app\insights\page.tsx
+    2:10  warning  'siteContent' is defined but never used  @typescript-eslint/no-unused-vars
+  118:46  warning  'idx' is defined but never used          @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\app\mortgage\page.tsx
+  3:10  warning  'useEffect' is defined but never used         @typescript-eslint/no-unused-vars
+  4:18  warning  'AnimatePresence' is defined but never used   @typescript-eslint/no-unused-vars
+  5:27  warning  'StaggerContainer' is defined but never used  @typescript-eslint/no-unused-vars
+  5:45  warning  'StaggerItem' is defined but never used       @typescript-eslint/no-unused-vars
+  7:10  warning  'siteContent' is defined but never used       @typescript-eslint/no-unused-vars
+  8:22  warning  'Calculator' is defined but never used        @typescript-eslint/no-unused-vars
+  8:44  warning  'TrendingUp' is defined but never used        @typescript-eslint/no-unused-vars
+  8:56  warning  'ShieldCheck' is defined but never used       @typescript-eslint/no-unused-vars
+  8:69  warning  'Globe' is defined but never used             @typescript-eslint/no-unused-vars
+  8:76  warning  'DollarSign' is defined but never used        @typescript-eslint/no-unused-vars
+  8:99  warning  'Zap' is defined but never used               @typescript-eslint/no-unused-vars
+  9:8   warning  'Link' is defined but never used              @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\app\page.tsx
+  121:140  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+E:\Ombaye1\alexiant\web\src\app\properties\page.tsx
+   6:10  warning  'countActivePropertyFilters' is defined but never used   @typescript-eslint/no-unused-vars
+  93:9   warning  'activeFilterBadges' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\app\sitemap.ts
+  36:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\components\admin-blog-editor.tsx
+  55:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+E:\Ombaye1\alexiant\web\src\components\admin-blog-editor.tsx:55:9
+  53 |       
+  54 |       if (newBlocks.length > 0) {
+> 55 |         setBlocks(newBlocks);
+     |         ^^^^^^^^^ Avoid calling setState() directly within an effect
+  56 |       } else if (initialHtml.trim()) {
+  57 |         // If not structured, just put it in a paragraph
+  58 |         setBlocks([{ id: `block-${Date.now()}-0`, type: "p", value: initialHtml }]);  react-hooks/set-state-in-effect
+  65:6   warning  React Hook useEffect has a missing dependency: 'blocks.length'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        react-hooks/exhaustive-deps
+  95:62  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\components\admin-blog-form.tsx
+  4:20  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\admin-logout-button.tsx
+  4:10  warning  'getSupabaseBrowserClient' is defined but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\admin-property-form.tsx
+  266:61  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  266:84  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+E:\Ombaye1\alexiant\web\src\components\animated-section.tsx
+  8:10  warning  'cn' is defined but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\heritage-client.tsx
+  3:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\hero-property-showcase.tsx
+    6:31  warning  'titleCase' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   18:52  warning  'totalCount' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   18:64  warning  'availableCount' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   25:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+E:\Ombaye1\alexiant\web\src\components\hero-property-showcase.tsx:25:5
+  23 |
+  24 |   useEffect(() => {
+> 25 |     setActiveIndices(showcaseProperties.map(() => 0));
+     |     ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  26 |   }, [showcaseProperties]);
+  27 |
+  28 |   useEffect(() => {  react-hooks/set-state-in-effect
+   92:9   warning  'showcasePhotoCount' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  135:9   warning  'heightClass' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\lead-form.tsx
+  13:42  warning  'heading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\masterpiece-testimonials.tsx
+  32:40   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  55:136  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+E:\Ombaye1\alexiant\web\src\components\neighborhoods-client.tsx
+  290:29  warning  'index' is defined but never used         @typescript-eslint/no-unused-vars
+  290:36  warning  'total' is defined but never used         @typescript-eslint/no-unused-vars
+  290:53  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\components\property-card.tsx
+  7:21  warning  'titleCase' is defined but never used  @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\property-filters.tsx
+   5:59  warning  'getPropertyFilterBadges' is defined but never used  @typescript-eslint/no-unused-vars
+  23:3   warning  'resultCount' is defined but never used              @typescript-eslint/no-unused-vars
+  28:3   warning  'featuredCount' is defined but never used            @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\components\secure-contact.tsx
+  26:9  warning  'decode' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  31:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+E:\Ombaye1\alexiant\web\src\components\secure-contact.tsx:31:5
+  29 |
+  30 |   useEffect(() => {
+> 31 |     setDisplayValue(obfuscate(value));
+     |     ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |   }, [value]);
+  33 |
+  34 |   const handleReveal = () => {  react-hooks/set-state-in-effect
+
+E:\Ombaye1\alexiant\web\src\components\site-header.tsx
+   4:8  warning  'Image' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  33:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+E:\Ombaye1\alexiant\web\src\components\site-header.tsx:33:5
+  31 |
+  32 |   useEffect(() => {
+> 33 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  34 |     const handleResize = () => {
+  35 |       if (window.innerWidth >= 1024) {
+  36 |         setMenuOpen(false);  react-hooks/set-state-in-effect
+  58:9  warning  'activeNavLabel' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+
+E:\Ombaye1\alexiant\web\src\data\blog-inventory.ts
+   3:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\data\property-inventory.ts
+  25:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\lib\blog\service.ts
+  132:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  157:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+E:\Ombaye1\alexiant\web\src\lib\seo\jsonld.ts
+  1:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 64 problems (26 errors, 38 warnings)
+

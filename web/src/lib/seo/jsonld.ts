@@ -1,4 +1,4 @@
-export type JsonLd = Record<string, any>;
+export type JsonLd = Record<string, unknown>;
 
 export function toJsonLdScript(json: JsonLd) {
   return {

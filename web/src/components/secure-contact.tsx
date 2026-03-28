@@ -14,22 +14,24 @@ interface SecureContactProps {
  * 
  * We use a simple "reverse string" encoding to hide it from most scrapers.
  */
+// Simple obfuscate for the DOM
+const obfuscate = (str: string) => {
+  return str.replace("@", "[at]");
+};
+
 export function SecureContact({ type, value, className = "" }: SecureContactProps) {
   const [revealed, setRevealed] = useState(false);
-  const [displayValue, setDisplayValue] = useState("");
+  const [displayValue, setDisplayValue] = useState(() => obfuscate(value));
 
-  // Simple obfuscate for the DOM
-  const obfuscate = (str: string) => {
-    return str.replace("@", "[at]");
-  };
-
-  const decode = (str: string) => {
-    return str.replace("[at]", "@");
-  };
-
-  useEffect(() => {
-    setDisplayValue(obfuscate(value));
-  }, [value]);
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    if (!revealed) {
+      setDisplayValue(obfuscate(value));
+    } else {
+      setDisplayValue(value);
+    }
+  }
 
   const handleReveal = () => {
     if (revealed) return;

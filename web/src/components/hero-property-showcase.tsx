@@ -22,6 +22,7 @@ export function HeroPropertyShowcase({ properties, totalCount, availableCount }:
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveIndices(showcaseProperties.map(() => 0));
   }, [showcaseProperties]);
 

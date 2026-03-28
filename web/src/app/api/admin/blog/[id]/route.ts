@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { deleteBlogPost, getBlogPostById, updateBlogPost } from "@/lib/blog/service";
 import { isAdminRequest } from "@/lib/admin-auth";
+import type { BlogPost } from "@/data/blog-posts";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,7 @@ export async function PATCH(request: Request, { params }: RouteContext) {
     return NextResponse.json({ message: "Invalid request body." }, { status: 400 });
   }
 
-  const updated = await updateBlogPost(id, body as any);
+  const updated = await updateBlogPost(id, body as Partial<BlogPost>);
   if (!updated) return NextResponse.json({ message: "Post not found." }, { status: 404 });
   return NextResponse.json({ post: updated });
 }

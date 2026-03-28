@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
@@ -30,6 +29,7 @@ export function SiteHeader() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -55,7 +55,8 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
-  const activeNavLabel = getActiveNavLabel(siteContent.nav, currentPath);
+  // activeNavLabel is calculated but not used in current layout
+    // const activeNavLabel = getActiveNavLabel(siteContent.nav, currentPath);
 
   return (
     <>

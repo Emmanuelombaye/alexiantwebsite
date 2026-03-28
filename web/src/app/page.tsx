@@ -118,7 +118,7 @@ export default async function Home() {
               <div className="mt-6 h-[1.5px] w-12 rounded-full bg-gradient-to-r from-[#D4AF37] to-transparent" />
               
               <p className="mt-6 text-base text-slate-600 leading-relaxed font-medium italic opacity-75">
-                Our advisory operates at the intersection of heritage and precision. We deliver bespoke real estate solutions for the world's most discerning private clients.
+                Our advisory operates at the intersection of heritage and precision. We deliver bespoke real estate solutions for the world&apos;s most discerning private clients.
               </p>
 
               <div className="mt-10 group relative inline-flex items-center gap-4 p-4 rounded-[2rem] border border-[#D4AF37]/20 bg-white/40 backdrop-blur-xl shadow-2xl shadow-slate-200/50 hover:border-[#D4AF37]/50 transition-all duration-500">

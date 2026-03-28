@@ -22,7 +22,7 @@ function createLocalPropertyId() {
 // In Next.js dev mode, files are re-evaluated on HMR.
 // We use globalThis to persist the inventory across reloads for a better admin experience.
 const GLOBAL_INVENTORY_KEY = "__ALEXIANT_PROPERTY_INVENTORY__";
-const globalAny = globalThis as any;
+const globalAny = globalThis as unknown as { [GLOBAL_INVENTORY_KEY]: Property[] };
 
 if (!globalAny[GLOBAL_INVENTORY_KEY] || globalAny[GLOBAL_INVENTORY_KEY].length < properties.length) {
   globalAny[GLOBAL_INVENTORY_KEY] = properties.map(cloneProperty);

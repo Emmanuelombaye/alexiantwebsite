@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createBlogPost, listBlogPosts } from "@/lib/blog/service";
 import { isAdminRequest } from "@/lib/admin-auth";
+import type { BlogPost } from "@/data/blog-posts";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const post = await createBlogPost(body as any);
+    const post = await createBlogPost(body as Partial<BlogPost>);
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

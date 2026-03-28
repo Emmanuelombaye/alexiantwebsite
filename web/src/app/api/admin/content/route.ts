@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     await fs.writeFile(filePath, fileContents, "utf8");
     
     return NextResponse.json({ message: "Site content updated successfully", data: newContent });
-  } catch (error: any) {
-    return NextResponse.json({ message: "Failed to update site content: " + error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ message: "Failed to update site content: " + (error instanceof Error ? error.message : String(error)) }, { status: 500 });
   }
 }

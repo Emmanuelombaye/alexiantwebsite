@@ -29,7 +29,7 @@ export function MasterpieceTestimonials() {
           }}
           className="flex gap-8 px-6"
         >
-          {doubledTestimonials.map((t: any, idx) => (
+          {doubledTestimonials.map((t, idx) => (
             <div 
               key={idx} 
               className="flex-shrink-0 w-[400px] h-[370px] relative group"
@@ -52,7 +52,7 @@ export function MasterpieceTestimonials() {
                   <div className="relative z-10">
                     {/* Quote Head */}
                     <div className="flex items-center gap-3 mb-5">
-                      <span className="text-[#D4AF37] text-5xl font-serif leading-none h-8 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">"</span>
+                      <span className="text-[#D4AF37] text-5xl font-serif leading-none h-8 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">&quot;</span>
                       <div className="h-[1px] flex-1 bg-gradient-to-r from-[#D4AF37]/50 to-transparent" />
                       <span className="text-[0.5rem] font-bold uppercase tracking-[0.4em] text-[#D4AF37]/50">Client Voice</span>
                     </div>

@@ -252,7 +252,7 @@ export default function ContactPage() {
 
             <p className="mt-16 text-[0.7rem] font-medium tracking-[0.2em] uppercase text-slate-400 max-w-lg mx-auto leading-relaxed">
                Providing bespoke real estate advisory and strategic <br />
-               <span className="text-[#D4AF37]">asset acquisition</span> across Kenya's coastal frontier.
+               <span className="text-[#D4AF37]">asset acquisition</span> across Kenya&apos;s coastal frontier.
             </p>
          </div>
       </section>

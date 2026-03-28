@@ -1,9 +1,9 @@
 import { blogPosts, type BlogPost } from "@/data/blog-posts";
 
-function clonePost(post: any): BlogPost {
+function clonePost(post: BlogPost | (Omit<BlogPost, "images"> & { image?: string; images?: string[] })): BlogPost {
   return { 
-    ...post, 
-    images: Array.isArray(post.images) ? post.images : (post.image ? [post.image] : []) 
+    ...post as BlogPost, 
+    images: Array.isArray(post.images) ? post.images : (('image' in post && post.image) ? [post.image] : []) 
   };
 }
 
@@ -17,7 +17,7 @@ function createLocalPostId() {
 // In Next.js dev mode, files are re-evaluated on HMR.
 // We use globalThis to persist the inventory across reloads for a better admin experience.
 const GLOBAL_BLOG_KEY = "__ALEXIANT_BLOG_INVENTORY__";
-const globalAny = globalThis as any;
+const globalAny = globalThis as unknown as { [GLOBAL_BLOG_KEY]: BlogPost[] };
 
 if (!globalAny[GLOBAL_BLOG_KEY]) {
   globalAny[GLOBAL_BLOG_KEY] = blogPosts.map(clonePost);
