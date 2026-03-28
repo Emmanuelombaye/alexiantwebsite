@@ -150,7 +150,7 @@ function ShowcaseCard({ property, activeIndex, compact, onActivate, onHoverChang
       }}
       onBlur={() => onHoverChange(false)}
     >
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden shrink-0">
         {hasImages ? (
           <div className="flex h-full transition-transform duration-700 ease-out will-change-transform" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
             {property.images.map((image, index) => (
