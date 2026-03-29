@@ -185,6 +185,17 @@ export function SiteFooter() {
               </a>
             </div>
          </div>
+
+         {/* EXACT OFFICE LOCATION FROM IMAGE */}
+         <div className="max-w-[1400px] mx-auto mt-6 pt-6 border-t border-slate-200/60 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+             <h4 className="font-black text-black tracking-wide text-sm md:text-base mb-2 uppercase">OFFICE LOCATION</h4>
+             <a href="https://maps.app.goo.gl/jTs7rjjiwSQ4GGwH8?g_st=awb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
+                <span className="text-xl leading-none mt-1 group-hover:scale-110 transition-transform origin-bottom">📍</span>
+                <span className="text-[#0056b3] lowercase tracking-normal font-sans font-medium text-[0.85rem] md:text-[0.95rem] group-hover:underline decoration-[#0056b3]/50 underline-offset-4">
+                  https://maps.app.goo.gl/jTs7rjjiwSQ4GGwH8?g_st=awb
+                </span>
+             </a>
+         </div>
       </div>
     </footer>
   );
