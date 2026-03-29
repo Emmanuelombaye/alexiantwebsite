@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface ServiceCardProps {
   title: string;
@@ -10,23 +10,37 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ title, body, index }: ServiceCardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.6 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const icons = ["💎", "🥂", "🏛️", "🗝️"];
   const icon = icons[index % icons.length];
 
+  const isFlipped = isMobile ? (isInView || isClicked) : (isHovered || isClicked);
+
   return (
     <div 
+      ref={ref}
       className="group relative w-full h-[360px] [perspective:1500px] cursor-pointer"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped(!isFlipped)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
+      onClick={() => isMobile && setIsClicked(!isClicked)}
     >
       <motion.div
         className="relative h-full w-full [transform-style:preserve-3d] rounded-[2.5rem]"
         initial={false}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        whileHover={!isFlipped ? { scale: 1.02 } : {}}
+        whileHover={!isFlipped && !isMobile ? { scale: 1.02 } : {}}
         transition={{
           duration: 0.8,
           ease: [0.16, 1, 0.3, 1],

@@ -4,9 +4,15 @@ import { siteContent } from "@/data/site-content";
 import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
 import { SecureContact } from "@/components/secure-contact";
 
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z" />
+  </svg>
+);
+
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] via-[#053a2f] to-[#011611] pt-16 md:pt-32 pb-8 text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] via-[#053a2f] to-[#011611] pt-16 md:pt-32 pb-0 flex flex-col text-white">
       <style>{`
         @keyframes footer-slide {
           from { transform: translateX(0); }
@@ -126,12 +132,12 @@ export function SiteFooter() {
                <h4 className="mb-4 font-display text-[0.8rem] font-bold tracking-[0.2em] text-[#D4AF37] uppercase">Follow Us</h4>
                <div className="flex items-center gap-4">
                   {[
-                    { icon: Facebook, href: "#facebook" },
-                    { icon: Twitter, href: "#twitter" },
-                    { icon: Instagram, href: "#instagram" },
-                    { icon: Linkedin, href: "#linkedin" },
+                    { icon: Facebook, href: "https://www.facebook.com/p/Alexiant-Real-Estate-61555242691281/" },
+                    { icon: TikTokIcon, href: "https://www.tiktok.com/@alexiantrealestate" },
+                    { icon: Linkedin, href: "https://www.linkedin.com/in/alexiant-estate-99a18532b/" },
+                    { icon: Instagram, href: "https://www.instagram.com/alexiant/" },
                   ].map((Social, i) => (
-                    <a key={i} href={Social.href} className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]">
+                    <a key={i} href={Social.href} target="_blank" rel="noopener noreferrer" className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]">
                        <Social.icon className="w-4 h-4 md:w-5 md:h-5 text-white/60 group-hover:text-[#D4AF37] transition-colors" />
                     </a>
                   ))}
@@ -140,36 +146,45 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 md:mt-24 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 text-[0.6rem] md:text-[0.7rem] font-medium tracking-[0.2em] text-white/30 md:flex-row">
-          <div className="text-center md:text-left flex flex-col md:flex-row items-center gap-2 md:gap-0">
-            <span>© {new Date().getFullYear()} Alexiant Group.</span>
-            <span className="mx-4 md:mx-6 hidden opacity-20 md:inline">|</span> 
-            <span className="italic uppercase text-[0.5rem] tracking-[0.4em] mb-2 md:mb-0">Crafted For Excellence</span>
-            <span className="mx-4 hidden opacity-20 md:inline">|</span>
-            <a 
-              href="https://wa.me/254777770755?text=Hello%20DonFilm%20Creations!%20I%20saw%20the%20Alexiant%20Real%20Estate%20website%20and%20I%20am%20interested%20in%20your%20executive%20website%20development%20and%20premium%20tech%20services%20(Digital%20Marketing,%20Social%20Management,%20Cinema%20&%20Videography)." 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[0.6rem] md:text-[0.7rem] font-medium uppercase tracking-[0.25em] transition-all hover:text-[#D4AF37] opacity-80 hover:opacity-100 flex items-center gap-1.5"
-            >
-              Powered By <span className="text-white font-bold hover:text-[#D4AF37] transition-colors">DonFilm Creations</span>
-            </a>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
-            <Link href="/privacy" className="transition-colors hover:text-[#D4AF37]">Privacy Policy</Link>
-            <Link href="/terms" className="transition-colors hover:text-[#D4AF37]">Agreement</Link>
-            <div className="flex items-center gap-2">
-               <span className="block h-1.5 w-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,1)]" />
-               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]/50">
-                  <SecureContact type="phone" value={siteContent.phone} />
-               </span>
+      </div>
+
+      {/* BOTTOM WHITE BAR */}
+      <div className="w-full bg-white relative z-20 py-8 px-4 sm:px-8 mt-16 md:mt-24 border-t-4 border-[#046A38]">
+         <div className="max-w-[1400px] mx-auto flex flex-col items-center justify-between gap-6 text-[0.65rem] md:text-[0.7rem] font-medium tracking-[0.2em] text-[#046A38] md:flex-row">
+            <div className="text-center md:text-left flex flex-col md:flex-row items-center gap-3 md:gap-0">
+              <span className="font-bold">© {new Date().getFullYear()} Alexiant Group.</span>
+              <span className="mx-4 md:mx-6 hidden opacity-30 md:inline">|</span> 
+              <span className="italic uppercase text-[0.5rem] tracking-[0.4em] mb-2 md:mb-0 opacity-90 font-bold tracking-widest text-[#058C42]">Crafted For Excellence</span>
+              <span className="mx-4 hidden opacity-30 md:inline">|</span>
+              <a 
+                href="https://wa.me/254777770755?text=Hello%20DonFilm%20Creations!%20I%20saw%20the%20Alexiant%20Real%20Estate%20website%20and%20I%20am%20interested%20in%20your%20executive%20website%20development%20and%20premium%20tech%20services%20(Digital%20Marketing,%20Social%20Management,%20Cinema%20&%20Videography)." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[0.6rem] md:text-[0.7rem] font-bold uppercase tracking-[0.25em] transition-all hover:text-[#022c22] opacity-90 flex items-center gap-1.5"
+              >
+                Powered By <span className="font-black text-[#D4AF37] hover:text-[#022c22] transition-colors tracking-widest drop-shadow-sm">DonFilm Creations</span>
+              </a>
             </div>
-            <div className="flex items-center gap-2">
-               <span className="block h-1.5 w-1.5 rounded-full bg-[#058C42] shadow-[0_0_8px_rgba(5,140,66,1)]" />
-               <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#058C42]/50">Diani HQ</span>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+              <Link href="/privacy" className="font-bold transition-colors hover:text-[#022c22]">Privacy Policy</Link>
+              <Link href="/terms" className="font-bold transition-colors hover:text-[#022c22]">Agreement</Link>
+              <div className="flex items-center gap-2">
+                 <span className="block h-1.5 w-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+                 <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
+                    <SecureContact type="phone" value={siteContent.phone} />
+                 </span>
+              </div>
+              <a 
+                href="https://www.google.com/maps/place/ALEXIANT+REAL+ESTATE/@-4.322754,39.5580223,17z/data=!3m1!4b1!4m6!3m5!1s0x184045176628ef35:0xda96e15ad0e3b4ef!8m2!3d-4.322754!4d39.5580223!16s%2Fg%2F11y3z1z20y?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 transition-transform hover:scale-105"
+              >
+                 <span className="block h-2 w-2 rounded-full bg-[#058C42] shadow-[0_0_12px_rgba(5,140,66,0.5)] animate-pulse" />
+                 <span className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[#058C42] group-hover:text-[#022c22] transition-colors">Diani HQ</span>
+              </a>
             </div>
-          </div>
-        </div>
+         </div>
       </div>
     </footer>
   );
