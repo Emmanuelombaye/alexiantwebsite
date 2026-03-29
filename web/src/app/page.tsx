@@ -160,24 +160,26 @@ export default async function Home() {
 
       {/* --- NEIGHBORHOODS TEASER --- */}
       <section className="section-shell py-8 sm:py-12">
-         <div className="relative mx-auto max-w-5xl rounded-[2.5rem] overflow-hidden border border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] to-[#011611] shadow-2xl backdrop-blur-sm">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center opacity-5 mix-blend-luminosity" />
-            <div className="relative z-10 flex flex-col items-center justify-center p-10 sm:p-14 text-center">
-               <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-1.5 text-[0.55rem] font-bold uppercase tracking-[0.4em] text-[#D4AF37] backdrop-blur-md">
-                 ✦ Heritage Locations
-               </span>
-               <h2 className="mt-8 font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-snug">
-                 Discover the unique character <br className="hidden md:block" /> 
-                 <span className="italic text-[#D4AF37] font-medium leading-snug">of Diani&apos;s most sought-after enclaves.</span>
-               </h2>
-               <div className="mt-10">
-                  <Link href="/neighborhoods" className="group relative inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#D4AF37] px-8 py-4 text-[0.7rem] font-black uppercase tracking-[0.25em] text-[#011611] shadow-2xl transition-all hover:scale-[1.03]">
-                    <span>Explore Neighborhoods</span>
-                    <span>→</span>
-                  </Link>
+         <AnimatedSection direction="up">
+            <div className="relative mx-auto max-w-5xl rounded-[2.5rem] overflow-hidden border border-[#D4AF37]/20 bg-gradient-to-br from-[#022c22] to-[#011611] shadow-2xl backdrop-blur-sm">
+               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center opacity-5 mix-blend-luminosity" />
+               <div className="relative z-10 flex flex-col items-center justify-center p-10 sm:p-14 text-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-1.5 text-[0.55rem] font-bold uppercase tracking-[0.4em] text-[#D4AF37] backdrop-blur-md">
+                    ✦ Heritage Locations
+                  </span>
+                  <h2 className="mt-8 font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-snug">
+                    Discover the unique character <br className="hidden md:block" /> 
+                    <span className="italic text-[#D4AF37] font-medium leading-snug">of Diani&apos;s most sought-after enclaves.</span>
+                  </h2>
+                  <div className="mt-10">
+                     <Link href="/neighborhoods" className="group relative inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#D4AF37] px-8 py-4 text-[0.7rem] font-black uppercase tracking-[0.25em] text-[#011611] shadow-2xl transition-all hover:scale-[1.03]">
+                       <span>Explore Neighborhoods</span>
+                       <span>→</span>
+                     </Link>
+                  </div>
                </div>
             </div>
-         </div>
+         </AnimatedSection>
       </section>
 
       {/* --- MASTERPIECE TESTIMONIALS --- */}

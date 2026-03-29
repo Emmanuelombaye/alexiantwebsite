@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AnimatedSection, PageTransition, StaggerContainer, StaggerItem } from "@/components/animated-section";
 import Link from "next/link";
@@ -32,6 +33,15 @@ const heritageSites = [
 ];
 
 export function HeritageClient() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <PageTransition className="bg-slate-50 text-slate-900 selection:bg-[#D4AF37]/30">
       {/* ─── HERITAGE HERO ─── */}
@@ -104,7 +114,11 @@ export function HeritageClient() {
 
           <div className="grid gap-1 px-4">
             {heritageSites.map((site, i) => (
-              <AnimatedSection key={site.slug} direction={i % 2 === 0 ? "right" : "left"} delay={i * 0.1}>
+              <AnimatedSection 
+                key={site.slug} 
+                direction={isMobile ? "up" : (i % 2 === 0 ? "right" : "left")} 
+                delay={i * 0.1}
+              >
                 <Link href={`/properties?location=${site.slug}`} className="group relative block py-10 border-b border-[#D4AF37]/10 overflow-hidden">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10 transition-transform duration-700 group-hover:translate-x-4">
                     <div className="max-w-xl">

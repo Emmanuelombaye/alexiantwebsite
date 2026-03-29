@@ -83,14 +83,14 @@ export default function MortgagePage() {
          </div>
 
          <div className="container relative z-10 px-4 mx-auto lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto text-center">
                <div className="flex items-center justify-center gap-3 mb-6">
                   <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-[#D4AF37]">Capital Advisory</span>
                </div>
                <h1 className="font-display text-4xl md:text-5xl font-semibold italic text-white tracking-tight leading-[1.1] mb-4">
                   Strategic <span className="not-italic font-black text-[#D4AF37]">Investment</span> Intelligence
                </h1>
-            </div>
+            </AnimatedSection>
          </div>
       </section>
 
