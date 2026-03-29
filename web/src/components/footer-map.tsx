@@ -9,7 +9,7 @@ export function FooterMap() {
   return (
     <div className={`relative w-full overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isExpanded ? "h-[75vh]" : "h-[180px] sm:h-[220px]"} bg-slate-100 border-t border-[#D4AF37]/20`}>
       <iframe 
-        src="https://maps.google.com/maps?q=-4.322754,39.5580223&z=15&output=embed" 
+        src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=-4.322754,39.5580223+(Alexiant%20HQ)&t=&z=15&ie=UTF8&iwloc=B&output=embed" 
         width="100%" 
         height="100%" 
         style={{ border: 0 }} 
