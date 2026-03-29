@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteContent } from "@/data/site-content";
 import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
 import { SecureContact } from "@/components/secure-contact";
+import { FooterMap } from "@/components/footer-map";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -186,15 +187,14 @@ export function SiteFooter() {
             </div>
          </div>
 
-         {/* EXACT OFFICE LOCATION FROM IMAGE */}
-         <div className="max-w-[1400px] mx-auto mt-6 pt-6 border-t border-slate-200/60 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-             <h4 className="font-black text-black tracking-wide text-sm md:text-base mb-2 uppercase">OFFICE LOCATION</h4>
-             <a href="https://maps.app.goo.gl/jTs7rjjiwSQ4GGwH8?g_st=awb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group">
-                <span className="text-xl leading-none mt-1 group-hover:scale-110 transition-transform origin-bottom">📍</span>
-                <span className="text-[#0056b3] lowercase tracking-normal font-sans font-medium text-[0.85rem] md:text-[0.95rem] group-hover:underline decoration-[#0056b3]/50 underline-offset-4">
-                  https://maps.app.goo.gl/jTs7rjjiwSQ4GGwH8?g_st=awb
-                </span>
-             </a>
+         {/* EXACT OFFICE LOCATION MAP */}
+         <div className="max-w-[1400px] w-full mx-auto mt-8 pt-6 md:pt-8 border-t border-slate-200/60 flex flex-col gap-4 md:gap-6 justify-center items-center text-center">
+             <h4 className="font-black text-black tracking-[0.2em] text-sm md:text-[0.95rem] uppercase flex items-center gap-2">
+               OFFICE LOCATION
+             </h4>
+             <div className="w-full">
+               <FooterMap />
+             </div>
          </div>
       </div>
     </footer>

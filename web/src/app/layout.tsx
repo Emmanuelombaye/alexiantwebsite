@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Pinyon_Script, Playfair_Display } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
-import { FooterMap } from "@/components/footer-map";
 import { SiteHeader } from "@/components/site-header";
 import { WhatsappFab } from "@/components/whatsapp-fab";
 import { isAdminRequest } from "@/lib/admin-auth";
@@ -198,7 +197,6 @@ export default async function RootLayout({
         <div className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
           {!isAdmin && <SiteHeader />}
           <main>{children}</main>
-          {!isAdmin && <FooterMap />}
           {!isAdmin && <SiteFooter />}
           {!isAdmin && <WhatsappFab />}
         </div>
