@@ -9,7 +9,7 @@ export function FooterMap() {
   return (
     <div className={`relative w-full rounded-2xl md:rounded-[2rem] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.15)] ${isExpanded ? "h-[75vh]" : "h-[200px] sm:h-[240px] md:h-[300px]"} bg-slate-100 border border-slate-200`}>
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3978.4753988387147!2d39.558012!3d-4.32142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNMKwMTknMTcuMSJTIDM5wrAzMycyOC44IkU!5e0!3m2!1ssw!2ske!4v1774783699731!5m2!1ssw!2ske" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.468426177385!2d39.55544737400081!3d-4.322748646482343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x184045176628ef35%3A0xda96e15ad0e3b4ef!2sALEXIANT%20REAL%20ESTATE!5e0!3m2!1sen!2ske!4v1774969204276!5m2!1sen!2ske" 
         width="100%" 
         height="100%" 
         style={{ border: 0 }} 
