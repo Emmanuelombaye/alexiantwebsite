@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Pinyon_Script, Playfair_Display } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -27,33 +27,17 @@ const pinyonScript = Pinyon_Script({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Plots & Homes for Sale in Diani Beach | Alexiant Real Estate Kenya",
+    default: "Alexiant Real Estate | Luxury Homes & Land for Sale in Kenya",
     template: "%s | Alexiant Real Estate",
   },
   description:
-    "Discover prime land and property for sale in Diani Beach and Ukunda, Kwale County. We offer affordable plots, beachfront villas, residential homes, and commercial land across the South Coast of Kenya.",
+    "Alexiant Real Estate - Kenya's Premier Property Solutions. Discover luxury homes, prime land, commercial properties, and exclusive real estate opportunities.",
   keywords: [
-    "land for sale in diani beach",
-    "plots for sale in ukunda",
-    "beach plots for sale diani",
-    "cheap land for sale south coast kenya",
-    "residential plots diani beach",
-    "commercial land for sale ukunda",
-    "kwale county land for sale",
-    "freehold land diani beach",
-    "houses for sale in diani beach",
-    "villas for sale diani kenya",
-    "beachfront property diani",
-    "apartments for sale ukunda",
-    "holiday homes diani beach",
-    "real estate agent diani beach",
-    "property listings ukunda",
-    "land for sale kwale county",
-    "Diani Beach property",
-    "Ukunda real estate",
-    "Kwale County land",
-    "South Coast Kenya property",
-    "beachfront property Diani"
+    "real estate Kenya",
+    "land for sale Kenya",
+    "houses for sale Kenya",
+    "property investment Kenya",
+    "luxury homes Kenya"
   ],
   authors: [{ name: "Alexiant Real Estate", url: "https://alexiantrealestate.co.ke" }],
   creator: "Alexiant Real Estate",
@@ -74,23 +58,23 @@ export const metadata: Metadata = {
     locale: "en_KE",
     url: "https://alexiantrealestate.co.ke",
     siteName: "Alexiant Real Estate",
-    title: "Plots & Homes for Sale in Diani Beach | Affordable South Coast Land",
+    title: "Alexiant Real Estate | Luxury Homes & Land for Sale in Kenya",
     description:
-      "Premium property, beachfront villas, and affordable plots for sale in Diani, Ukunda and Msambweni. Expert coastal real estate advisory.",
+      "Alexiant Real Estate - Kenya's Premier Property Solutions. Discover luxury homes, prime land, commercial properties, and exclusive real estate opportunities.",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Alexiant Real Estate — Diani & Kenya Coast Property",
+        alt: "Alexiant Real Estate — Kenya Property Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plots for Sale in Diani Beach | Real Estate South Coast Kenya",
+    title: "Alexiant Real Estate | Luxury Homes & Land for Sale in Kenya",
     description:
-      "Searching for land or houses in Diani? Alexiant offers the best beachfront property and investment plots in Kwale County.",
+      "Alexiant Real Estate - Kenya's Premier Property Solutions. Discover luxury homes, prime land, commercial properties, and exclusive real estate opportunities.",
     images: ["/og-image.svg"],
     creator: "@alexiantrealestate",
   },
@@ -106,6 +90,12 @@ export const metadata: Metadata = {
   category: "real estate",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 
 
 export default async function RootLayout({
@@ -116,12 +106,11 @@ export default async function RootLayout({
   const siteUrl = getSiteUrl();
 
   const localBusinessSchema = {
-    // ... kept as is for brevity
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "RealEstateAgent"],
-    name: "Alexiant Real Estate – Diani Beach & Ukunda",
+    "@type": "RealEstateAgent",
+    name: "Alexiant Real Estate",
     description:
-      "Discover prime land, beachfront villas and affordable plots for sale in Diani Beach and Ukunda, Kwale County. Your trusted South Coast Kenya property listings partner.",
+      "Alexiant Real Estate - Kenya's Premier Property Solutions. Discover luxury homes, prime land, commercial properties, and exclusive real estate opportunities.",
     url: getSiteUrl(),
     telephone: "+254759636615",
     email: "info@alexiantrealestate.co.ke",
@@ -163,6 +152,7 @@ export default async function RootLayout({
       { "@type": "Place", name: "Kwale County" },
       { "@type": "Place", name: "Kenya South Coast" },
       { "@type": "Place", name: "Shimoni" },
+      { "@type": "Place", name: "Kenya" },
     ],
     sameAs: [
       "https://wa.me/254759636615",
