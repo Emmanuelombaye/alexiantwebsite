@@ -43,6 +43,7 @@ type PropertiesPageProps = {
     q?: string;
     category?: string;
     status?: string;
+    type?: string;
   }>;
 };
 
@@ -63,10 +64,10 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
     isPartOf: { "@type": "WebSite", name: "Alexiant Real Estate", url: baseUrl },
   };
   
-  // Safely handle params that might be arrays
   const rawQuery = Array.isArray(params.q) ? params.q[0] : params.q;
   const rawCategory = Array.isArray(params.category) ? params.category[0] : params.category;
   const rawStatus = Array.isArray(params.status) ? params.status[0] : params.status;
+  const rawType = Array.isArray(params.type) ? params.type[0] : params.type;
 
   const query = (rawQuery || "").trim().toLowerCase();
   const category = rawCategory === "sale" || rawCategory === "rent" ? rawCategory : "";
@@ -74,6 +75,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
     rawStatus === "available" || rawStatus === "sold" || rawStatus === "rented"
       ? rawStatus
       : "";
+  const type = (rawType || "").trim().toLowerCase();
 
   const filteredProperties = properties.filter((property) => {
     const matchesQuery =
@@ -84,8 +86,9 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
         .includes(query);
     const matchesCategory = !category || property.category === category;
     const matchesStatus = !status || property.status === status;
+    const matchesType = !type || property.features.some(f => f.label.toLowerCase() === 'type' && f.value.toLowerCase() === type);
 
-    return matchesQuery && matchesCategory && matchesStatus;
+    return matchesQuery && matchesCategory && matchesStatus && matchesType;
   });
 
   const saleCount = properties.filter((p) => p.category === "sale").length;
@@ -104,6 +107,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
               defaultQuery={query}
               defaultCategory={category}
               defaultStatus={status}
+              defaultType={type}
               resultCount={filteredProperties.length}
               totalCount={properties.length}
               saleCount={saleCount}

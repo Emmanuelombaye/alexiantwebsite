@@ -2,6 +2,7 @@ export type PropertyFilterState = {
   query?: string | string[];
   category?: string | string[];
   status?: string | string[];
+  type?: string | string[];
 };
 
 const validCategories = new Set(["sale", "rent"]);
@@ -11,18 +12,20 @@ export function normalizePropertyFilters(filters: PropertyFilterState) {
   const rawQuery = Array.isArray(filters.query) ? filters.query[0] : filters.query;
   const rawCategory = Array.isArray(filters.category) ? filters.category[0] : filters.category;
   const rawStatus = Array.isArray(filters.status) ? filters.status[0] : filters.status;
+  const rawType = Array.isArray(filters.type) ? filters.type[0] : filters.type;
 
   const query = (rawQuery ?? "").trim();
   const category = validCategories.has(rawCategory ?? "") ? (rawCategory ?? "") : "";
   const status = validStatuses.has(rawStatus ?? "") ? (rawStatus ?? "") : "";
+  const type = (rawType ?? "").trim();
 
-  return { query, category, status };
+  return { query, category, status, type };
 }
 
 export function countActivePropertyFilters(filters: PropertyFilterState) {
   const normalizedFilters = normalizePropertyFilters(filters);
 
-  return [normalizedFilters.query, normalizedFilters.category, normalizedFilters.status].filter(Boolean).length;
+  return [normalizedFilters.query, normalizedFilters.category, normalizedFilters.status, normalizedFilters.type].filter(Boolean).length;
 }
 
 export function getPropertyFilterBadges(filters: PropertyFilterState) {
@@ -58,6 +61,10 @@ export function buildPropertiesHref(filters: PropertyFilterState) {
 
   if (normalizedFilters.status) {
     params.set("status", normalizedFilters.status);
+  }
+
+  if (normalizedFilters.type) {
+    params.set("type", normalizedFilters.type);
   }
 
   const queryString = params.toString();

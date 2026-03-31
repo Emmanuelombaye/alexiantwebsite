@@ -2,17 +2,21 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 export function SplashLoader() {
-  const [show, setShow] = useState(true);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
+    setShow(true);
     const timer = setTimeout(() => {
       setShow(false);
-    }, 2800);
+    }, 1800);
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname, searchParams]);
 
   return (
     <AnimatePresence>

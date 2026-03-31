@@ -14,6 +14,7 @@ type PropertyFiltersProps = {
   rentCount: number;
   availableCount: number;
   featuredCount: number;
+  defaultType?: string;
 };
 
 export function PropertyFilters({
@@ -26,9 +27,10 @@ export function PropertyFilters({
   rentCount,
   availableCount,
   featuredCount,
+  defaultType,
 }: PropertyFiltersProps) {
   const router = useRouter();
-  const activeFilterCount = countActivePropertyFilters({ query: defaultQuery, category: defaultCategory, status: defaultStatus });
+  const activeFilterCount = countActivePropertyFilters({ query: defaultQuery, category: defaultCategory, status: defaultStatus, type: defaultType });
   const quickLinks = [
     { label: "All listings", href: buildPropertiesHref({}), value: totalCount },
     { label: "Available now", href: buildPropertiesHref({ status: "available" }), value: availableCount },
@@ -44,15 +46,30 @@ export function PropertyFilters({
       <div className="relative z-10">
         <div className="flex flex-wrap items-center gap-4 px-4 mb-3">
           <div className="flex flex-wrap gap-2">
-            {quickLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="px-4 py-1.5 rounded-full bg-white border border-slate-100 text-[0.55rem] font-bold uppercase tracking-widest text-slate-400 hover:border-[#046A38] hover:text-[#046A38] shadow-sm transition-all"
-              >
-                {link.label} <span className="text-[#D4AF37] ml-1 opacity-40">{link.value}</span>
-              </Link>
-            ))}
+            <Link
+              href={buildPropertiesHref({ query: defaultQuery, category: defaultCategory, status: defaultStatus, type: "" })}
+              className={`px-4 py-1.5 rounded-full border text-[0.55rem] font-bold uppercase tracking-widest shadow-sm transition-all ${
+                !defaultType ? "bg-[#046A38] border-[#046A38] text-white" : "bg-white border-slate-100 text-slate-400 hover:border-[#046A38] hover:text-[#046A38]"
+              }`}
+            >
+              All Assets
+            </Link>
+            <Link
+              href={buildPropertiesHref({ query: defaultQuery, category: defaultCategory, status: defaultStatus, type: "house" })}
+              className={`px-4 py-1.5 rounded-full border text-[0.55rem] font-bold uppercase tracking-widest shadow-sm transition-all ${
+                defaultType === 'house' ? "bg-[#046A38] border-[#046A38] text-white" : "bg-white border-slate-100 text-slate-400 hover:border-[#046A38] hover:text-[#046A38]"
+              }`}
+            >
+              Houses & Villas
+            </Link>
+            <Link
+              href={buildPropertiesHref({ query: defaultQuery, category: defaultCategory, status: defaultStatus, type: "plot" })}
+              className={`px-4 py-1.5 rounded-full border text-[0.55rem] font-bold uppercase tracking-widest shadow-sm transition-all ${
+                defaultType === 'plot' ? "bg-[#046A38] border-[#046A38] text-white" : "bg-white border-slate-100 text-slate-400 hover:border-[#046A38] hover:text-[#046A38]"
+              }`}
+            >
+              Prime Plots
+            </Link>
           </div>
 
           <div className="flex-1" />

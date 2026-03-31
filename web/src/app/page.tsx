@@ -54,6 +54,7 @@ export default async function Home() {
               defaultQuery=""
               defaultCategory=""
               defaultStatus=""
+              defaultType=""
               resultCount={totalCount}
               totalCount={totalCount}
               saleCount={saleCount}

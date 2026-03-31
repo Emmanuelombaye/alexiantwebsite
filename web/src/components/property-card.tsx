@@ -15,6 +15,10 @@ interface PropertyCardProps {
 export function PropertyCard({ property }: PropertyCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5 });
+  
+  const suffixParts = property.priceSuffix?.split('|') || [];
+  const overrideCurrency = suffixParts.length > 1 ? suffixParts[0] : "KES";
+  const displaySuffix = suffixParts.length > 1 ? suffixParts[1] : property.priceSuffix;
 
   return (
     <Link ref={ref} data-inview={isInView} href={`/properties/${property.slug}`} className="group relative block w-full">
@@ -80,8 +84,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
           <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
                <p className="text-[0.85rem] font-bold tracking-wide text-slate-950 leading-none">
-                 {formatKes(property.price)}
-                 <span className="font-sans text-[0.55rem] font-normal uppercase tracking-widest text-slate-400 ml-2 italic">{property.priceSuffix}</span>
+                 {formatKes(property.price, overrideCurrency)}
+                 {displaySuffix && (
+                   <span className="font-sans text-[0.55rem] font-normal uppercase tracking-widest text-slate-400 ml-2 italic">{displaySuffix}</span>
+                 )}
                </p>
             </div>
             

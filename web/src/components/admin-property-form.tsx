@@ -48,6 +48,9 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
   const [title, setTitle] = useState(initialProperty?.title || "");
   const [slug, setSlug] = useState(initialProperty?.slug || "");
   const [slugEdited, setSlugEdited] = useState(false);
+  const [propertyType, setPropertyType] = useState(
+    initialProperty?.features.find(f => f.label === 'Type')?.value || 'House'
+  );
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
@@ -104,7 +107,10 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
       location: String(formData.get("location") || ""),
       summary: String(formData.get("summary") || ""),
       description: String(formData.get("description") || ""),
-      features: parseFeatures(String(formData.get("features") || "")),
+      features: [
+        { label: 'Type', value: propertyType },
+        ...parseFeatures(String(formData.get("features") || "")).filter(f => f.label !== 'Type' && f.label.toLowerCase() !== 'type')
+      ],
       amenities: parseLines(String(formData.get("amenities") || "")),
       images: images,
       coordinates: {
@@ -184,6 +190,13 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
             <option value="EUR">EUR - Euro (€)</option>
             <option value="GBP">GBP - British Pound (£)</option>
             <option value="AED">AED - UAE Dirham</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-medium text-slate-700">Property Type</label>
+          <select value={propertyType} onChange={(e) => setPropertyType(e.target.value)} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500">
+            <option value="House">House / Villa</option>
+            <option value="Plot">Plot / Land</option>
           </select>
         </div>
         <div>
