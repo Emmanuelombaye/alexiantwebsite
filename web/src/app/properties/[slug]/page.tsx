@@ -126,6 +126,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
 
   const mapHref = `https://www.google.com/maps?q=${property.coordinates.lat},${property.coordinates.lng}`;
   const photoCount = property.images.length;
+  const propertyCurrency = property.features.find(f => f.label === 'Currency')?.value;
 
   return (
     <PageTransition className="section-shell pt-32 lg:pt-40 pb-20">
@@ -166,7 +167,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
           </StaggerItem>
           <StaggerItem>
             <p className="mt-6 text-2xl font-semibold text-slate-950">
-              {formatPropertyPrice(property.price, property.priceSuffix)}
+              {formatPropertyPrice(property.price, property.priceSuffix, propertyCurrency)}
             </p>
           </StaggerItem>
           <StaggerItem>
@@ -267,7 +268,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                 <span className="font-semibold text-slate-950">Advisor:</span> {property.agent.name}
               </p>
               <p>
-                <span className="font-semibold text-slate-950">Price:</span> {formatPropertyPrice(property.price, property.priceSuffix)}
+                <span className="font-semibold text-slate-950">Price:</span> {formatPropertyPrice(property.price, property.priceSuffix, propertyCurrency)}
               </p>
             </div>
           </div>

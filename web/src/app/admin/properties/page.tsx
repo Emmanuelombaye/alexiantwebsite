@@ -80,7 +80,7 @@ export default async function AdminPropertiesPage() {
                     <td className="px-6 py-4">{titleCase(property.status)}</td>
                     <td className="px-6 py-4">{property.featured ? "Yes" : "No"}</td>
                     <td className="px-6 py-4">{property.images.length} / {MAX_PROPERTY_IMAGES}</td>
-                    <td className="px-6 py-4">{formatPropertyPrice(property.price, property.priceSuffix)}</td>
+                    <td className="px-6 py-4">{formatPropertyPrice(property.price, property.priceSuffix, property.features.find(f => f.label === 'Currency')?.value)}</td>
                     <td className="px-6 py-4">{property.agent.name}</td>
                     <td className="px-6 py-4">
                       <div className="flex min-w-40 flex-col gap-3">

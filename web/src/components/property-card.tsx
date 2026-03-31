@@ -17,7 +17,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const isInView = useInView(ref, { amount: 0.5 });
   
   const suffixParts = property.priceSuffix?.split('|') || [];
-  const overrideCurrency = suffixParts.length > 1 ? suffixParts[0] : "KES";
+  const parsedCurrency = property.features.find(f => f.label === 'Currency')?.value;
+  const fallbackPipeCurrency = suffixParts.length > 1 ? suffixParts[0] : "KES";
+  const overrideCurrency = parsedCurrency || fallbackPipeCurrency;
+  
   const displaySuffix = suffixParts.length > 1 ? suffixParts[1] : property.priceSuffix;
 
   return (

@@ -10,13 +10,13 @@ export function formatKes(amount: number, currency: string = "KES") {
   return `KES ${formatted}`;
 }
 
-export function formatPropertyPrice(amount: number, suffix?: string | null) {
-  let currency = "KES";
+export function formatPropertyPrice(amount: number, suffix?: string | null, forceCurrency?: string) {
+  let currency = forceCurrency || "KES";
   let displaySuffix = suffix || "";
 
   if (suffix && suffix.includes("|")) {
     const parts = suffix.split("|");
-    currency = parts[0] || "KES";
+    if (!forceCurrency) currency = parts[0] || "KES";
     displaySuffix = parts[1] || "";
   }
 

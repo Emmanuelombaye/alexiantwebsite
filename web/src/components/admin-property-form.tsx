@@ -51,6 +51,11 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
   const [propertyType, setPropertyType] = useState(
     initialProperty?.features.find(f => f.label === 'Type')?.value || 'House'
   );
+  
+  const [currency, setCurrency] = useState(
+    initialProperty?.features.find(f => f.label === 'Currency')?.value ||
+    (initialProperty?.priceSuffix?.match(/^(KES|USD|EUR|GBP|AED)\|/) ? initialProperty.priceSuffix.split('|')[0] : "KES")
+  );
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
@@ -103,13 +108,14 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
       status: String(formData.get("status") || "available"),
       featured: formData.get("featured") === "on",
       price: Number(formData.get("price") || 0),
-      priceSuffix: String(formData.get("currency") || "KES") + "|" + String(formData.get("priceSuffix") || ""),
+      priceSuffix: String(formData.get("priceSuffix") || ""),
       location: String(formData.get("location") || ""),
       summary: String(formData.get("summary") || ""),
       description: String(formData.get("description") || ""),
       features: [
         { label: 'Type', value: propertyType },
-        ...parseFeatures(String(formData.get("features") || "")).filter(f => f.label !== 'Type' && f.label.toLowerCase() !== 'type')
+        { label: 'Currency', value: currency },
+        ...parseFeatures(String(formData.get("features") || "")).filter(f => f.label !== 'Type' && f.label !== 'Currency' && f.label.toLowerCase() !== 'type' && f.label.toLowerCase() !== 'currency')
       ],
       amenities: parseLines(String(formData.get("amenities") || "")),
       images: images,
@@ -184,7 +190,7 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Currency</label>
-          <select name="currency" defaultValue={initialProperty?.priceSuffix?.match(/^(KES|USD|EUR|GBP|AED)\|/) ? initialProperty.priceSuffix.split('|')[0] : "KES"} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500">
+          <select name="currency" value={currency} onChange={e => setCurrency(e.target.value)} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500">
             <option value="KES">KES - Kenyan Shilling</option>
             <option value="USD">USD - US Dollar ($)</option>
             <option value="EUR">EUR - Euro (€)</option>
@@ -232,7 +238,7 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
             name="features"
             required
             rows={6}
-            defaultValue={serializeFeatures(initialProperty)}
+            defaultValue={serializeFeatures(initialProperty).split('\n').filter(line => !line.toLowerCase().startsWith('type:') && !line.toLowerCase().startsWith('currency:')).join('\n')}
             placeholder="Bedrooms: 4&#10;Bathrooms: 3&#10;Parking: 2 cars"
             className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 font-mono text-sm outline-none focus:border-emerald-500"
           />
