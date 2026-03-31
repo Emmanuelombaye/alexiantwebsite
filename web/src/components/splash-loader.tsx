@@ -1,11 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-export function SplashLoader() {
+function SplashLoaderContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [show, setShow] = useState(false);
@@ -67,5 +67,13 @@ export function SplashLoader() {
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+export function SplashLoader() {
+  return (
+    <Suspense fallback={null}>
+      <SplashLoaderContent />
+    </Suspense>
   );
 }
