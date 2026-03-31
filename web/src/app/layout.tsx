@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { WhatsappFab } from "@/components/whatsapp-fab";
 import { SplashLoader } from "@/components/splash-loader";
-import { isAdminRequest } from "@/lib/admin-auth";
+import { ClientLayoutWrapper } from "@/components/client-layout-wrapper";
 import { getSiteUrl } from "@/lib/seo/site-url";
 import "./globals.css";
 
@@ -113,7 +113,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isAdmin = await isAdminRequest();
   const siteUrl = getSiteUrl();
 
   const localBusinessSchema = {
@@ -196,11 +195,14 @@ export default async function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
         <div className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
-          {!isAdmin && <SplashLoader />}
-          {!isAdmin && <SiteHeader />}
-          <main>{children}</main>
-          {!isAdmin && <SiteFooter />}
-          {!isAdmin && <WhatsappFab />}
+          <ClientLayoutWrapper
+            splashLoader={<SplashLoader />}
+            siteHeader={<SiteHeader />}
+            siteFooter={<SiteFooter />}
+            whatsappFab={<WhatsappFab />}
+          >
+            {children}
+          </ClientLayoutWrapper>
         </div>
       </body>
     </html>
