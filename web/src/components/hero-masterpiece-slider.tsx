@@ -28,7 +28,7 @@ const slides = [
   },
   {
     image: "/demo-media/bannerimages/crown-jewel-diani-sunset.png",
-    title: "The Crown Jewel",
+    title: "Gem",
     subtitle: "Diani Beachfront",
     description: "Experience ultra-luxury living where the turquoise ocean meets golden sunsets.",
     type: "villa"
@@ -120,9 +120,9 @@ export function HeroMasterpieceSlider() {
             className="absolute inset-0"
           >
             {/* Cinematic Alternating Zoom In & Out */}
-            <motion.div 
+            <motion.div
               initial={{ scale: currentIndex % 2 === 0 ? 1.25 : 1.0 }}
-              animate={{ 
+              animate={{
                 scale: currentIndex % 2 === 0 ? 1.0 : 1.25,
                 transition: { duration: 15, ease: "easeOut" }
               }}
@@ -137,10 +137,10 @@ export function HeroMasterpieceSlider() {
                 className="object-cover transition-all"
               />
             </motion.div>
-            
+
             {/* Overlay Gradient - TIGHTENED FOR MORE IMAGE VISIBILITY */}
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-950/20 to-transparent" />
-            
+
             {/* Content Overlay - CORNER ALIGNED WITH MEDIUM WEIGHT */}
             <div className="absolute inset-0 flex items-end px-12 md:px-20 pb-20">
               <div className="max-w-md">
@@ -155,7 +155,7 @@ export function HeroMasterpieceSlider() {
                       {slides[currentIndex].subtitle}
                     </span>
                   </div>
-                  
+
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight mb-4 tracking-tighter">
                     {slides[currentIndex].title.split(' ').map((word, i) => (
                       <span key={i} className={i === slides[currentIndex].title.split(' ').length - 1 ? "text-[#D4AF37]" : ""}>
@@ -163,11 +163,11 @@ export function HeroMasterpieceSlider() {
                       </span>
                     ))}
                   </h1>
-                  
+
                   <p className="text-xs md:text-base text-slate-200/90 leading-relaxed font-medium mb-8 max-w-sm italic">
                     {slides[currentIndex].description}
                   </p>
-                  
+
                   <div className="flex items-center gap-6">
                     <button className="h-12 px-8 rounded-full bg-[#046A38] text-white font-black text-[0.65rem] uppercase tracking-widest shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/30 hover:-translate-y-1 transition-all">
                       {slides[currentIndex].type === 'authority' ? 'Experience Excellence' : 'View details'}
@@ -177,8 +177,8 @@ export function HeroMasterpieceSlider() {
                         {slides[currentIndex].type === 'authority' ? 'Executive' : 'Property'}
                       </span>
                       <span className="text-white font-black text-[0.6rem] uppercase tracking-widest opacity-80">
-                        {slides[currentIndex].type === 'authority' ? 'Founder & Expert' : 
-                         slides[currentIndex].type === 'villa' ? 'Signature Villa' : 'Investment Plot'}
+                        {slides[currentIndex].type === 'authority' ? 'Founder & Expert' :
+                          slides[currentIndex].type === 'villa' ? 'Signature Villa' : 'Investment Plot'}
                       </span>
                     </div>
                   </div>
@@ -190,7 +190,7 @@ export function HeroMasterpieceSlider() {
             <div className="absolute top-1/2 -translate-y-1/2 right-12 hidden lg:block">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ 
+                animate={{
                   opacity: 1,
                   transition: { duration: 1 }
                 }}
@@ -198,55 +198,44 @@ export function HeroMasterpieceSlider() {
               >
                 {/* Ambient Outer Glow */}
                 <div className="absolute inset-0 rounded-full bg-[#D4AF37]/20 blur-3xl group-hover:bg-[#D4AF37]/30 transition-all duration-700" />
-                
+
                 <motion.div
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.03, 1],
-                    borderRadius: currentIndex % 5 === 0 ? "50%" : 
-                                 currentIndex % 5 === 1 ? "30%" : 
-                                 currentIndex % 5 === 2 ? "50% 50% 0 50%" : 
-                                 currentIndex % 5 === 3 ? "20% 80% 20% 80% / 80% 20% 80% 20%" : 
-                                 "85% 15% 85% 15% / 15% 85% 15% 85%",
-                    transition: { duration: 1.5, ease: "easeInOut" }
                   }}
-                  className="relative h-44 w-44 border-2 border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-2xl bg-slate-950/50 shadow-[0_0_60px_rgba(212,175,55,0.35)] ring-1 ring-white/10"
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="relative h-44 w-44 rounded-[2.5rem] border-2 border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-2xl bg-white shadow-[0_0_60px_rgba(212,175,55,0.35)] ring-1 ring-white/10"
                 >
                   {/* Inner Masterpiece Shine */}
-                  <motion.div 
-                    animate={{ 
-                      borderRadius: currentIndex % 5 === 0 ? "50%" : 
-                                   currentIndex % 5 === 1 ? "30%" : 
-                                   currentIndex % 5 === 2 ? "50% 50% 0 50%" : 
-                                   currentIndex % 5 === 3 ? "20% 80% 20% 80% / 80% 20% 80% 20%" : 
-                                   "85% 15% 85% 15% / 15% 85% 15% 85%",
-                      rotate: 360 
+                  <motion.div
+                    animate={{
+                      rotate: 360
                     }}
-                    transition={{ 
-                      borderRadius: { duration: 1.5 },
+                    transition={{
                       rotate: { duration: 10, repeat: Infinity, ease: "linear" }
                     }}
-                    className="absolute inset-[-4px] border-t-2 border-b-2 border-[#D4AF37] opacity-80"
+                    className="absolute inset-[-4px] border-t-2 border-b-2 border-[#D4AF37] opacity-80 rounded-[35%]"
                   />
-                  
+
                   {/* Luxury Glow Core */}
-                  <div className="absolute inset-4 rounded-3xl bg-gradient-to-br from-[#D4AF37]/20 to-transparent blur-xl" />
-                  
-                  <motion.img 
-                    animate={{ 
+                  <div className="absolute inset-4 rounded-[2rem] bg-gradient-to-br from-[#D4AF37]/20 to-transparent blur-xl" />
+
+                  <motion.img
+                    animate={{
                       opacity: [0.8, 1, 0.8],
                       scale: [1, 1.05, 1],
                       transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
                     }}
-                    src="/logo.svg" 
+                    src="/logo.svg"
                     alt="Alexiant Real Estate Logo - Diani Beach Premium Coastal Property Experts"
                     title="Alexiant Real Estate"
-                    className="h-24 w-auto brightness-0 invert contrast-150 drop-shadow-[0_0_20px_rgba(212,175,55,0.55)] relative z-10" 
+                    className="h-24 w-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.55)] relative z-10"
                   />
                 </motion.div>
 
                 {/* Corner Decorative Dots */}
                 <div className="absolute -top-4 -right-4 h-8 w-8 rounded-full border border-[#D4AF37]/30 flex items-center justify-center backdrop-blur-md">
-                   <div className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
                 </div>
               </motion.div>
             </div>
@@ -255,7 +244,7 @@ export function HeroMasterpieceSlider() {
 
         {/* Dynamic Progress Bar */}
         <div className="absolute bottom-0 left-0 h-[3px] bg-white/20 w-full z-30">
-          <motion.div 
+          <motion.div
             key={currentIndex}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}

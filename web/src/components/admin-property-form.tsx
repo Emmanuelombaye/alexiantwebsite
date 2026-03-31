@@ -100,7 +100,7 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
       status: String(formData.get("status") || "available"),
       featured: formData.get("featured") === "on",
       price: Number(formData.get("price") || 0),
-      priceSuffix: String(formData.get("priceSuffix") || ""),
+      priceSuffix: String(formData.get("currency") || "KES") + "|" + String(formData.get("priceSuffix") || ""),
       location: String(formData.get("location") || ""),
       summary: String(formData.get("summary") || ""),
       description: String(formData.get("description") || ""),
@@ -177,12 +177,22 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
           </select>
         </div>
         <div>
-          <label className="text-sm font-medium text-slate-700">Price (KES)</label>
+          <label className="text-sm font-medium text-slate-700">Currency</label>
+          <select name="currency" defaultValue={initialProperty?.priceSuffix?.match(/^(KES|USD|EUR|GBP|AED)\|/) ? initialProperty.priceSuffix.split('|')[0] : "KES"} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500">
+            <option value="KES">KES - Kenyan Shilling</option>
+            <option value="USD">USD - US Dollar ($)</option>
+            <option value="EUR">EUR - Euro (€)</option>
+            <option value="GBP">GBP - British Pound (£)</option>
+            <option value="AED">AED - UAE Dirham</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-medium text-slate-700">Price number</label>
           <input name="price" type="number" min="0" required defaultValue={initialProperty?.price} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Price suffix</label>
-          <input name="priceSuffix" defaultValue={initialProperty?.priceSuffix} placeholder="/ month" className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
+          <input name="priceSuffix" defaultValue={initialProperty?.priceSuffix?.includes('|') ? initialProperty.priceSuffix.split('|')[1] : initialProperty?.priceSuffix} placeholder="/ month" className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
         </div>
         <div className="lg:col-span-2">
           <label className="text-sm font-medium text-slate-700">Location</label>

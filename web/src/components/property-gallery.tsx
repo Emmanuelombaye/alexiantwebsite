@@ -135,7 +135,7 @@ export function PropertyGallery({ title, images }: PropertyGalleryProps) {
                   alt={getImageAlt(image, `${title} image ${index + 1}`)}
                   fill
                   priority={index === 0}
-                  className="object-cover"
+                  className="object-contain md:object-cover"
                   sizes="(min-width: 1024px) 70vw, 100vw"
                 />
               </div>

@@ -3,6 +3,7 @@ import { Geist, Pinyon_Script, Playfair_Display } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { WhatsappFab } from "@/components/whatsapp-fab";
+import { SplashLoader } from "@/components/splash-loader";
 import { isAdminRequest } from "@/lib/admin-auth";
 import { getSiteUrl } from "@/lib/seo/site-url";
 import "./globals.css";
@@ -114,7 +115,7 @@ export default async function RootLayout({
 }>) {
   const isAdmin = await isAdminRequest();
   const siteUrl = getSiteUrl();
-  
+
   const localBusinessSchema = {
     // ... kept as is for brevity
     "@context": "https://schema.org",
@@ -145,13 +146,13 @@ export default async function RootLayout({
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "08:30",
-        closes: "18:00",
+        closes: "14:00",
       },
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "16:00",
+        opens: "On Request",
+        closes: "On Request",
       },
     ],
     areaServed: [
@@ -195,6 +196,7 @@ export default async function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
         <div className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
+          {!isAdmin && <SplashLoader />}
           {!isAdmin && <SiteHeader />}
           <main>{children}</main>
           {!isAdmin && <SiteFooter />}
