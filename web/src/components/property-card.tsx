@@ -68,8 +68,8 @@ export function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         {/* Content Section */}
-        <div className="px-6 pb-6 flex-1 flex flex-col">
-          <h3 className="font-display text-xl font-semibold text-[#046A38] tracking-tight leading-tight italic mb-2 line-clamp-1">
+        <div className="px-5 sm:px-6 pb-5 sm:pb-6 flex-1 flex flex-col min-w-0 overflow-hidden">
+          <h3 className="font-display text-[1.15rem] sm:text-xl font-semibold text-[#046A38] tracking-tight leading-tight italic mb-2 line-clamp-1 w-full break-normal">
             {property.title}
           </h3>
 
@@ -77,19 +77,19 @@ export function PropertyCard({ property }: PropertyCardProps) {
             {property.summary}
           </p>
 
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-[#D4AF37] text-xs">📍</span>
-            <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-slate-400 truncate">
+          <div className="flex items-center gap-2 mb-4 min-w-0">
+            <span className="text-[#D4AF37] text-xs shrink-0">📍</span>
+            <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-slate-400 truncate min-w-0 w-full pr-2">
                {property.location}
             </p>
           </div>
 
-          <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between gap-4">
-            <div className="flex-1 min-w-0">
-               <p className="text-[0.85rem] font-bold tracking-wide text-slate-950 leading-none">
+          <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between gap-3 sm:gap-4 overflow-hidden">
+            <div className="flex-1 min-w-0 overflow-hidden pr-2">
+               <p className="text-[0.8rem] sm:text-[0.85rem] font-bold tracking-wide text-slate-950 leading-tight truncate">
                  {formatKes(property.price, overrideCurrency)}
                  {displaySuffix && (
-                   <span className="font-sans text-[0.55rem] font-normal uppercase tracking-widest text-slate-400 ml-2 italic">{displaySuffix}</span>
+                   <span className="font-sans text-[0.55rem] font-normal uppercase tracking-[0.15em] sm:tracking-widest text-slate-400 ml-1.5 italic truncate inline-block align-bottom max-w-[40%]">{displaySuffix}</span>
                  )}
                </p>
             </div>
