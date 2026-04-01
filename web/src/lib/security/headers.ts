@@ -49,7 +49,7 @@ function buildCsp(): string {
       "https://www.google-analytics.com",
       "https://www.googletagmanager.com",
     ],
-    "frame-src": ["'none'"],
+    "frame-src": ["https://www.google.com", "https://maps.google.com", "https://maps.googleapis.com"],
     "frame-ancestors": ["'none'"],
     "object-src": ["'none'"],
     "base-uri": ["'self'"],
