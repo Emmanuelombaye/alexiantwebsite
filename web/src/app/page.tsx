@@ -106,24 +106,24 @@ export default async function Home() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#046A38]/[0.03] blur-[100px]" />
         <div className="absolute inset-0 soft-grid opacity-[0.05]" />
 
-        <div className="section-shell relative z-10">
+        <div className="section-shell relative z-10 px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[0.38fr_1fr] items-start">
-            <AnimatedSection direction="right" className="sticky top-24">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.4em] text-[#D4AF37] backdrop-blur-md">
+            <AnimatedSection direction="right" className="sticky top-24 min-w-0">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-2 text-[0.5rem] font-bold uppercase tracking-[0.3em] text-[#D4AF37] backdrop-blur-md whitespace-nowrap overflow-hidden max-w-full">
                 ✦ The Executive Standard
               </span>
-              <h2 className="mt-8 font-display text-3xl md:text-4xl font-semibold text-[#022c22] tracking-tight leading-tight italic">
+              <h2 className="mt-6 font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-[#022c22] tracking-tight leading-tight italic break-words">
                 Uncompromising <br /> 
-                <span className="text-[#D4AF37] not-italic font-display uppercase tracking-widest text-2xl md:text-3xl">Excellence</span><br />
+                <span className="text-[#D4AF37] not-italic font-display uppercase tracking-widest text-xl sm:text-2xl md:text-3xl">Excellence</span><br />
                 at every touchpoint.
               </h2>
               <div className="mt-6 h-[1.5px] w-12 rounded-full bg-gradient-to-r from-[#D4AF37] to-transparent" />
               
-              <p className="mt-6 text-base text-slate-600 leading-relaxed font-medium italic opacity-75">
+              <p className="mt-6 text-sm md:text-base text-slate-600 leading-relaxed font-medium italic opacity-75 break-words">
                 <strong className="font-semibold text-[#022c22]">Alexiant Real Estate - Kenya's Premier Property Solutions.</strong> Discover luxury homes, prime land, commercial properties, and exclusive real estate opportunities across the region.
               </p>
 
-              <div className="mt-10 group relative inline-flex items-center gap-4 p-4 rounded-[2rem] border border-[#D4AF37]/20 bg-white/40 backdrop-blur-xl shadow-2xl shadow-slate-200/50 hover:border-[#D4AF37]/50 transition-all duration-500">
+              <div className="mt-8 group relative inline-flex items-center gap-3 p-3 md:p-4 rounded-[2rem] border border-[#D4AF37]/20 bg-white/40 backdrop-blur-xl shadow-2xl shadow-slate-200/50 hover:border-[#D4AF37]/50 transition-all duration-500 max-w-full overflow-hidden">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#022c22] to-[#046A38] text-[#D4AF37] shadow-[0_4px_12px_rgba(2,44,34,0.3)]">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
