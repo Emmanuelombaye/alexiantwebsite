@@ -38,7 +38,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-x-hidden bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(homeSchema)} />
       {/* --- MASTERPIECE HERO SLIDER --- */}
@@ -101,7 +101,7 @@ export default async function Home() {
       </section>
 
       {/* --- SERVICES / EXPERTISE --- */}
-      <section className="relative py-12 sm:py-16 overflow-hidden bg-white">
+      <section className="relative py-12 sm:py-16 overflow-x-hidden bg-white">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[#D4AF37]/[0.03] blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#046A38]/[0.03] blur-[100px]" />
         <div className="absolute inset-0 soft-grid opacity-[0.05]" />
@@ -111,7 +111,7 @@ export default async function Home() {
 
             {/* LEFT: text column — full width on mobile, sticky only on desktop */}
             <div className="w-full lg:sticky lg:top-24">
-              <AnimatedSection direction="right">
+              <AnimatedSection direction="none">
                 <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-4 py-2 text-[0.5rem] font-bold uppercase tracking-[0.3em] text-[#D4AF37] backdrop-blur-md">
                   ✦ The Executive Standard
                 </span>
