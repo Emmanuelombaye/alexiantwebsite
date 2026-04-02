@@ -15,8 +15,6 @@ export function SiteHeader() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showTicker, setShowTicker] = useState(false);
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 150) {
@@ -25,7 +23,6 @@ export function SiteHeader() {
       setHidden(false);
     }
     setScrolled(latest > 20);
-    setShowTicker(latest > 300);
   });
 
   const [mounted, setMounted] = useState(false);
@@ -235,31 +232,7 @@ export function SiteHeader() {
         <div className="fixed inset-0 z-[40] bg-black/40 backdrop-blur-sm lg:hidden" onClick={() => setMenuOpen(false)} />
       )}
 
-      {/* Mobile floating phone pill — appears after 300px scroll */}
-      <AnimatePresence>
-        {showTicker && !menuOpen && (
-          <motion.div
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 80, opacity: 0 }}
-            transition={{ type: "spring", damping: 20, stiffness: 200 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[39] lg:hidden"
-          >
-            <a
-              href={siteContent.phoneHref}
-              className="flex items-center gap-3 rounded-full bg-[#022c22] border border-[#D4AF37]/50 px-5 py-3 shadow-[0_8px_30px_rgba(2,44,34,0.5)]"
-            >
-              <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#D4AF37]" />
-              </span>
-              <span className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[#D4AF37] whitespace-nowrap">
-                Call: {siteContent.phone}
-              </span>
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </>
   );
 }
