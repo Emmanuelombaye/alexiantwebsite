@@ -45,9 +45,9 @@ export const siteContent = {
     "South Coast Kenya"
   ],
   "hours": [
-    "Monday - Friday: 8:30 AM - 6:00 PM",
-    "Saturday: 9:00 AM - 4:00 PM",
-    "Sundays & Public Holidays: By appointment"
+    "Monday - Friday: 9:00 AM - 5:00 PM",
+    "Saturday & Sunday: By appointment only",
+    "Public Holidays: By appointment only"
   ],
   "nav": [
     {

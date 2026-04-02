@@ -133,14 +133,14 @@ export default async function RootLayout({
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:30",
-        closes: "14:00",
+        opens: "09:00",
+        closes: "17:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "On Request",
-        closes: "On Request",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "00:00",
       },
     ],
     areaServed: [
