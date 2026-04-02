@@ -94,7 +94,7 @@ export function BlogCtaClient({ phone, phoneHref }: BlogCtaClientProps) {
                <span className="relative z-10 text-white">Consult an Advisor</span>
                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-[#046A38] opacity-0 group-hover/btn:opacity-100 transition-opacity" />
             </Link>
-            <a href={phoneHref} className="h-16 flex items-center justify-center rounded-full border border-[#D4AF37] bg-[#D4AF37]/10 backdrop-blur-2xl px-12 text-[0.7rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#011611] transition-all duration-500 hover:-translate-y-1.5 shadow-xl">
+            <a href={phoneHref} className="h-16 flex items-center justify-center rounded-full border border-white/80 bg-white px-12 text-[0.7rem] font-black uppercase tracking-[0.3em] text-[#046A38] hover:bg-[#046A38] hover:text-white hover:border-[#046A38] transition-all duration-500 hover:-translate-y-1.5 shadow-[0_8px_30px_rgba(255,255,255,0.15)]">
                Call: {phone}
             </a>
          </motion.div>
