@@ -3,16 +3,14 @@
 import { useState, useRef, useEffect } from "react";
 
 const LANGUAGES = [
-  { code: "en", label: "English",  flag: "🇬🇧" },
-  { code: "nl", label: "Dutch",    flag: "🇳🇱" },
-  { code: "fr", label: "French",   flag: "🇫🇷" },
-  { code: "it", label: "Italian",  flag: "🇮🇹" },
-  { code: "de", label: "German",   flag: "🇩🇪" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "nl", label: "Dutch",   flag: "🇳🇱" },
+  { code: "fr", label: "French",  flag: "🇫🇷" },
+  { code: "it", label: "Italian", flag: "🇮🇹" },
+  { code: "de", label: "German",  flag: "🇩🇪" },
 ];
 
-type LanguageToggleProps = {
-  scrolled?: boolean;
-};
+type LanguageToggleProps = { scrolled?: boolean };
 
 export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
   const [open, setOpen] = useState(false);
@@ -30,10 +28,17 @@ export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
   function select(lang: typeof LANGUAGES[0]) {
     setActive(lang);
     setOpen(false);
-    const el = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
-    if (el) {
-      el.value = lang.code;
-      el.dispatchEvent(new Event("change"));
+    if (lang.code === "en") {
+      // Remove translation — go back to original
+      const url = new URL(window.location.href);
+      url.searchParams.delete("_x_tr_sl");
+      url.searchParams.delete("_x_tr_tl");
+      url.searchParams.delete("_x_tr_hl");
+      window.location.href = url.toString();
+    } else {
+      // Use Google Translate redirect — no scripts needed
+      const current = encodeURIComponent(window.location.href);
+      window.location.href = `https://translate.google.com/translate?sl=en&tl=${lang.code}&u=${current}`;
     }
   }
 
@@ -47,10 +52,7 @@ export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
       <button onClick={() => setOpen(!open)} className={btnStyle}>
         <span>{active.flag}</span>
         <span className="hidden sm:inline">{active.label}</span>
-        <svg
-          className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-        >
+        <svg className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
@@ -72,8 +74,6 @@ export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
           ))}
         </div>
       )}
-
-      <div id="google_translate_element" className="hidden" />
     </div>
   );
 }
