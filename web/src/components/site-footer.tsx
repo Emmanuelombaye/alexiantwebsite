@@ -1,4 +1,3 @@
-import "server-only";
 import Link from "next/link";
 import { siteContent } from "@/data/site-content";
 import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
