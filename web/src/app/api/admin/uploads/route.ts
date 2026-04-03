@@ -40,9 +40,9 @@ export async function POST(request: Request) {
   }
 
   const bucket = getSupabaseStorageBucket();
-  const extension = file.name.includes(".") ? file.name.split(".").pop()?.toLowerCase() : "jpg";
+  const extension = file.type === "image/webp" ? "webp" : (file.name.includes(".") ? file.name.split(".").pop()?.toLowerCase() : "jpg");
   const baseName = file.name.replace(/\.[^.]+$/, "") || "property-image";
-  const storagePath = `listings/${Date.now()}-${createPropertySlug(baseName)}.${extension || "jpg"}`;
+  const storagePath = `listings/${Date.now()}-${createPropertySlug(baseName)}.${extension || "webp"}`;
   const arrayBuffer = await file.arrayBuffer();
 
   const { error } = await supabase.storage.from(bucket).upload(storagePath, arrayBuffer, {

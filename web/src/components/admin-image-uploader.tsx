@@ -8,6 +8,35 @@ type AdminImageUploaderProps = {
   maxImages: number;
 };
 
+/** Compress + convert to WebP using browser Canvas. No dependencies needed. */
+async function compressToWebP(file: File, maxWidth = 1920, quality = 0.82): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image();
+    const objectUrl = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      const scale = Math.min(1, maxWidth / img.width);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return reject(new Error("Canvas not supported"));
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return reject(new Error("Compression failed"));
+          const webpName = file.name.replace(/\.[^.]+$/, "") + ".webp";
+          resolve(new File([blob], webpName, { type: "image/webp" }));
+        },
+        "image/webp",
+        quality,
+      );
+    };
+    img.onerror = () => { URL.revokeObjectURL(objectUrl); reject(new Error("Image load failed")); };
+    img.src = objectUrl;
+  });
+}
+
 export function AdminImageUploader({ onUploaded, currentCount, maxImages }: AdminImageUploaderProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
@@ -41,10 +70,20 @@ export function AdminImageUploader({ onUploaded, currentCount, maxImages }: Admi
     }
 
     setStatus("uploading");
-    setMessage("");
+    setMessage("Compressing image...");
+
+    let fileToUpload: File;
+    try {
+      fileToUpload = await compressToWebP(file);
+      setMessage(`Compressed: ${(file.size / 1024).toFixed(0)}KB → ${(fileToUpload.size / 1024).toFixed(0)}KB. Uploading...`);
+    } catch {
+      // fallback to original if compression fails
+      fileToUpload = file;
+      setMessage("Uploading...");
+    }
 
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", fileToUpload);
 
     try {
       const response = await fetch("/api/admin/uploads", {
