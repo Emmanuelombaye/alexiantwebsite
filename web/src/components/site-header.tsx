@@ -123,15 +123,22 @@ export function SiteHeader() {
             <div className="flex items-center gap-2 flex-shrink-0">
               <LanguageToggle scrolled={scrolled} />
               <div
-                className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold md:inline-flex ${
+                className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold md:inline-flex items-center transition-all duration-300 ${
                   scrolled || menuOpen
-                    ? "border-slate-200 text-slate-900"
-                    : "border-white/30 text-white bg-white/5"
+                    ? "border-slate-200 bg-white text-slate-900 shadow-sm"
+                    : "border-white/40 bg-white/10 text-white backdrop-blur-md"
                 }`}
               >
                 <SecureContact type="phone" value={siteContent.phone} />
               </div>
-              <Link href="/valuation" className="nav-cta-gold hidden lg:inline-flex !px-4 !py-2 !text-xs">
+              <Link
+                href="/valuation"
+                className={`hidden lg:inline-flex items-center px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+                  scrolled || menuOpen
+                    ? "bg-[#046A38] text-white hover:bg-[#035930] shadow-sm"
+                    : "bg-white text-[#046A38] hover:bg-[#D4AF37] hover:text-[#011611] shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
+                }`}
+              >
                 Free Valuation
               </Link>
               
