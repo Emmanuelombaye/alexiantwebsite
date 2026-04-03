@@ -41,7 +41,19 @@ export function FooterMap() {
       </div>
 
       {/* Expand/Collapse Control */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 md:left-auto md:right-6 md:translate-x-0 z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 md:left-auto md:right-6 md:translate-x-0 z-20 flex items-center gap-3">
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=ALEXIANT+REAL+ESTATE&destination_place_id=0xda96e15ad0e3b4ef:0x184045176628ef35"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-white text-[#022c22] px-5 py-3 rounded-full shadow-lg border border-slate-200 hover:bg-[#D4AF37] hover:text-[#011611] hover:border-[#D4AF37] transition-all duration-300 transform hover:scale-105"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em]">Get Directions</span>
+        </a>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="group flex items-center gap-2.5 bg-[#022c22] text-white px-6 py-3 rounded-full shadow-[0_15px_30px_rgba(2,44,34,0.3)] border border-[#046A38] hover:bg-[#D4AF37] hover:text-[#011611] hover:border-[#D4AF37] transition-all duration-300 transform hover:scale-105 active:scale-95"

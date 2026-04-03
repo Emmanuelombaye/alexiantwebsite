@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createBlogPost, listBlogPosts } from "@/lib/blog/service";
 import { isAdminRequest } from "@/lib/admin-auth";
 import type { BlogPost } from "@/data/blog-posts";
@@ -24,6 +25,8 @@ export async function POST(request: Request) {
 
   try {
     const post = await createBlogPost(body as Partial<BlogPost>);
+    revalidatePath("/blog");
+    revalidatePath("/");
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

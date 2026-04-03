@@ -7,6 +7,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { siteContent } from "@/data/site-content";
 import { getActiveNavLabel, isActiveNavPath } from "@/lib/navigation";
 import { SecureContact } from "@/components/secure-contact";
+import { LanguageToggle } from "@/components/language-toggle";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -120,6 +121,7 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2 flex-shrink-0">
+              <LanguageToggle />
               <div
                 className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold md:inline-flex ${
                   scrolled || menuOpen

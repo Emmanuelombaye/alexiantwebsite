@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { deleteBlogPost, getBlogPostById, updateBlogPost } from "@/lib/blog/service";
 import { isAdminRequest } from "@/lib/admin-auth";
 import type { BlogPost } from "@/data/blog-posts";
@@ -33,6 +34,9 @@ export async function PATCH(request: Request, { params }: RouteContext) {
 
   const updated = await updateBlogPost(id, body as Partial<BlogPost>);
   if (!updated) return NextResponse.json({ message: "Post not found." }, { status: 404 });
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${updated.slug}`);
+  revalidatePath("/");
   return NextResponse.json({ post: updated });
 }
 
@@ -45,5 +49,7 @@ export async function DELETE(_: Request, { params }: RouteContext) {
   if (!post) return NextResponse.json({ message: "Post not found." }, { status: 404 });
 
   await deleteBlogPost(id);
+  revalidatePath("/blog");
+  revalidatePath("/");
   return NextResponse.json({ ok: true });
 }

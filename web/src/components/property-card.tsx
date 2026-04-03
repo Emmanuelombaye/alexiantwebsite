@@ -25,7 +25,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <Link ref={ref} data-inview={isInView} href={`/properties/${property.slug}`} className="group relative block w-full">
-      <article className="relative flex flex-col h-full bg-white rounded-[2.25rem] md:rounded-[2.8rem] border border-slate-100 p-2.5 md:p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 group-data-[inview=true]:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 group-data-[inview=true]:shadow-[0_30px_60px_rgba(4,106,56,0.15)] overflow-visible hover:shadow-[0_30px_60px_rgba(4,106,56,0.15)]">
+      <article className="relative flex flex-col h-full bg-white rounded-[1.5rem] sm:rounded-[2.25rem] md:rounded-[2.8rem] border border-slate-100 p-2 sm:p-2.5 md:p-3 shadow-xl shadow-slate-200/20 hover:border-[#D4AF37]/30 group-data-[inview=true]:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-3 group-data-[inview=true]:shadow-[0_30px_60px_rgba(4,106,56,0.15)] overflow-visible hover:shadow-[0_30px_60px_rgba(4,106,56,0.15)]">
         {/* Cinematic Image Container */}
         <div className="relative aspect-[3/2] rounded-[2.3rem] overflow-hidden mb-6 bg-slate-50 group-hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)] group-data-[inview=true]:shadow-[0_10px_40px_rgba(212,175,55,0.25)] transition-shadow duration-700">
           {property.images?.[0] ? (
@@ -68,7 +68,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         {/* Content Section */}
-        <div className="px-5 sm:px-6 pb-5 sm:pb-6 flex-1 flex flex-col min-w-0 overflow-hidden">
+        <div className="px-3 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 flex-1 flex flex-col min-w-0 overflow-hidden">
           <h3 className="font-display text-[1.15rem] sm:text-xl font-semibold text-[#046A38] tracking-tight leading-tight italic mb-2 line-clamp-1 w-full break-normal">
             {property.title}
           </h3>
