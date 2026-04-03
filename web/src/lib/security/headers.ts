@@ -17,14 +17,17 @@ function buildCsp(): string {
     "default-src": ["'self'"],
     "script-src": [
       "'self'",
-      "'unsafe-inline'", // Required by Next.js inline script tags
+      "'unsafe-inline'",
       "https://www.googletagmanager.com",
       "https://www.google-analytics.com",
+      "https://translate.google.com",
+      "https://translate.googleapis.com",
     ],
     "style-src": [
       "'self'",
-      "'unsafe-inline'", // Next.js injects inline styles
+      "'unsafe-inline'",
       "https://fonts.googleapis.com",
+      "https://translate.googleapis.com",
     ],
     "font-src": [
       "'self'",
@@ -41,6 +44,8 @@ function buildCsp(): string {
       "https://i.pravatar.cc",
       "https://www.transparenttextures.com",
       "https://www.google-analytics.com",
+      "https://translate.google.com",
+      "https://www.gstatic.com",
     ],
     "connect-src": [
       "'self'",
@@ -48,6 +53,7 @@ function buildCsp(): string {
       "wss://*.supabase.co",
       "https://www.google-analytics.com",
       "https://www.googletagmanager.com",
+      "https://translate.googleapis.com",
     ],
     "frame-src": ["https://www.google.com", "https://maps.google.com", "https://maps.googleapis.com"],
     "frame-ancestors": ["'none'"],

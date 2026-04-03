@@ -4,6 +4,7 @@ import { siteContent } from "@/data/site-content";
 import { Facebook, Instagram, Linkedin, Twitter, PhoneCall } from "lucide-react";
 import { SecureContact } from "@/components/secure-contact";
 import { FooterMap } from "@/components/footer-map";
+import { RequestCallBackModal } from "@/components/request-callback-modal";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -67,10 +68,7 @@ export function SiteFooter() {
             </p>
             
             <div className="flex flex-col gap-4">
-              <Link href="/contact" className="group relative overflow-hidden rounded-full border border-[#D4AF37] px-6 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37] transition-all hover:bg-[#D4AF37] hover:text-[#011611] flex items-center justify-center gap-3 w-fit shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                <PhoneCall className="w-4 h-4" />
-                <span className="relative z-10">Request Call Back</span>
-              </Link>
+              <RequestCallBackModal />
             </div>
           </div>
 

@@ -88,9 +88,9 @@ export function SiteHeader() {
               )}
             </Link>
 
-            {/* Mobile Handwriting Signature */}
-            <div className="flex-1 flex justify-center items-center lg:hidden pl-1 pr-2 mt-1">
-              <span className="font-script text-[1.4rem] tracking-wider text-[#046A38] opacity-95 line-clamp-1 whitespace-nowrap">
+            {/* Mobile Brand Name */}
+            <div className="flex-1 flex justify-center items-center lg:hidden pl-1 pr-2">
+              <span className="font-display text-[1.05rem] font-black tracking-tight text-[#046A38] line-clamp-1 whitespace-nowrap">
                 Alexiant Real Estate
               </span>
             </div>
