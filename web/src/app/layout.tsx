@@ -182,27 +182,9 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        {/* Google Translate — reads googtrans cookie set by LanguageToggle */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              function googleTranslateElementInit(){
-                new google.translate.TranslateElement({
-                  pageLanguage:'en',
-                  includedLanguages:'en,nl,fr,it,de',
-                  autoDisplay:false,
-                  layout:google.translate.TranslateElement.InlineLayout.SIMPLE
-                },'__gt_root');
-              }
-            `
-          }}
-        />
-        <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" />
       </head>
       <body suppressHydrationWarning className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
         <div suppressHydrationWarning className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
-          {/* Hidden GT root - widget mounts here invisibly */}
-          <div id="__gt_root" className="hidden" />
           <ClientLayoutWrapper
             splashLoader={<SplashLoader />}
             siteHeader={<SiteHeader />}
