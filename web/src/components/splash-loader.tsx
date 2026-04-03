@@ -24,14 +24,14 @@ function SplashLoaderContent() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white overflow-hidden"
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
         >
           <motion.div
-            initial={{ scale: 0.05, opacity: 0 }}
-            animate={{ scale: 18, opacity: [0, 1, 1, 0.6] }}
-            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-24 w-24"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-36 w-36"
           >
             <Image
               src="/logo.svg"
