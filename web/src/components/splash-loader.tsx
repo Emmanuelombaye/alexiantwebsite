@@ -23,15 +23,15 @@ function SplashLoaderContent() {
       {show && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: "blur(8px)" }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white overflow-hidden"
         >
           <motion.div
-            initial={{ scale: 1.4, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-40 w-40 drop-shadow-[0_20px_60px_rgba(4,106,56,0.15)]"
+            initial={{ scale: 0.05, opacity: 0 }}
+            animate={{ scale: 18, opacity: [0, 1, 1, 0.6] }}
+            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-24 w-24"
           >
             <Image
               src="/logo.svg"
