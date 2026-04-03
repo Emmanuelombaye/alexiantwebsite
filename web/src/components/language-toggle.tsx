@@ -3,11 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 
 const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "nl", label: "Dutch",   flag: "🇳🇱" },
-  { code: "fr", label: "French",  flag: "🇫🇷" },
-  { code: "it", label: "Italian", flag: "🇮🇹" },
-  { code: "de", label: "German",  flag: "🇩🇪" },
+  { code: "en",  label: "English",  flag: "🇬🇧" },
+  { code: "nl",  label: "Dutch",    flag: "🇳🇱" },
+  { code: "fr",  label: "French",   flag: "🇫🇷" },
+  { code: "it",  label: "Italian",  flag: "🇮🇹" },
+  { code: "de",  label: "German",   flag: "🇩🇪" },
 ];
 
 type LanguageToggleProps = { scrolled?: boolean };
@@ -15,7 +15,12 @@ type LanguageToggleProps = { scrolled?: boolean };
 export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(LANGUAGES[0]);
+  const [pageUrl, setPageUrl] = useState("");
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setPageUrl(window.location.href);
+  }, []);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -25,21 +30,16 @@ export function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  function getTranslateUrl(code: string) {
+    if (code === "en") return pageUrl || "/";
+    return `https://translate.google.com/translate?sl=en&tl=${code}&u=${encodeURIComponent(pageUrl || window.location.href)}`;
+  }
+
   function select(lang: typeof LANGUAGES[0]) {
     setActive(lang);
     setOpen(false);
-    if (lang.code === "en") {
-      // Remove translation — go back to original
-      const url = new URL(window.location.href);
-      url.searchParams.delete("_x_tr_sl");
-      url.searchParams.delete("_x_tr_tl");
-      url.searchParams.delete("_x_tr_hl");
-      window.location.href = url.toString();
-    } else {
-      // Use Google Translate redirect — no scripts needed
-      const current = encodeURIComponent(window.location.href);
-      window.location.href = `https://translate.google.com/translate?sl=en&tl=${lang.code}&u=${current}`;
-    }
+    const url = getTranslateUrl(lang.code);
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   const btnBase = "flex items-center gap-2 rounded-full border px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.2em] transition-all duration-300";

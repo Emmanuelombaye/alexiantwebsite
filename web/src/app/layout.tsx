@@ -184,7 +184,7 @@ export default async function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
-        <div className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
+        <div suppressHydrationWarning className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
           <ClientLayoutWrapper
             splashLoader={<SplashLoader />}
             siteHeader={<SiteHeader />}

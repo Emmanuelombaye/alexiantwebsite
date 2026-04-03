@@ -57,11 +57,11 @@ export function PropertyCard({ property }: PropertyCardProps) {
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-data-[inview=true]:opacity-100 transition-opacity duration-700" />
           
-          {/* Subtle Featured Badge only */}
+          {/* Featured Badge */}
           {property.featured && (
-            <div className="absolute top-6 left-6 z-20">
-               <div className="bg-[#D4AF37]/90 backdrop-blur-md px-4 py-1.5 rounded-full shadow-lg">
-                 <span className="text-white text-[0.5rem] font-black uppercase tracking-[0.2em]">Signature Feature</span>
+            <div className="absolute top-3 left-3 z-20">
+               <div className="bg-[#38BDF8]/90 backdrop-blur-md px-3 py-1 rounded-full shadow-md">
+                 <span className="text-white text-[0.5rem] font-bold tracking-wide">Featured</span>
                </div>
             </div>
           )}
