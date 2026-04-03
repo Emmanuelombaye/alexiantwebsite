@@ -121,7 +121,7 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2 flex-shrink-0">
-              <LanguageToggle />
+              <LanguageToggle scrolled={scrolled} />
               <div
                 className={`hidden whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold md:inline-flex ${
                   scrolled || menuOpen

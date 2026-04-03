@@ -29,7 +29,7 @@ export default function ContactPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLdScript(contactSchema)} />
       {/* --- HERO --- */}
-      <section className="relative pt-56 pb-32 overflow-hidden bg-slate-50 text-slate-900">
+      <section className="relative pt-40 pb-24 overflow-hidden bg-slate-50 text-slate-900">
         {/* Luxury architectural texture with sophisticated mask */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center opacity-5 mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-transparent h-40" />
@@ -80,13 +80,12 @@ export default function ContactPage() {
       </section>
 
       {/* --- CONTACT FORM & INFO --- */}
-      <section className="section-shell py-24 sm:py-32">
-        <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] items-start">
-          <StaggerContainer className="space-y-12">
+      <section className="section-shell py-16 sm:py-24">
+        <div className="grid gap-12 lg:gap-16 lg:grid-cols-[0.8fr_1.2fr] items-start">
+          <StaggerContainer className="space-y-10 w-full">
             <StaggerItem>
-               <div className="space-y-6">
-                  {/* Traced kicker */}
-                  <div className="flex items-center gap-3">
+               <div className="space-y-6 text-center lg:text-left">
+                  <div className="flex items-center gap-3 justify-center lg:justify-start">
                      <div className="h-[1px] w-6 bg-[#D4AF37]" />
                      <p className="section-kicker !mb-0">Headquarters</p>
                   </div>
@@ -95,9 +94,9 @@ export default function ContactPage() {
                      Diani Beach <span className="not-italic font-black text-[#046A38]">Office</span>
                   </h2>
                   
-                  <div className="h-[1px] w-12 bg-[#D4AF37]/50" />
+                  <div className="h-[1px] w-12 bg-[#D4AF37]/50 mx-auto lg:mx-0" />
                   
-                  <p className="text-[1rem] text-slate-500 leading-[1.8] font-light max-w-xs">
+                  <p className="text-[1rem] text-slate-500 leading-[1.8] font-light max-w-xs mx-auto lg:mx-0">
                     Centrally located on New Beach Road, our office is the heart of our operations across the South Coast.
                   </p>
                </div>
@@ -155,7 +154,7 @@ export default function ContactPage() {
             </StaggerItem>
           </StaggerContainer>
 
-          <AnimatedSection direction="left" className="sticky top-32">
+          <AnimatedSection direction="none" className="w-full lg:sticky lg:top-32">
              <div className="relative overflow-hidden rounded-[2.5rem] bg-[linear-gradient(145deg,#0f0f12_0%,#1a1a1f_50%,#0f0f12_100%)] border border-[#D4AF37]/25 shadow-[0_30px_80px_rgba(0,0,0,0.35)] ring-1 ring-white/5">
                 
                 {/* Ambient Glow Elements */}
