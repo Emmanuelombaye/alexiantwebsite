@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLang } from "@/lib/i18n/context";
 
 type BlogCtaClientProps = {
   phone: string;
@@ -9,6 +10,7 @@ type BlogCtaClientProps = {
 };
 
 export function BlogCtaClient({ phone, phoneHref }: BlogCtaClientProps) {
+  const { t } = useLang();
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -91,7 +93,7 @@ export function BlogCtaClient({ phone, phoneHref }: BlogCtaClientProps) {
            className="flex flex-col sm:flex-row justify-center gap-6 pt-6"
          >
             <Link href="/contact" className="group/btn h-16 flex items-center justify-center rounded-full bg-[#046A38] px-12 text-[0.7rem] font-black uppercase tracking-[0.3em] text-white shadow-2xl hover:-translate-y-1.5 transition-all duration-500 border border-emerald-400/30 relative overflow-hidden">
-               <span className="relative z-10 text-white">Consult an Advisor</span>
+            <span className="relative z-10 text-white">{t("blog_consult")}</span>
                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-[#046A38] opacity-0 group-hover/btn:opacity-100 transition-opacity" />
             </Link>
             <a href={phoneHref} className="h-16 flex items-center justify-center rounded-full border border-white/80 bg-white px-12 text-[0.7rem] font-black uppercase tracking-[0.3em] text-[#046A38] hover:bg-[#046A38] hover:text-white hover:border-[#046A38] transition-all duration-500 hover:-translate-y-1.5 shadow-[0_8px_30px_rgba(255,255,255,0.15)]">

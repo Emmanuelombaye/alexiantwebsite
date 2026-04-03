@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, PhoneCall } from "lucide-react";
+import { useLang } from "@/lib/i18n/context";
 
 export function RequestCallBackModal() {
+  const { t } = useLang();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -44,7 +46,7 @@ export function RequestCallBackModal() {
         className="group relative overflow-hidden rounded-full border border-[#D4AF37] px-6 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#D4AF37] transition-all hover:bg-[#D4AF37] hover:text-[#011611] flex items-center justify-center gap-3 w-fit shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
       >
         <PhoneCall className="w-4 h-4" />
-        <span className="relative z-10">Request Call Back</span>
+        <span className="relative z-10">{t("footer_callback")}</span>
       </button>
 
       {/* Modal */}
@@ -128,7 +130,7 @@ export function RequestCallBackModal() {
                       disabled={status === "submitting"}
                       className="w-full h-14 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#D4AF37] text-[#011611] text-[0.7rem] font-black uppercase tracking-[0.25em] shadow-xl hover:shadow-[0_15px_30px_rgba(212,175,55,0.3)] transition-all hover:scale-[1.02] disabled:opacity-60 mt-2"
                     >
-                      {status === "submitting" ? "Sending..." : "Request My Call Back →"}
+                      {status === "submitting" ? t("lead_sending") : t("request_callback")}
                     </button>
                   </form>
                 )}

@@ -7,6 +7,7 @@ import { useInView } from "framer-motion";
 import { formatKes, titleCase } from "@/lib/format";
 import { type Property } from "@/types/property";
 import { getImageUrl, getImageAlt } from "@/lib/properties/utils";
+import { useLang } from "@/lib/i18n/context";
 
 interface PropertyCardProps {
   property: Property;
@@ -16,6 +17,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5 });
   
+  const { t } = useLang();
   const suffixParts = property.priceSuffix?.split('|') || [];
   const parsedCurrency = property.features.find(f => f.label === 'Currency')?.value;
   const fallbackPipeCurrency = suffixParts.length > 1 ? suffixParts[0] : "KES";
@@ -61,7 +63,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
           {property.featured && (
             <div className="absolute top-3 left-3 z-20">
                <div className="bg-[#38BDF8]/90 backdrop-blur-md px-3 py-1 rounded-full shadow-md">
-                 <span className="text-white text-[0.5rem] font-bold tracking-wide">Featured</span>
+                 <span className="text-white text-[0.5rem] font-bold tracking-wide">{t("prop_featured")}</span>
                </div>
             </div>
           )}

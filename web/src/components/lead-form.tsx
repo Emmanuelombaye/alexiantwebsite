@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import type { LeadIntent } from "@/types/lead";
+import { useLang } from "@/lib/i18n/context";
 
 type LeadFormProps = {
   propertySlug?: string;
@@ -11,6 +12,7 @@ type LeadFormProps = {
 };
 
 export function LeadForm({ propertySlug, heading = "Request a consultation", className = "", dark = true }: LeadFormProps) {
+  const { t } = useLang();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -88,7 +90,7 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
           <input 
             name="name" 
             required 
-            placeholder="Full name" 
+            placeholder={t("lead_name")} 
             className={`w-full rounded-2xl border ${inputBorder} ${inputBg} px-5 py-4 ${textColor} text-[0.9rem] outline-none transition-all duration-300 ${placeholderColor} focus:border-[#D4AF37]/50 focus:shadow-[0_0_20px_rgba(212,175,55,0.1)]`} 
           />
 
@@ -97,13 +99,13 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
               name="email" 
               type="email" 
               required 
-              placeholder="Email address" 
+              placeholder={t("lead_email")} 
               className={`w-full rounded-2xl border ${inputBorder} ${inputBg} px-5 py-4 ${textColor} text-[0.9rem] outline-none transition-all duration-300 ${placeholderColor} focus:border-[#D4AF37]/50 focus:shadow-[0_0_20px_rgba(212,175,55,0.1)]`} 
             />
             <input 
               name="phone" 
               required 
-              placeholder="Phone number" 
+              placeholder={t("lead_phone")} 
               className={`w-full rounded-2xl border ${inputBorder} ${inputBg} px-5 py-4 ${textColor} text-[0.9rem] outline-none transition-all duration-300 ${placeholderColor} focus:border-[#D4AF37]/50 focus:shadow-[0_0_20px_rgba(212,175,55,0.1)]`} 
             />
           </div>
@@ -129,7 +131,7 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
             name="message" 
             required 
             rows={3} 
-            placeholder="Tell Alexiant what you need" 
+            placeholder={t("lead_message")} 
             className={`w-full rounded-2xl border ${inputBorder} ${inputBg} px-5 py-4 ${textColor} text-[0.9rem] outline-none transition-all duration-300 ${placeholderColor} focus:border-[#D4AF37]/50 focus:shadow-[0_0_20px_rgba(212,175,55,0.1)] resize-none`} 
           />
 
@@ -146,7 +148,7 @@ export function LeadForm({ propertySlug, heading = "Request a consultation", cla
                 </>
               ) : (
                 <>
-                  Send Inquiry
+                  {t("lead_submit")}
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#0f0f12]/15 transition-transform group-hover:translate-x-1">
                     <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
