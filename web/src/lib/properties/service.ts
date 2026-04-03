@@ -23,7 +23,7 @@ type SupabasePropertyRow = {
   description: string;
   features: PropertyFeature[] | null;
   amenities: string[] | null;
-  images: string[] | null;
+  images: (string | { url: string; slug: string })[] | null;
   coordinates: PropertyCoordinates;
   agent: PropertyAgent;
 };
@@ -46,7 +46,11 @@ function mapPropertyRow(row: SupabasePropertyRow): Property {
     description: row.description,
     features: Array.isArray(row.features) ? row.features : [],
     amenities: Array.isArray(row.amenities) ? row.amenities : [],
-    images: Array.isArray(row.images) ? row.images : [],
+    images: Array.isArray(row.images)
+      ? row.images.map((img) =>
+          typeof img === "string" ? { url: img, slug: "" } : { url: img.url || "", slug: img.slug || "" }
+        )
+      : [],
     coordinates: row.coordinates,
     agent: row.agent,
   };
@@ -66,7 +70,9 @@ function toPropertyRow(payload: PropertyPayload) {
     description: payload.description,
     features: payload.features,
     amenities: payload.amenities,
-    images: payload.images.map((img) => (typeof img === "string" ? img : img.url)),
+    images: payload.images.map((img) =>
+      typeof img === "string" ? { url: img, slug: "" } : { url: img.url, slug: img.slug || "" }
+    ),
     coordinates: payload.coordinates,
     agent: payload.agent,
     updated_at: new Date().toISOString(),
