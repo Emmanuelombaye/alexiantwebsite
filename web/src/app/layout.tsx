@@ -188,7 +188,7 @@ export default async function RootLayout({
               function googleTranslateElementInit() {
                 new google.translate.TranslateElement({
                   pageLanguage: 'en',
-                  includedLanguages: 'en,fr,de,zh-CN,ar',
+                  includedLanguages: 'en,nl,fr,it,de',
                   autoDisplay: false
                 }, 'google_translate_element');
               }
@@ -197,7 +197,7 @@ export default async function RootLayout({
         />
         <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async />
       </head>
-      <body className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
         <div className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
           <ClientLayoutWrapper
             splashLoader={<SplashLoader />}

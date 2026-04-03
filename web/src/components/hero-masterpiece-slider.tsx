@@ -150,15 +150,15 @@ export function HeroMasterpieceSlider() {
                   transition={{ delay: 0.5, duration: 0.8 }}
                 >
                   <div className="flex items-center gap-4 mb-5">
-                    <div className="h-[2px] w-8 bg-[#1A3C6E]" />
-                    <span className="text-[0.6rem] md:text-[0.7rem] font-black uppercase tracking-[0.5em] text-[#1A3C6E] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                    <div className="h-[2px] w-8 bg-[#38BDF8]" />
+                    <span className="text-[0.6rem] md:text-[0.7rem] font-black uppercase tracking-[0.5em] text-[#38BDF8] drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                       {slides[currentIndex].subtitle}
                     </span>
                   </div>
 
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight mb-4 tracking-tighter">
                     {slides[currentIndex].title.split(' ').map((word, i) => (
-                      <span key={i} className={i === slides[currentIndex].title.split(' ').length - 1 ? "text-[#1A3C6E] drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" : ""}>
+                      <span key={i} className={i === slides[currentIndex].title.split(' ').length - 1 ? "text-[#38BDF8] drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" : ""}>
                         {word}{' '}
                       </span>
                     ))}
@@ -173,7 +173,7 @@ export function HeroMasterpieceSlider() {
                       {slides[currentIndex].type === 'authority' ? 'Experience Excellence' : 'View details'}
                     </button>
                     <div className="flex flex-col">
-                      <span className="text-[0.55rem] font-bold text-[#1A3C6E] uppercase tracking-widest leading-none mb-1 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                      <span className="text-[0.55rem] font-bold text-[#38BDF8] uppercase tracking-widest leading-none mb-1 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                         {slides[currentIndex].type === 'authority' ? 'Executive' : 'Property'}
                       </span>
                       <span className="text-white font-black text-[0.6rem] uppercase tracking-widest opacity-80">
@@ -249,7 +249,7 @@ export function HeroMasterpieceSlider() {
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 10, ease: "linear" }}
-            className="h-full bg-[#1A3C6E]"
+            className="h-full bg-[#38BDF8]"
           />
         </div>
       </div>
