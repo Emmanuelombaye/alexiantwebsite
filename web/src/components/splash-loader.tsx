@@ -2,21 +2,20 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, Suspense } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 function SplashLoaderContent() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    // Only show on first visit per session
+    const seen = sessionStorage.getItem("alexiant_splash");
+    if (seen) return;
+    sessionStorage.setItem("alexiant_splash", "1");
     setShow(true);
-    const timer = setTimeout(() => {
-      setShow(false);
-    }, 1800);
+    const timer = setTimeout(() => setShow(false), 1800);
     return () => clearTimeout(timer);
-  }, [pathname, searchParams]);
+  }, []);
 
   return (
     <AnimatePresence>

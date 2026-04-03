@@ -33,7 +33,17 @@ export const metadata: Metadata = {
     "land for sale Kenya",
     "houses for sale Kenya",
     "property investment Kenya",
-    "luxury homes Kenya"
+    "luxury homes Kenya",
+    "plots for sale Diani",
+    "Diani Beach property",
+    "beachfront property Kenya",
+    "Kwale County land",
+    "South Coast Kenya real estate",
+    "Ukunda property",
+    "Galu Beach plots",
+    "Kenya coastal property",
+    "buy land Diani",
+    "luxury villas Kenya coast",
   ],
   authors: [{ name: "Alexiant Real Estate", url: "https://alexiantrealestate.co.ke" }],
   creator: "Alexiant Real Estate",
@@ -158,6 +168,13 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
+        {/* Preconnect to external domains for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://chdpzfeuxcphzpyahrlh.supabase.co" />
+        <meta name="theme-color" content="#046A38" />
+        <meta name="color-scheme" content="light" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
