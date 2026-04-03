@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { deleteProperty, getPropertyById, updateProperty } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
 import { isAdminRequest } from "@/lib/admin-auth";
@@ -56,6 +57,10 @@ export async function PATCH(request: Request, { params }: PropertyRouteContext) 
     return NextResponse.json({ message: "Property not found." }, { status: 404 });
   }
 
+  revalidatePath("/");
+  revalidatePath("/properties");
+  revalidatePath(`/properties/${property.slug}`);
+
   return NextResponse.json({
     message: `${property.title} has been updated.`,
     property,
@@ -74,6 +79,10 @@ export async function DELETE(_: Request, { params }: PropertyRouteContext) {
   }
 
   await deleteProperty(id);
+
+  revalidatePath("/");
+  revalidatePath("/properties");
+  revalidatePath(`/properties/${property.slug}`);
 
   return NextResponse.json({
     message: `${property.title} has been deleted.`,

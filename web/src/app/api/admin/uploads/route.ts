@@ -65,9 +65,11 @@ export async function POST(request: Request) {
 
   const { data } = supabase.storage.from(bucket).getPublicUrl(storagePath);
 
-  return NextResponse.json({
+  const res = NextResponse.json({
     message: "Image uploaded successfully.",
     path: storagePath,
     url: data.publicUrl,
   });
+  res.headers.set("Cache-Control", "no-store");
+  return res;
 }

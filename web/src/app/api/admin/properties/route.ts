@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createProperty, listProperties } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
 import { isAdminRequest } from "@/lib/admin-auth";
@@ -31,6 +32,10 @@ export async function POST(request: Request) {
   }
 
   const property = await createProperty(validation.data);
+
+  revalidatePath("/");
+  revalidatePath("/properties");
+  revalidatePath(`/properties/${property.slug}`);
 
   return NextResponse.json(
     {
