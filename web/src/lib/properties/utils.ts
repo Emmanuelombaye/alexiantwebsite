@@ -9,8 +9,3 @@ export function getImageAlt(image: string | PropertyImage, fallback: string): st
   const baseAlt = typeof image === "string" ? fallback : (image.slug || fallback);
   return `${baseAlt} - Real Estate Property in Diani Beach Area`;
 }
-
-/** Returns true if the URL is a Supabase storage URL — should be served unoptimized */
-export function isSupabaseUrl(url: string): boolean {
-  return url.includes('.supabase.co/storage');
-}

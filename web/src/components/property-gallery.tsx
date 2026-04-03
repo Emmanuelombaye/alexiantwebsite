@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PropertyImage } from "@/types/property";
-import { getImageUrl, getImageAlt, isSupabaseUrl } from "@/lib/properties/utils";
+import { getImageUrl, getImageAlt } from "@/lib/properties/utils";
 
 type PropertyGalleryProps = {
   title: string;
@@ -135,7 +135,6 @@ export function PropertyGallery({ title, images }: PropertyGalleryProps) {
                   alt={getImageAlt(image, `${title} image ${index + 1}`)}
                   fill
                   priority={index === 0}
-                  unoptimized={isSupabaseUrl(getImageUrl(image))}
                   className="object-contain md:object-cover"
                   sizes="(min-width: 1024px) 70vw, 100vw"
                 />
@@ -206,7 +205,6 @@ export function PropertyGallery({ title, images }: PropertyGalleryProps) {
                   alt={getImageAlt(image, `${title} image ${index + 1}`)}
                   width={800}
                   height={600}
-                  unoptimized={isSupabaseUrl(getImageUrl(image))}
                   className="h-28 w-full object-cover"
                   sizes="(min-width: 640px) 20vw, 100vw"
                 />

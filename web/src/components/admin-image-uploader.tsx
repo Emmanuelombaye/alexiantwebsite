@@ -9,7 +9,7 @@ type AdminImageUploaderProps = {
 };
 
 /** Compress + convert to WebP using browser Canvas. No dependencies needed. */
-async function compressToWebP(file: File, maxWidth = 1920, quality = 0.82): Promise<File> {
+async function compressToWebP(file: File, maxWidth = 1280, quality = 0.72): Promise<File> {
   return new Promise((resolve, reject) => {
     const img = new window.Image();
     const objectUrl = URL.createObjectURL(file);

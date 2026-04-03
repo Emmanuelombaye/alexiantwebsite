@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
   compress: true,
 
   images: {
-    // Limit formats to what browsers actually need — narrows attack surface
+    // Bypass Vercel image optimizer entirely — serve all images directly.
+    // Prevents 402 quota errors on Vercel free plan.
+    // Compression is handled client-side before upload (WebP conversion).
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {

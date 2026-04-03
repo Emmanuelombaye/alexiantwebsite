@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { formatKes, titleCase } from "@/lib/format";
 import { type Property } from "@/types/property";
-import { getImageUrl, getImageAlt, isSupabaseUrl } from "@/lib/properties/utils";
+import { getImageUrl, getImageAlt } from "@/lib/properties/utils";
 
 interface PropertyCardProps {
   property: Property;
@@ -34,7 +34,6 @@ export function PropertyCard({ property }: PropertyCardProps) {
                 src={getImageUrl(property.images[0])}
                 alt={getImageAlt(property.images[0], property.title)}
                 fill
-                unoptimized={isSupabaseUrl(getImageUrl(property.images[0]))}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-all duration-1000 group-hover:scale-105 group-data-[inview=true]:scale-105"
               />
@@ -43,7 +42,6 @@ export function PropertyCard({ property }: PropertyCardProps) {
                   src={getImageUrl(property.images[1])}
                   alt={getImageAlt(property.images[1], `${property.title} - Extra view`)}
                   fill
-                  unoptimized={isSupabaseUrl(getImageUrl(property.images[1]))}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-all duration-1000 opacity-0 group-hover:opacity-100 group-data-[inview=true]:opacity-100 group-hover:scale-105 group-data-[inview=true]:scale-105"
                 />
