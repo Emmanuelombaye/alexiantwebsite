@@ -1,9 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Pinyon_Script, Playfair_Display } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { WhatsappFab } from "@/components/whatsapp-fab";
-import { SplashLoader } from "@/components/splash-loader";
 import { ClientLayoutWrapper } from "@/components/client-layout-wrapper";
 import { getSiteUrl } from "@/lib/seo/site-url";
 import "./globals.css";
@@ -185,12 +181,7 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning className={`${geistSans.variable} ${playfairDisplay.variable} ${pinyonScript.variable} antialiased`}>
         <div suppressHydrationWarning className="min-h-screen bg-[var(--page-background)] text-[var(--text-primary)]">
-          <ClientLayoutWrapper
-            splashLoader={<SplashLoader />}
-            siteHeader={<SiteHeader />}
-            siteFooter={<SiteFooter />}
-            whatsappFab={<WhatsappFab />}
-          >
+          <ClientLayoutWrapper>
             {children}
           </ClientLayoutWrapper>
         </div>

@@ -2,30 +2,26 @@
 
 import { usePathname } from "next/navigation";
 import { LangProvider } from "@/lib/i18n/context";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { WhatsappFab } from "@/components/whatsapp-fab";
+import { SplashLoader } from "@/components/splash-loader";
 
 export function ClientLayoutWrapper({
   children,
-  splashLoader,
-  siteHeader,
-  siteFooter,
-  whatsappFab,
 }: {
   children: React.ReactNode;
-  splashLoader: React.ReactNode;
-  siteHeader: React.ReactNode;
-  siteFooter: React.ReactNode;
-  whatsappFab: React.ReactNode;
 }) {
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
 
   return (
     <LangProvider>
-      {!isAdminRoute && splashLoader}
-      {!isAdminRoute && siteHeader}
+      {!isAdminRoute && <SplashLoader />}
+      {!isAdminRoute && <SiteHeader />}
       <main>{children}</main>
-      {!isAdminRoute && siteFooter}
-      {!isAdminRoute && whatsappFab}
+      {!isAdminRoute && <SiteFooter />}
+      {!isAdminRoute && <WhatsappFab />}
     </LangProvider>
   );
 }
