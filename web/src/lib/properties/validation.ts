@@ -50,9 +50,9 @@ function normalizeFeatures(value: unknown): PropertyFeature[] {
     .filter((feature): feature is PropertyFeature => Boolean(feature));
 }
 
-function normalizeCoordinates(value: unknown): PropertyCoordinates | null {
+function normalizeCoordinates(value: unknown): PropertyCoordinates {
   if (!value || typeof value !== "object") {
-    return null;
+    return { lat: 0, lng: 0 };
   }
 
   const coordinates = value as Record<string, unknown>;
@@ -60,7 +60,7 @@ function normalizeCoordinates(value: unknown): PropertyCoordinates | null {
   const lng = Number(coordinates.lng);
 
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-    return null;
+    return { lat: 0, lng: 0 };
   }
 
   return { lat, lng };
@@ -176,10 +176,6 @@ export function validatePropertyPayload(value: unknown): PropertyValidationResul
 
   if (images.length > MAX_PROPERTY_IMAGES) {
     return { ok: false, message: `Add a maximum of ${MAX_PROPERTY_IMAGES} property images.` };
-  }
-
-  if (!coordinates) {
-    return { ok: false, message: "Valid latitude and longitude are required." };
   }
 
   if (!agent) {

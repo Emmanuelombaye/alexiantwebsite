@@ -119,10 +119,7 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
       ],
       amenities: parseLines(String(formData.get("amenities") || "")),
       images: images,
-      coordinates: {
-        lat: Number(formData.get("lat") || 0),
-        lng: Number(formData.get("lng") || 0),
-      },
+      coordinates: initialProperty?.coordinates || { lat: 0, lng: 0 },
       agent: {
         name: String(formData.get("agentName") || ""),
         role: String(formData.get("agentRole") || ""),
@@ -256,14 +253,6 @@ export function AdminPropertyForm({ mode, initialProperty }: AdminPropertyFormPr
         </div>
 
         <div className="card-surface space-y-6 p-8">
-          <div>
-            <label className="text-sm font-medium text-slate-700">Latitude</label>
-            <input name="lat" type="number" step="any" required defaultValue={initialProperty?.coordinates.lat} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
-          </div>
-          <div>
-            <label className="text-sm font-medium text-slate-700">Longitude</label>
-            <input name="lng" type="number" step="any" required defaultValue={initialProperty?.coordinates.lng} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
-          </div>
           <div>
             <label className="text-sm font-medium text-slate-700">Advisor name</label>
             <input name="agentName" required defaultValue={initialProperty?.agent.name} className="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none focus:border-emerald-500" />
