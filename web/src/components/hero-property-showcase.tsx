@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { formatPropertyPrice, titleCase } from "@/lib/format";
 import type { Property } from "@/types/property";
-import { getImageUrl, getImageAlt } from "@/lib/properties/utils";
+import { getImageUrl, getImageAlt, isSupabaseUrl } from "@/lib/properties/utils";
 
 const AUTO_ADVANCE_MS = 3400;
 
@@ -160,6 +160,7 @@ function ShowcaseCard({ property, activeIndex, compact, onActivate, onHoverChang
                   alt={getImageAlt(image, `${property.title} showcase image ${index + 1}`)}
                   fill
                   priority={index === 0 && activeIndex === 0}
+                  unoptimized={isSupabaseUrl(getImageUrl(image))}
                   className="object-cover transition duration-700 group-hover:scale-110"
                   sizes="(min-width: 1024px) 28rem, 100vw"
                 />
