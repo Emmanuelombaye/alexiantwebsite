@@ -8,8 +8,10 @@ import { siteContent } from "@/data/site-content";
 import { getActiveNavLabel, isActiveNavPath } from "@/lib/navigation";
 import { SecureContact } from "@/components/secure-contact";
 import { LanguageToggle } from "@/components/language-toggle";
+import { useLang } from "@/lib/i18n/context";
 
 export function SiteHeader() {
+  const { t } = useLang();
   const pathname = usePathname();
   const currentPath = pathname ?? "/";
   const [menuOpen, setMenuOpen] = useState(false);
@@ -139,7 +141,7 @@ export function SiteHeader() {
                     : "bg-white text-[#046A38] hover:bg-[#D4AF37] hover:text-[#011611] shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
                 }`}
               >
-                Free Valuation
+                {t("nav_valuation")}
               </Link>
               
               <button

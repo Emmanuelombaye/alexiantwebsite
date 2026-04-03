@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { LangProvider } from "@/lib/i18n/context";
 
 export function ClientLayoutWrapper({
   children,
@@ -19,12 +20,12 @@ export function ClientLayoutWrapper({
   const isAdminRoute = pathname?.startsWith("/admin");
 
   return (
-    <>
+    <LangProvider>
       {!isAdminRoute && splashLoader}
       {!isAdminRoute && siteHeader}
       <main>{children}</main>
       {!isAdminRoute && siteFooter}
       {!isAdminRoute && whatsappFab}
-    </>
+    </LangProvider>
   );
 }
