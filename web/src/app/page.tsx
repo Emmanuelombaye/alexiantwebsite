@@ -312,7 +312,7 @@ export default async function Home() {
                 name: "James Ochieng",
                 role: "Head of Investment Sales",
                 tag: "Investment Strategy",
-                img: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=600&h=700",
+                img: "/team/james-ochieng.png",
                 quote: "The South Coast is one of Africa's last great investment frontiers. We know every corner of it."
               },
             ].map((member, i) => (
