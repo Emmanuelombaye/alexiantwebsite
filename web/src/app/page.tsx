@@ -317,7 +317,7 @@ export default async function Home() {
               },
             ].map((member, i) => (
               <StaggerItem key={member.name}>
-                <div className="group relative rounded-[2rem] overflow-hidden bg-white/[0.03] border border-white/[0.07] hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(212,175,55,0.08)]">
+                <div className="group relative rounded-[2rem] overflow-hidden bg-white border border-slate-100 hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(212,175,55,0.12)]">
 
                   {/* Image */}
                   <div className="relative h-[320px] sm:h-[360px] overflow-hidden">
@@ -326,26 +326,24 @@ export default async function Home() {
                       alt={`${member.name} - ${member.role} at Alexiant Real Estate`}
                       className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#011611] via-[#011611]/20 to-transparent" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 sm:p-7">
+                  <div className="p-6 sm:p-7 bg-white">
                     {/* Gold divider */}
                     <div className="h-[1px] w-8 bg-gradient-to-r from-[#D4AF37] to-transparent mb-5" />
 
-                    <h3 className="font-display text-xl font-bold text-white tracking-tight">{member.name}</h3>
-                    <p className="text-[0.6rem] font-black uppercase tracking-[0.3em] text-[#D4AF37]/70 mt-1 mb-5">{member.role}</p>
+                    <h3 className="font-display text-xl font-bold text-[#022c22] tracking-tight">{member.name}</h3>
+                    <p className="text-[0.6rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] mt-1 mb-5">{member.role}</p>
 
-                    <p className="text-white/40 text-[0.85rem] leading-relaxed italic font-light">
+                    <p className="text-slate-500 text-[0.85rem] leading-relaxed italic font-light">
                       &ldquo;{member.quote}&rdquo;
                     </p>
 
                     {/* CTA */}
                     <Link
                       href="/contact"
-                      className="mt-6 inline-flex items-center gap-2 text-[0.6rem] font-black uppercase tracking-[0.25em] text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors group/link"
+                      className="mt-6 inline-flex items-center gap-2 text-[0.6rem] font-black uppercase tracking-[0.25em] text-[#046A38]/60 hover:text-[#046A38] transition-colors group/link"
                     >
                       <span>Consult {member.name.split(" ")[0]}</span>
                       <span className="transition-transform group-hover/link:translate-x-1">→</span>
