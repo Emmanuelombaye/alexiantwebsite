@@ -298,7 +298,7 @@ export default async function Home() {
                 name: "Alex Kamau",
                 role: "Managing Director",
                 tag: "Coastal Land Expert",
-                img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=600&h=700",
+                img: "/team/manager.png",
                 quote: "Every plot of land on this coast tells a story. Our job is to help you write yours."
               },
               {
@@ -324,7 +324,7 @@ export default async function Home() {
                     <img
                       src={member.img}
                       alt={`${member.name} - ${member.role} at Alexiant Real Estate`}
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#011611] via-[#011611]/20 to-transparent" />
