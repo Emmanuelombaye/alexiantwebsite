@@ -5,6 +5,7 @@ import { PageTransition, AnimatedSection, StaggerContainer, StaggerItem } from "
 import Link from "next/link";
 import { buildBreadcrumbList, toJsonLdScript } from "@/lib/seo/jsonld";
 import { getSiteUrl } from "@/lib/seo/site-url";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 export const dynamic = "force-dynamic";
 
@@ -94,6 +95,27 @@ export default async function DianiPlotsPage() {
                </ul>
             </div>
          </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-[#011611] via-[#022c22] to-[#011611] rounded-[3.5rem] mx-4 mb-20">
+        <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#D4AF37]/5 blur-[100px] pointer-events-none" />
+        <div className="section-shell relative z-10">
+          <AnimatedSection direction="up" className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.45em] text-[#D4AF37] mb-6">
+              ✦ Buyer Questions
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold italic text-white">
+              Plots for Sale in Diani — <span className="not-italic font-black text-[#D4AF37]">FAQ</span>
+            </h2>
+          </AnimatedSection>
+          <FaqAccordion faqs={[
+            { q: "What is the average price of a plot in Diani Beach?", a: "Plot prices in Diani Beach range from KES 6M for inland residential plots to KES 80M+ for prime beachfront parcels. Central Diani plots near the beach road average KES 15M–30M. Galu Kinondo plots range KES 12M–45M. Prices vary significantly based on proximity to the beach, size, and title type." },
+            { q: "Are plots in Diani freehold or leasehold?", a: "Most plots in Diani Beach are available as freehold (absolute ownership) or leasehold (99-year government lease). Freehold is preferred for long-term investment. Our advisors verify the exact title type for every listing before presenting it to buyers." },
+            { q: "How do I verify a plot title deed in Diani?", a: "Title verification involves an official Land Registry search at the Kwale County Land Registry office. This confirms ownership, any encumbrances, and the exact parcel boundaries. Alexiant conducts this search as part of our standard due diligence for every listing." },
+            { q: "Can I build immediately after buying a plot in Diani?", a: "You need to obtain a development permit from the Kwale County Government before construction. This requires architectural plans, a structural engineer's report, and compliance with physical planning regulations including setback requirements. Our team can recommend approved architects familiar with Kwale County requirements." },
+          ]} />
+        </div>
       </section>
     </PageTransition>
   );

@@ -5,6 +5,7 @@ import { PageTransition, AnimatedSection, StaggerContainer, StaggerItem } from "
 import { buildBreadcrumbList, toJsonLdScript } from "@/lib/seo/jsonld";
 import { getSiteUrl } from "@/lib/seo/site-url";
 import { SecureContact } from "@/components/secure-contact";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 export const metadata: Metadata = {
   title: "Contact Alexiant Real Estate | Diani Beach Office Kenya",
@@ -264,6 +265,62 @@ export default function ContactPage() {
                <span className="text-[#D4AF37]">asset acquisition</span> across Kenya&apos;s coastal frontier.
             </p>
          </div>
+      </section>
+      {/* --- FAQ SECTION --- */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#011611] via-[#022c22] to-[#011611]">
+        {/* Ambient background */}
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#D4AF37]/5 blur-[120px] pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-[#046A38]/10 blur-[100px] pointer-events-none" />
+
+        <div className="section-shell relative z-10">
+          <AnimatedSection direction="up" className="text-center mb-16">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.45em] text-[#D4AF37] backdrop-blur-md mb-8">
+              ✦ Common Questions
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl font-semibold italic tracking-tight text-white leading-tight">
+              Everything you need to <br />
+              <span className="not-italic font-black text-[#D4AF37]">know before you invest.</span>
+            </h2>
+            <p className="mt-6 text-white/40 text-base max-w-xl mx-auto font-light leading-relaxed">
+              Answers to the most common questions from buyers, sellers and investors on the Kenya South Coast.
+            </p>
+          </AnimatedSection>
+
+          <FaqAccordion faqs={[
+            {
+              q: "How do I start buying property in Diani Beach as a foreigner?",
+              a: "Foreigners can legally own property in Kenya through leasehold title (99 years) or by registering a Kenyan company to hold freehold title. Our advisors guide you through the entire legal process — from title search to Land Registry transfer — ensuring full compliance with Kenyan property law."
+            },
+            {
+              q: "What is the typical price range for plots in Diani and Galu?",
+              a: "Plot prices in Diani Beach range from KES 8M for inland residential plots to KES 80M+ for prime beachfront parcels. Galu Kinondo plots typically range KES 12M–45M depending on proximity to the beach and size. Our advisors provide current market comparables based on actual transacted data."
+            },
+            {
+              q: "How long does a property transaction take in Kenya?",
+              a: "A standard property transaction in Kenya takes 60–90 days from offer acceptance to title transfer. This includes title search (7–14 days), due diligence, sale agreement drafting, stamp duty payment, and Land Registry transfer. Alexiant manages the entire process with your appointed advocate."
+            },
+            {
+              q: "What due diligence should I do before buying land in Kwale County?",
+              a: "Essential due diligence includes: official Land Registry title search, survey map verification, zoning and physical planning check, KPLC power connectivity confirmation, water availability assessment, and shoreline setback compliance for beachfront parcels. We provide a full due diligence report for every listing."
+            },
+            {
+              q: "Can Alexiant manage my property after purchase?",
+              a: "Yes. Our Property Management division handles everything from tenant sourcing and rent collection to maintenance coordination and holiday rental management. We currently manage properties achieving 35–60% occupancy rates for short-stay holiday rentals on the South Coast."
+            },
+            {
+              q: "What are the taxes and costs involved in buying property in Kenya?",
+              a: "Buyers pay: Stamp Duty (4% of property value for urban, 2% for rural), Legal fees (1–2%), Land Registry fees, and valuation fees. Sellers pay Capital Gains Tax (15% on profit). Our advisors provide a full cost breakdown before you commit to any transaction."
+            },
+            {
+              q: "How do I get a free property valuation from Alexiant?",
+              a: "Simply fill in the inquiry form on this page or visit our Valuation page. Our senior advisors will arrange a site visit and provide a comprehensive market appraisal based on recent comparable transactions in your area — completely free of charge."
+            },
+            {
+              q: "What makes Diani Beach a good real estate investment in 2026?",
+              a: "Diani Beach consistently ranks among Africa's top beach destinations. Key investment drivers include: growing international tourism, limited beachfront supply, improving infrastructure (Ukunda Airstrip upgrades, Dongo Kundu bypass), strong short-term rental yields (8–15% ROI), and increasing demand from Nairobi-based buyers seeking coastal retreats."
+            },
+          ]} />
+        </div>
       </section>
     </PageTransition>
   );
