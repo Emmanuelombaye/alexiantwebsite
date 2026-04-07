@@ -1,8 +1,8 @@
 export function getSiteUrl() {
+  // Always use the production domain — never the Vercel preview URL
   const envUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.SITE_URL ||
-    process.env.VERCEL_URL ||
     "";
 
   if (envUrl) {
