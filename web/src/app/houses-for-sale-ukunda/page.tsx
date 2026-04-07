@@ -9,9 +9,18 @@ import { getSiteUrl } from "@/lib/seo/site-url";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Houses & Apartments for Sale in Ukunda | Property Kwale County",
-  description: "Discover homes, residential apartments and holiday houses for sale in Ukunda, Kwale County. Affordable real estate options near Diani Beach with high ROI potential.",
-  keywords: ["houses for sale ukunda", "apartments for sale ukunda", "property ukunda kwale", "buy home ukunda", "ukunda residential property"],
+  title: "Houses for Sale in Ukunda | Residential Property Kwale County Kenya",
+  description: "Discover homes, residential apartments and holiday houses for sale in Ukunda, Kwale County. High-ROI property near Diani Beach with strong rental demand from professionals and expatriates.",
+  keywords: ["houses for sale ukunda", "apartments for sale ukunda", "property ukunda kwale", "buy home ukunda", "ukunda residential property", "ukunda diani real estate"],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/houses-for-sale-ukunda" },
+  openGraph: {
+    title: "Houses for Sale in Ukunda | Alexiant Real Estate",
+    description: "Residential homes and apartments for sale in Ukunda, Kwale County near Diani Beach.",
+    url: "https://alexiantrealestate.co.ke/houses-for-sale-ukunda",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "Houses for Sale Ukunda Kenya" }],
+  },
+  twitter: { card: "summary_large_image", title: "Houses for Sale in Ukunda", description: "Residential homes near Diani Beach with high rental demand.", images: ["/og-image.svg"] },
 };
 
 export default async function UkundaHousesPage() {

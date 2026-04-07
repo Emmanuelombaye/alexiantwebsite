@@ -9,9 +9,18 @@ import { getSiteUrl } from "@/lib/seo/site-url";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Plots for Sale in Diani Beach | Affordable Land South Coast Kenya",
-  description: "Browse verified land and residential plots for sale in Diani Beach. We offer freehold land with title deeds in Galu, Central Diani and Tiwi. Start your coastal building project today.",
-  keywords: ["plots for sale diani beach", "land for sale diani", "buy plot diani kenya", "cheap land diani", "freehold land diani beach"],
+  title: "Plots for Sale in Diani Beach | Verified Land South Coast Kenya",
+  description: "Browse verified freehold plots and land for sale in Diani Beach, Galu, Kinondo and Tiwi. Title deed verified. Expert guidance on land buying in Kwale County, Kenya.",
+  keywords: ["plots for sale diani beach", "land for sale diani", "buy plot diani kenya", "freehold land diani beach", "galu kinondo plots", "tiwi land for sale", "kwale county plots"],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/plots-for-sale-diani" },
+  openGraph: {
+    title: "Plots for Sale in Diani Beach | Alexiant Real Estate",
+    description: "Verified freehold plots in Diani Beach, Galu and Tiwi. Title deed verified land with expert advisory.",
+    url: "https://alexiantrealestate.co.ke/plots-for-sale-diani",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "Plots for Sale Diani Beach Kenya" }],
+  },
+  twitter: { card: "summary_large_image", title: "Plots for Sale in Diani Beach", description: "Verified freehold plots in Diani Beach, Galu and Tiwi.", images: ["/og-image.svg"] },
 };
 
 export default async function DianiPlotsPage() {

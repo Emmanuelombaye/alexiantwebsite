@@ -10,8 +10,17 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Land for Sale in Kwale County | South Coast Kenya Plot Listings",
-  description: "Explore broadacre land, residential plots and commercial sites for sale across Kwale County. From Shimba Hills to the South Coast beaches of Msambweni and Diani.",
-  keywords: ["land for sale kwale county", "kwale plots for sale", "cheap land south coast kenya", "large land parcels kwale", "agricultural land kwale"],
+  description: "Explore broadacre land, residential plots and commercial sites for sale across Kwale County. From Shimba Hills to the South Coast beaches of Msambweni and Diani Beach.",
+  keywords: ["land for sale kwale county", "kwale plots for sale", "land south coast kenya", "large land parcels kwale", "agricultural land kwale", "msambweni land for sale", "shimba hills land"],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/land-for-sale-kwale" },
+  openGraph: {
+    title: "Land for Sale in Kwale County | Alexiant Real Estate",
+    description: "Broadacre land, residential plots and commercial sites across Kwale County, South Coast Kenya.",
+    url: "https://alexiantrealestate.co.ke/land-for-sale-kwale",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "Land for Sale Kwale County Kenya" }],
+  },
+  twitter: { card: "summary_large_image", title: "Land for Sale in Kwale County", description: "Plots and land across Kwale County, South Coast Kenya.", images: ["/og-image.svg"] },
 };
 
 export default async function KwaleLandPage() {

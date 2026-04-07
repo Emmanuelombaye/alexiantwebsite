@@ -7,8 +7,18 @@ import { getSiteUrl } from "@/lib/seo/site-url";
 import { SecureContact } from "@/components/secure-contact";
 
 export const metadata: Metadata = {
-  title: "Connect with Alexiant Real Estate | Diani Office",
-  description: "Contact our Diani office for property viewings, investment consultations, or management inquiries. Your gateway to premium coastal real estate.",
+  title: "Contact Alexiant Real Estate | Diani Beach Office Kenya",
+  description: "Contact our Diani Beach office for property viewings, investment consultations, or management inquiries. Call +254 759 636 615 or visit New Beach Road, Diani.",
+  keywords: ["contact alexiant real estate", "diani real estate office", "property inquiry diani", "real estate agent diani beach", "kenya coast property contact"],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/contact" },
+  openGraph: {
+    title: "Contact Alexiant Real Estate | Diani Beach Office",
+    description: "Reach our Diani Beach office for property viewings and investment consultations. +254 759 636 615.",
+    url: "https://alexiantrealestate.co.ke/contact",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "Contact Alexiant Real Estate Diani" }],
+  },
+  twitter: { card: "summary_large_image", title: "Contact Alexiant Real Estate", description: "Diani Beach office. Call +254 759 636 615.", images: ["/og-image.svg"] },
 };
 
 export default function ContactPage() {

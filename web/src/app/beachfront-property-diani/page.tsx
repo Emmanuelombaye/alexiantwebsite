@@ -9,9 +9,18 @@ import { getSiteUrl } from "@/lib/seo/site-url";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Beachfront Properties for Sale in Diani | Luxury Coastal Real Estate",
-  description: "Exclusive collection of beachfront villas, plots and resorts for sale in Diani Beach and Galu. Premium oceanfront real estate with direct beach access in Kenya's South Coast.",
-  keywords: ["beachfront property diani", "oceanfront villas diani", "diani beachfront plots", "luxury coastal real estate kenya", "galu beachfront property"],
+  title: "Beachfront Property for Sale in Diani Beach | Luxury Oceanfront Kenya",
+  description: "Exclusive beachfront villas, plots and resorts for sale in Diani Beach and Galu. Direct beach access, freehold title deeds. Kenya's finest oceanfront real estate on the South Coast.",
+  keywords: ["beachfront property diani", "oceanfront villas diani", "diani beachfront plots", "luxury coastal real estate kenya", "galu beachfront property", "beachfront land kenya", "diani beach villas for sale"],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/beachfront-property-diani" },
+  openGraph: {
+    title: "Beachfront Property Diani Beach | Alexiant Real Estate",
+    description: "Exclusive beachfront villas and plots with direct beach access in Diani and Galu, Kenya.",
+    url: "https://alexiantrealestate.co.ke/beachfront-property-diani",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "Beachfront Property Diani Beach Kenya" }],
+  },
+  twitter: { card: "summary_large_image", title: "Beachfront Property Diani Beach", description: "Exclusive oceanfront villas and plots in Diani and Galu, Kenya.", images: ["/og-image.svg"] },
 };
 
 export default async function BeachfrontDianiPage() {

@@ -7,15 +7,26 @@ import { buildBreadcrumbList, toJsonLdScript } from "@/lib/seo/jsonld";
 import { getSiteUrl } from "@/lib/seo/site-url";
 
 export const metadata: Metadata = {
-  title: "The Gold Standard for Coastal Property | About Alexiant",
+  title: "The Gold Standard for Coastal Property | About Alexiant Real Estate",
   description:
-    "Learn about Alexiant Real Estate's heritage, methodology, and commitment to excellence in the Diani and Kenya South Coast markets. Where local knowledge meets international standards.",
+    "Alexiant Real Estate was founded to bridge the gap between traditional local brokerage and modern global standards. Learn about our heritage, team and commitment to excellence in Diani Beach and Kenya South Coast.",
   keywords: [
-    "Alexiant Real Estate history",
+    "Alexiant Real Estate about",
     "boutique real estate agency Diani",
     "premium property advisors Kenya",
     "Diani real estate market experts",
+    "real estate agency South Coast Kenya",
+    "property advisors Kwale County",
   ],
+  alternates: { canonical: "https://alexiantrealestate.co.ke/about" },
+  openGraph: {
+    title: "About Alexiant Real Estate | Diani Beach Property Experts",
+    description: "Learn about Alexiant Real Estate's heritage, methodology, and commitment to excellence in the Diani and Kenya South Coast markets.",
+    url: "https://alexiantrealestate.co.ke/about",
+    type: "website",
+    images: [{ url: "https://alexiantrealestate.co.ke/og-image.svg", width: 1200, height: 630, alt: "About Alexiant Real Estate" }],
+  },
+  twitter: { card: "summary_large_image", title: "About Alexiant Real Estate", description: "Where local coastal knowledge meets international standards.", images: ["/og-image.svg"] },
 };
 
 export default function AboutPage() {
