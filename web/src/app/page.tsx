@@ -238,9 +238,9 @@ export default async function Home() {
                     <div className="mt-14 flex items-center justify-center gap-5">
                        <div className="flex -space-x-3">
                         {[
-                          "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120&h=120",
-                          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120&h=120",
-                          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=120&h=120"
+                          "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=120&h=120",
+                          "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=120&h=120",
+                          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120"
                         ].map((src, i) => (
                            <div key={i} className="h-10 w-10 rounded-full border-[3px] border-white overflow-hidden shadow-md relative">
                               <Image 

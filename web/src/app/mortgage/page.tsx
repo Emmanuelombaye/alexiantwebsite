@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +14,7 @@ type Currency = "KES" | "USD" | "EUR";
 const CURRENCY_SYMBOLS: Record<Currency, string> = {
   KES: "KSh",
   USD: "$",
-  EUR: "€",
+  EUR: "â‚¬",
 };
 
 const EXCHANGE_RATES: Record<Currency, number> = {
@@ -345,9 +345,9 @@ export default function MortgagePage() {
                     {/* ADVISORY BADGE - COMPACT */}
                     <div className="mt-12 flex items-center gap-4 py-4 px-8 rounded-full bg-slate-50 border border-slate-100">
                        <div className="flex -space-x-3">
-                          {[1,2,3].map(i => (
+                          {[0,1,2].map((_, i) => (
                             <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden shadow-sm">
-                               <img src={`https://i.pravatar.cc/100?u=${i + 40}`} alt="Advisor" className="h-full w-full object-cover" />
+                               <img src={["https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=100&h=100","https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=100&h=100","https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=100&h=100"][i]} alt="Advisor" className="h-full w-full object-cover" />
                             </div>
                           ))}
                        </div>
@@ -364,3 +364,5 @@ export default function MortgagePage() {
     </PageTransition>
   );
 }
+
+
