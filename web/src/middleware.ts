@@ -41,6 +41,21 @@ export async function middleware(request: NextRequest) {
   const headers = request.headers;
   const userAgent = headers.get("user-agent") ?? "";
   const ip = getClientIp(headers);
+  const host = headers.get("host") ?? "";
+
+  // ── 0. Block Vercel preview URLs from being indexed ────────────────────
+  if (host.includes("vercel.app")) {
+    const res = NextResponse.next();
+    res.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return res;
+  }
+
+  // ── 0b. Redirect www to non-www ─────────────────────────────────────
+  if (host.startsWith("www.")) {
+    const url = request.nextUrl.clone();
+    url.host = host.replace("www.", "");
+    return NextResponse.redirect(url, { status: 301 });
+  }
 
   // ── 1. Block bad bots on all routes (allow good crawlers) ──────────────────
   if (isBadBot(userAgent)) {

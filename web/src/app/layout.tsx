@@ -85,7 +85,10 @@ export const metadata: Metadata = {
     creator: "@alexiantrealestate",
   },
   alternates: {
-    canonical: getSiteUrl(),
+    canonical: "https://alexiantrealestate.co.ke",
+    languages: {
+      "en": "https://alexiantrealestate.co.ke",
+    },
   },
   icons: {
     icon: [

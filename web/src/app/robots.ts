@@ -48,6 +48,14 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
 
+      // ── Block Vercel preview deployments from being indexed ─────────────
+      {
+        userAgent: "*",
+        disallow: "/",
+        // This rule applies only when accessed via vercel.app domains
+        // handled via X-Robots-Tag in middleware
+      },
+
       // ── Default: allow public content, block sensitive routes ────────────
       {
         userAgent: "*",
