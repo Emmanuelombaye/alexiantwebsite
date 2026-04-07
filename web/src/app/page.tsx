@@ -305,7 +305,7 @@ export default async function Home() {
                 name: "Grace Mwangi",
                 role: "Director of Private Clients",
                 tag: "Luxury Residential",
-                img: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=600&h=700",
+                img: "/team/grace-mwangi.png",
                 quote: "Discretion, precision and an unwavering commitment to your vision — that is our promise."
               },
               {
