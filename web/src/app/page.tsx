@@ -328,13 +328,6 @@ export default async function Home() {
                     />
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#011611] via-[#011611]/20 to-transparent" />
-
-                    {/* Tag badge */}
-                    <div className="absolute top-5 left-5">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/90 backdrop-blur-md px-3 py-1.5 text-[0.5rem] font-black uppercase tracking-[0.25em] text-[#011611]">
-                        ✦ {member.tag}
-                      </span>
-                    </div>
                   </div>
 
                   {/* Content */}
