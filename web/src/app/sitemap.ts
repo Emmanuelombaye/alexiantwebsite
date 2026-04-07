@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 import { listProperties } from "@/lib/properties/service";
 import { listBlogPosts } from "@/lib/blog/service";
-import { getSiteUrl } from "@/lib/seo/site-url";
 import { toDate } from "@/lib/seo/dates";
 
-const BASE_URL = getSiteUrl();
+const BASE_URL = "https://alexiantrealestate.co.ke";
 
 export const dynamic = "force-dynamic";
 
