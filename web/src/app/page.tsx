@@ -266,6 +266,119 @@ export default async function Home() {
            </AnimatedSection>
         </div>
       </section>
+      {/* --- MEET OUR TEAM --- */}
+      <section className="relative py-20 sm:py-28 overflow-hidden bg-[#011611]">
+        {/* Ambient glows */}
+        <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#D4AF37]/5 blur-[140px] pointer-events-none" />
+        <div className="absolute -bottom-40 -right-40 h-[400px] w-[400px] rounded-full bg-[#046A38]/10 blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.015] pointer-events-none" />
+
+        <div className="section-shell relative z-10">
+
+          {/* Header */}
+          <AnimatedSection direction="up" className="text-center mb-16 sm:mb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.45em] text-[#D4AF37] backdrop-blur-md mb-8">
+              ✦ The Advisory Team
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold italic tracking-tight text-white leading-tight">
+              Meet Our Team of{" "}
+              <span className="not-italic font-black text-[#D4AF37]">Experts</span>
+            </h2>
+            <div className="mt-6 mx-auto w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
+            <p className="mt-8 text-white/40 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+              Our strength lies in the diverse expertise of our team — a collective of visionary professionals driven by innovation, precision, and a deep understanding of the coastal real estate market.
+            </p>
+          </AnimatedSection>
+
+          {/* Team Cards */}
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+
+            {[
+              {
+                name: "Alex Kamau",
+                role: "Managing Director",
+                tag: "Coastal Land Expert",
+                img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=600&h=700",
+                quote: "Every plot of land on this coast tells a story. Our job is to help you write yours."
+              },
+              {
+                name: "Grace Mwangi",
+                role: "Director of Private Clients",
+                tag: "Luxury Residential",
+                img: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=600&h=700",
+                quote: "Discretion, precision and an unwavering commitment to your vision — that is our promise."
+              },
+              {
+                name: "James Ochieng",
+                role: "Head of Investment Sales",
+                tag: "Investment Strategy",
+                img: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=600&h=700",
+                quote: "The South Coast is one of Africa's last great investment frontiers. We know every corner of it."
+              },
+            ].map((member, i) => (
+              <StaggerItem key={member.name}>
+                <div className="group relative rounded-[2rem] overflow-hidden bg-white/[0.03] border border-white/[0.07] hover:border-[#D4AF37]/30 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(212,175,55,0.08)]">
+
+                  {/* Image */}
+                  <div className="relative h-[320px] sm:h-[360px] overflow-hidden">
+                    <img
+                      src={member.img}
+                      alt={`${member.name} - ${member.role} at Alexiant Real Estate`}
+                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#011611] via-[#011611]/20 to-transparent" />
+
+                    {/* Tag badge */}
+                    <div className="absolute top-5 left-5">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/90 backdrop-blur-md px-3 py-1.5 text-[0.5rem] font-black uppercase tracking-[0.25em] text-[#011611]">
+                        ✦ {member.tag}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 sm:p-7">
+                    {/* Gold divider */}
+                    <div className="h-[1px] w-8 bg-gradient-to-r from-[#D4AF37] to-transparent mb-5" />
+
+                    <h3 className="font-display text-xl font-bold text-white tracking-tight">{member.name}</h3>
+                    <p className="text-[0.6rem] font-black uppercase tracking-[0.3em] text-[#D4AF37]/70 mt-1 mb-5">{member.role}</p>
+
+                    <p className="text-white/40 text-[0.85rem] leading-relaxed italic font-light">
+                      &ldquo;{member.quote}&rdquo;
+                    </p>
+
+                    {/* CTA */}
+                    <Link
+                      href="/contact"
+                      className="mt-6 inline-flex items-center gap-2 text-[0.6rem] font-black uppercase tracking-[0.25em] text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors group/link"
+                    >
+                      <span>Consult {member.name.split(" ")[0]}</span>
+                      <span className="transition-transform group-hover/link:translate-x-1">→</span>
+                    </Link>
+                  </div>
+
+                  {/* Corner shimmer on hover */}
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#D4AF37]/[0.03] to-transparent transition-transform duration-[1200ms] group-hover:translate-x-full pointer-events-none" />
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          {/* Bottom CTA */}
+          <AnimatedSection direction="up" className="text-center mt-16">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-4 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-8 py-4 text-[0.65rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#011611] hover:border-[#D4AF37] transition-all duration-300"
+            >
+              <span>Meet the Full Team</span>
+              <span>→</span>
+            </Link>
+          </AnimatedSection>
+
+        </div>
+      </section>
     </div>
   );
 }
