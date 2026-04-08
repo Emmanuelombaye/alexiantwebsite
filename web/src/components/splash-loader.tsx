@@ -28,12 +28,12 @@ function SplashLoaderContent() {
           {/* Subtle ambient glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-[#046A38]/5 blur-[100px] pointer-events-none" />
 
-          {/* Logo */}
+          {/* Logo — original fade+scale animation */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-28 w-28 mb-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-36 w-36 mb-8"
           >
             <Image
               src="/logo.svg"
