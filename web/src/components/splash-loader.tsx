@@ -4,12 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 
+// Module-level flag — survives route changes within the same JS session
+let hasShown = false;
+
 function SplashLoaderContent() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const seen = localStorage.getItem("alexiant_splash");
-    if (seen) return;
+    // Already shown this session
+    if (hasShown) return;
+    // Already shown in a previous visit
+    if (localStorage.getItem("alexiant_splash")) return;
+    // Mark as shown immediately — prevents double-trigger on StrictMode
+    hasShown = true;
     localStorage.setItem("alexiant_splash", "1");
     setShow(true);
     const timer = setTimeout(() => setShow(false), 2800);
