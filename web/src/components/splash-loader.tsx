@@ -8,9 +8,9 @@ function SplashLoaderContent() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("alexiant_splash");
+    const seen = localStorage.getItem("alexiant_splash");
     if (seen) return;
-    sessionStorage.setItem("alexiant_splash", "1");
+    localStorage.setItem("alexiant_splash", "1");
     setShow(true);
     const timer = setTimeout(() => setShow(false), 2800);
     return () => clearTimeout(timer);
