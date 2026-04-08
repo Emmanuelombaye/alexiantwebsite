@@ -290,8 +290,56 @@ export default async function Home() {
             </p>
           </AnimatedSection>
 
-          {/* Team Cards */}
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+          {/* Team Cards — horizontal scroll snap on mobile, 3-col grid on desktop */}
+          <div className="sm:hidden flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar -mx-4 px-4">
+            {[
+              {
+                name: "Alex Kamau",
+                role: "Managing Director",
+                tag: "Coastal Land Expert",
+                img: "/team/manager.png",
+                quote: "Every plot of land on this coast tells a story. Our job is to help you write yours."
+              },
+              {
+                name: "Grace Mwangi",
+                role: "Director of Private Clients",
+                tag: "Luxury Residential",
+                img: "/team/grace-mwangi.png",
+                quote: "Discretion, precision and an unwavering commitment to your vision \u2014 that is our promise."
+              },
+              {
+                name: "James Ochieng",
+                role: "Head of Investment Sales",
+                tag: "Investment Strategy",
+                img: "/team/james-ochieng.png",
+                quote: "The South Coast is one of Africa's last great investment frontiers. We know every corner of it."
+              },
+            ].map((member) => (
+              <div key={member.name} className="flex-shrink-0 w-[78vw] snap-center rounded-[2rem] overflow-hidden bg-white border border-slate-100 shadow-xl">
+                <div className="relative h-[360px] overflow-hidden">
+                  <img
+                    src={member.img}
+                    alt={`${member.name} - ${member.role}`}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  style={{ objectPosition: '50% 15%' }}
+                  />
+                </div>
+                <div className="p-5 bg-white">
+                  <div className="h-[1px] w-8 bg-gradient-to-r from-[#D4AF37] to-transparent mb-4" />
+                  <h3 className="font-display text-lg font-bold text-[#022c22]">{member.name}</h3>
+                  <p className="text-[0.55rem] font-black uppercase tracking-[0.3em] text-[#D4AF37] mt-1 mb-3">{member.role}</p>
+                  <p className="text-slate-500 text-[0.8rem] leading-relaxed italic font-light">&ldquo;{member.quote}&rdquo;</p>
+                  <Link href="/contact" className="mt-4 inline-flex items-center gap-2 text-[0.6rem] font-black uppercase tracking-[0.25em] text-[#046A38]/60 hover:text-[#046A38] transition-colors">
+                    <span>Consult {member.name.split(" ")[0]}</span>
+                    <span>&#8594;</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop grid */}
+          <StaggerContainer className="hidden sm:grid sm:grid-cols-3 gap-6 md:gap-8">
 
             {[
               {
