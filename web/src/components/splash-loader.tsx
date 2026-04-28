@@ -98,13 +98,6 @@ function SplashLoaderContent() {
             <p className="font-script text-[2rem] sm:text-[2.4rem] text-[#046A38] leading-none tracking-wide">
               Excellence in Every Acre.
             </p>
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ delay: 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{ originX: 0.5 }}
-              className="mt-4 mx-auto h-[1px] w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
-            />
           </motion.div>
         </motion.div>
       )}
