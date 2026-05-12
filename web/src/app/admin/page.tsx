@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { siteContent } from "@/data/site-content";
 import { listLeadInquiries } from "@/lib/leads/service";
-import { listProperties } from "@/lib/properties/service";
+import { listPropertiesRaw } from "@/lib/properties/service";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
-  const [leads, properties] = await Promise.all([listLeadInquiries(), listProperties()]);
+  const [leads, properties] = await Promise.all([listLeadInquiries(), listPropertiesRaw()]);
   const availableCount = properties.filter((property) => property.status === "available").length;
   const archivedCount = properties.filter((property) => property.status !== "available").length;
   const featuredCount = properties.filter((property) => property.featured).length;

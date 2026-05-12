@@ -29,6 +29,22 @@ export async function createSupabaseServerClient() {
   });
 }
 
+export async function createSupabasePublicClient() {
+  const env = getSupabaseEnv();
+
+  if (!env) {
+    return null;
+  }
+
+  // A public client without cookies, ideal for use inside Next.js caching (unstable_cache)
+  return createServerClient(env.url, env.anonKey, {
+    cookies: {
+      getAll() { return []; },
+      setAll() { },
+    },
+  });
+}
+
 export async function createSupabaseAdminClient() {
   const env = getSupabaseEnv();
 

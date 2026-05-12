@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { createProperty, listProperties } from "@/lib/properties/service";
+import { createProperty, listPropertiesRaw } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
 import { isAdminRequest } from "@/lib/admin-auth";
 
@@ -10,7 +10,7 @@ export async function GET() {
   const ok = await isAdminRequest();
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
-  return NextResponse.json({ properties: await listProperties() });
+  return NextResponse.json({ properties: await listPropertiesRaw() });
 }
 
 export async function POST(request: Request) {

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { AdminPropertyDeleteButton } from "@/components/admin-property-delete-button";
 import { AdminPropertyForm } from "@/components/admin-property-form";
 import { MAX_PROPERTY_IMAGES } from "@/lib/properties/constants";
-import { getPropertyById } from "@/lib/properties/service";
+import { getPropertyByIdRaw } from "@/lib/properties/service";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ type EditAdminPropertyPageProps = {
 
 export default async function EditAdminPropertyPage({ params }: EditAdminPropertyPageProps) {
   const { id } = await params;
-  const property = await getPropertyById(id);
+  const property = await getPropertyByIdRaw(id);
 
   if (!property) {
     notFound();

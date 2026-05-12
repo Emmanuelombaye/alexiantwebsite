@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { deleteProperty, getPropertyById, updateProperty } from "@/lib/properties/service";
+import { deleteProperty, getPropertyByIdRaw, updateProperty } from "@/lib/properties/service";
 import { validatePropertyPayload } from "@/lib/properties/validation";
 import { isAdminRequest } from "@/lib/admin-auth";
 
@@ -17,7 +17,7 @@ export async function GET(_: Request, { params }: PropertyRouteContext) {
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
-  const property = await getPropertyById(id);
+  const property = await getPropertyByIdRaw(id);
 
   if (!property) {
     return NextResponse.json({ message: "Property not found." }, { status: 404 });
@@ -31,7 +31,7 @@ export async function PATCH(request: Request, { params }: PropertyRouteContext) 
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
-  const existingProperty = await getPropertyById(id);
+  const existingProperty = await getPropertyByIdRaw(id);
 
   if (!existingProperty) {
     return NextResponse.json({ message: "Property not found." }, { status: 404 });
@@ -72,7 +72,7 @@ export async function DELETE(_: Request, { params }: PropertyRouteContext) {
   if (!ok) return NextResponse.json({ message: "Authentication required." }, { status: 401 });
 
   const { id } = await params;
-  const property = await getPropertyById(id);
+  const property = await getPropertyByIdRaw(id);
 
   if (!property) {
     return NextResponse.json({ message: "Property not found." }, { status: 404 });

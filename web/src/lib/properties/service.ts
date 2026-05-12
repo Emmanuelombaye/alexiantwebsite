@@ -6,7 +6,8 @@ import {
   listPropertyInventory,
   updatePropertyInventoryItem,
 } from "@/data/property-inventory";
-import { createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
+import { createSupabasePublicClient, createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
+import { unstable_cache } from "next/cache";
 import type { Property, PropertyAgent, PropertyCoordinates, PropertyFeature, PropertyPayload } from "@/types/property";
 
 type SupabasePropertyRow = {
@@ -100,9 +101,9 @@ async function ensureUniquePropertySlug(slug: string, currentId?: string) {
   return candidate;
 }
 
-export async function listProperties() {
+export async function listPropertiesRaw() {
   const localInventory = listPropertyInventory();
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return localInventory;
@@ -130,8 +131,16 @@ export async function listProperties() {
   return merged;
 }
 
-export async function getPropertyBySlug(slug: string) {
-  const supabase = await createSupabaseServerClient();
+export const listProperties = unstable_cache(
+  async () => {
+    return listPropertiesRaw();
+  },
+  ['properties-list'],
+  { revalidate: 3600, tags: ['properties'] } // 1 hour cache to prevent database hit limits
+);
+
+export async function getPropertyBySlugRaw(slug: string) {
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return getPropertyInventoryBySlug(slug);
@@ -146,8 +155,16 @@ export async function getPropertyBySlug(slug: string) {
   return mapPropertyRow(data as SupabasePropertyRow);
 }
 
-export async function getPropertyById(id: string) {
-  const supabase = await createSupabaseServerClient();
+export const getPropertyBySlug = unstable_cache(
+  async (slug: string) => {
+    return getPropertyBySlugRaw(slug);
+  },
+  ['property-by-slug'],
+  { revalidate: 3600, tags: ['properties'] } // 1 hour cache
+);
+
+export async function getPropertyByIdRaw(id: string) {
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return getPropertyInventoryById(id);
@@ -161,6 +178,14 @@ export async function getPropertyById(id: string) {
 
   return mapPropertyRow(data as SupabasePropertyRow);
 }
+
+export const getPropertyById = unstable_cache(
+  async (id: string) => {
+    return getPropertyByIdRaw(id);
+  },
+  ['property-by-id'],
+  { revalidate: 3600, tags: ['properties'] } // 1 hour cache
+);
 
 export async function createProperty(payload: PropertyPayload) {
   const normalizedPayload = {

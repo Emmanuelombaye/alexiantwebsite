@@ -2,12 +2,12 @@ import Link from "next/link";
 import { AdminPropertyDeleteButton } from "@/components/admin-property-delete-button";
 import { formatPropertyPrice, titleCase } from "@/lib/format";
 import { MAX_PROPERTY_IMAGES } from "@/lib/properties/constants";
-import { listProperties } from "@/lib/properties/service";
+import { listPropertiesRaw } from "@/lib/properties/service";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPropertiesPage() {
-  const properties = await listProperties();
+  const properties = await listPropertiesRaw();
   const availableCount = properties.filter((property) => property.status === "available").length;
   const saleCount = properties.filter((property) => property.category === "sale").length;
   const rentCount = properties.filter((property) => property.category === "rent").length;
