@@ -206,7 +206,7 @@ export async function createProperty(payload: PropertyPayload) {
     .single();
 
   const property = mapPropertyRow(data as SupabasePropertyRow);
-  revalidateTag("properties");
+  revalidateTag("properties", "page");
   return property;
 }
 
@@ -230,7 +230,7 @@ export async function updateProperty(id: string, payload: PropertyPayload) {
     .single();
 
   const property = mapPropertyRow(data as SupabasePropertyRow);
-  revalidateTag("properties");
+  revalidateTag("properties", "page");
   return property;
 }
 
@@ -244,7 +244,7 @@ export async function deleteProperty(id: string) {
   const { error } = await supabase.from("properties").delete().eq("id", id);
 
   if (!error) {
-    revalidateTag("properties");
+    revalidateTag("properties", "page");
     return true;
   }
 
