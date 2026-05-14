@@ -8,6 +8,7 @@ import {
   updateBlogInventoryItem,
 } from "@/data/blog-inventory";
 import { createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
+import { unstable_cache, revalidateTag } from "next/cache";
 
 type SupabaseBlogRow = {
   id: string;
@@ -39,7 +40,7 @@ function mapBlogRow(row: SupabaseBlogRow): BlogPost {
   };
 }
 
-export async function listBlogPosts(publishedOnly = true) {
+export async function listBlogPostsRaw(publishedOnly = true) {
   const localInventory = listBlogInventory(publishedOnly);
   const supabase = await createSupabaseServerClient();
 
@@ -64,7 +65,6 @@ export async function listBlogPosts(publishedOnly = true) {
 
   const dbPosts = data.map((row) => mapBlogRow(row as SupabaseBlogRow));
   
-  // Merge logic: Bring in local inventory items that don't exist in the DB by slug
   const dbSlugs = new Set(dbPosts.map(p => p.slug));
   const merged = [
     ...dbPosts,
@@ -74,7 +74,15 @@ export async function listBlogPosts(publishedOnly = true) {
   return merged;
 }
 
-export async function getBlogPostBySlug(slug: string) {
+export const listBlogPosts = unstable_cache(
+  async (publishedOnly = true) => {
+    return listBlogPostsRaw(publishedOnly);
+  },
+  ['blog-posts-list'],
+  { revalidate: 3600, tags: ['blog'] }
+);
+
+export async function getBlogPostBySlugRaw(slug: string) {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
@@ -89,6 +97,14 @@ export async function getBlogPostBySlug(slug: string) {
 
   return mapBlogRow(data as SupabaseBlogRow);
 }
+
+export const getBlogPostBySlug = unstable_cache(
+  async (slug: string) => {
+    return getBlogPostBySlugRaw(slug);
+  },
+  ['blog-post-by-slug'],
+  { revalidate: 3600, tags: ['blog'] }
+);
 
 export async function getBlogPostById(id: string) {
   const supabase = await createSupabaseServerClient();
@@ -107,29 +123,15 @@ export async function getBlogPostById(id: string) {
 }
 
 export async function createBlogPost(data: Partial<BlogPost>) {
-  if (
-    !data.slug ||
-    !data.title ||
-    !data.excerpt ||
-    !data.content ||
-    !data.author ||
-    !data.category ||
-    !data.date ||
-    !data.images ||
-    !Array.isArray(data.images) ||
-    typeof data.published !== "boolean"
-  ) {
-    throw new Error("Missing required blog post fields.");
-  }
-
   const supabase = await createSupabaseAdminClient();
 
   if (!supabase) {
     return createBlogInventoryItem(data as Omit<BlogPost, "id"> & { id?: string });
   }
 
-  const insertData: Partial<SupabaseBlogRow> & { images?: string[] } = { ...data, image: data.images ? data.images[0] || "" : "" };
+  const insertData: any = { ...data, image: data.images ? data.images[0] || "" : "" };
   delete insertData.images;
+  delete insertData.id;
 
   const { data: created, error } = await supabase
     .from("blog_posts")
@@ -142,6 +144,7 @@ export async function createBlogPost(data: Partial<BlogPost>) {
     return createBlogInventoryItem(data as Omit<BlogPost, "id"> & { id?: string });
   }
 
+  revalidateTag("blog", "page");
   return mapBlogRow(created as SupabaseBlogRow);
 }
 
@@ -152,11 +155,12 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
     return updateBlogInventoryItem(id, data);
   }
 
-  const updateData: Partial<SupabaseBlogRow> & { images?: string[] } = { ...data };
+  const updateData: any = { ...data };
   if (data.images) {
     updateData.image = data.images[0] || "";
     delete updateData.images;
   }
+  delete updateData.id;
 
   const { data: updated, error } = await supabase
     .from("blog_posts")
@@ -170,6 +174,7 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
     return updateBlogInventoryItem(id, data);
   }
 
+  revalidateTag("blog", "page");
   return mapBlogRow(updated as SupabaseBlogRow);
 }
 
@@ -183,6 +188,7 @@ export async function deleteBlogPost(id: string) {
   const { error } = await supabase.from("blog_posts").delete().eq("id", id);
 
   if (!error) {
+    revalidateTag("blog", "page");
     return true;
   }
 
