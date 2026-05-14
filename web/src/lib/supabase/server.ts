@@ -49,8 +49,7 @@ export async function createSupabaseAdminClient() {
   const env = getSupabaseEnv();
 
   if (!env || !env.serviceRoleKey) {
-    // Fallback to anon if service role is missing (though RLS might fail)
-    return createSupabaseServerClient();
+    throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY. Admin operations cannot be performed.");
   }
 
   return createServerClient(env.url, env.serviceRoleKey, {
@@ -65,13 +64,12 @@ export async function getSupabaseUser() {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    return { id: "mock-admin-no-supabase", email: "admin@example.com" };
+    return null;
   }
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Bypass strict authentication so that admin panel works despite session state
-  return user || { id: "mock-admin", email: "admin@example.com" };
+  return user;
 }

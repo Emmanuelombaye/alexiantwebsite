@@ -7,7 +7,7 @@ import {
   updatePropertyInventoryItem,
 } from "@/data/property-inventory";
 import { createSupabasePublicClient, createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
-import { unstable_cache } from "next/cache";
+import { unstable_cache, revalidateTag } from "next/cache";
 import type { Property, PropertyAgent, PropertyCoordinates, PropertyFeature, PropertyPayload } from "@/types/property";
 
 type SupabasePropertyRow = {
@@ -205,11 +205,9 @@ export async function createProperty(payload: PropertyPayload) {
     .select(propertySelect)
     .single();
 
-  if (error || !data) {
-    return createPropertyInventoryItem(normalizedPayload);
-  }
-
-  return mapPropertyRow(data as SupabasePropertyRow);
+  const property = mapPropertyRow(data as SupabasePropertyRow);
+  revalidateTag("properties");
+  return property;
 }
 
 export async function updateProperty(id: string, payload: PropertyPayload) {
@@ -231,11 +229,9 @@ export async function updateProperty(id: string, payload: PropertyPayload) {
     .select(propertySelect)
     .single();
 
-  if (error || !data) {
-    return updatePropertyInventoryItem(id, normalizedPayload);
-  }
-
-  return mapPropertyRow(data as SupabasePropertyRow);
+  const property = mapPropertyRow(data as SupabasePropertyRow);
+  revalidateTag("properties");
+  return property;
 }
 
 export async function deleteProperty(id: string) {
@@ -248,6 +244,7 @@ export async function deleteProperty(id: string) {
   const { error } = await supabase.from("properties").delete().eq("id", id);
 
   if (!error) {
+    revalidateTag("properties");
     return true;
   }
 
