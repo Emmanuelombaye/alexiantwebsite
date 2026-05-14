@@ -35,12 +35,12 @@ const propertySelect =
 function safeParseJson<T>(value: any): T {
   if (typeof value === "string") {
     try {
-      return JSON.parse(value);
+      return JSON.parse(value) as T;
     } catch {
-      return value;
+      return value as unknown as T;
     }
   }
-  return value;
+  return value as T;
 }
 
 function mapPropertyRow(row: SupabasePropertyRow): Property {
