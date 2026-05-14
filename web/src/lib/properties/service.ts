@@ -32,7 +32,23 @@ type SupabasePropertyRow = {
 const propertySelect =
   "id, slug, title, category, status, featured, price, price_suffix, location, summary, description, features, amenities, images, coordinates, agent";
 
+function safeParseJson<T>(value: any): T {
+  if (typeof value === "string") {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return value;
+    }
+  }
+  return value;
+}
+
 function mapPropertyRow(row: SupabasePropertyRow): Property {
+  const images = safeParseJson<any[]>(row.images);
+  const features = safeParseJson<any[]>(row.features);
+  const amenities = safeParseJson<any[]>(row.amenities);
+  const agent = safeParseJson<any>(row.agent);
+
   return {
     id: row.id,
     slug: row.slug,
@@ -45,15 +61,15 @@ function mapPropertyRow(row: SupabasePropertyRow): Property {
     location: row.location,
     summary: row.summary,
     description: row.description,
-    features: Array.isArray(row.features) ? row.features : [],
-    amenities: Array.isArray(row.amenities) ? row.amenities : [],
-    images: Array.isArray(row.images)
-      ? row.images.map((img) =>
+    features: Array.isArray(features) ? features : [],
+    amenities: Array.isArray(amenities) ? amenities : [],
+    images: Array.isArray(images)
+      ? images.map((img) =>
           typeof img === "string" ? { url: img, slug: "" } : { url: img.url || "", slug: img.slug || "" }
         )
       : [],
     coordinates: row.coordinates,
-    agent: row.agent,
+    agent: agent && typeof agent === "object" ? agent : { name: "", role: "", phone: "", email: "" },
   };
 }
 
