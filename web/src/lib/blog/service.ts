@@ -7,7 +7,7 @@ import {
   listBlogInventory,
   updateBlogInventoryItem,
 } from "@/data/blog-inventory";
-import { createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
+import { createSupabasePublicClient, createSupabaseServerClient, createSupabaseAdminClient } from "@/lib/supabase/server";
 import { unstable_cache, revalidateTag } from "next/cache";
 
 type SupabaseBlogRow = {
@@ -42,7 +42,7 @@ function mapBlogRow(row: SupabaseBlogRow): BlogPost {
 
 export async function listBlogPostsRaw(publishedOnly = true) {
   const localInventory = listBlogInventory(publishedOnly);
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return localInventory;
@@ -83,7 +83,7 @@ export const listBlogPosts = unstable_cache(
 );
 
 export async function getBlogPostBySlugRaw(slug: string) {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return getBlogInventoryBySlug(slug);
@@ -107,7 +107,7 @@ export const getBlogPostBySlug = unstable_cache(
 );
 
 export async function getBlogPostById(id: string) {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createSupabasePublicClient();
 
   if (!supabase) {
     return getBlogInventoryById(id);
